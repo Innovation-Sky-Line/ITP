@@ -21,7 +21,7 @@
 	<jsp:include page="../views/Header.jsp"></jsp:include>
 	<jsp:include page="../views/SideBar.jsp"></jsp:include>
 
-	<!-- Include Your parts within this comment. Do not f#*@ing touch other codes without my permission!!! thank you!!!-->
+	<!-- Include Your parts within this comment.-->
 
 
 	<!-- End of Your Parts!!! -->

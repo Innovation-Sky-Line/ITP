@@ -106,7 +106,7 @@
 			<tr>
 				<td>
 					<div class="logo_container">
-						<img src="logo2.png"><br>
+						<img src="logo.png"><br>
 						<p>Athukotala SM Pvt. Ltd.</p>
 					</div>
 				</td>
