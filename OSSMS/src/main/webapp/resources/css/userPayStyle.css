@@ -1,0 +1,97 @@
+body{
+	background-color: #F4CECE
+}
+.main_content{
+	margin-right:1%;
+	margin-top: 2.5%;
+
+	height: 600px;
+	padding: 10px;
+}
+.backToCart h3{
+	font-size: 20px;
+	font-family: arial;
+}
+.main_table{
+	background-color: white;
+	margin-left: 15%;
+	height: 80%;
+	width: 70%;
+	padding: 20px;
+}
+#payTable{	
+	font-family: arial;
+	border-collapse: collapse;
+	margin-left: 15%;
+	width: 70%;
+}
+#payTable tr{
+	height:50px;	
+}
+#radio-pay{
+	font-size: 10px;
+}
+.table-left{
+	text-align:right;
+	font-weight: bold;
+	padding: 10px;
+	width: 40%;
+}
+#address{
+	margin-left: 2.5%;
+	rows:4;
+	cols:80;
+	resize: none;
+}
+#changeAddress{
+	margin-right: 29%;
+	width: 30%;
+	height: 30px;
+	font-weight: bold;
+	background-color: #000080;
+	color: white;
+	font-family: arial;
+	font-size: 15px;
+	border: none;
+	border-radius: 5px;
+	padding: 5px;	
+}
+#address-row{
+	text-align:right;
+	padding: 10px;
+}
+#changeAddress:hover{
+	background-color: #00006b;
+}
+#cardNumber{
+	margin-left: 2.5%;
+	width: 50%;
+	height: 25px;
+}
+#cvcNo{
+	margin-left: 2.5%;
+	width: 50%;
+	height: 25px;
+}
+#expDate{
+	margin-left: 2.5%;
+}
+#pay-row{
+	text-align:center;
+	padding: 10px;
+}
+#payBtn{
+	background-color: #5cb85c;
+	border-bottom: none;
+	width: 30%;
+	padding: 5px;
+	color: white;
+	font-family: arial;
+	font-size: 15px;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+}
+#payBtn:hover{
+	background-color: #47b347;
+}
