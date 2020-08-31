@@ -19,7 +19,7 @@
 </head>
 <body>
 	<jsp:include page="../views/Header.jsp"></jsp:include>
-	<jsp:include page="../views/SideBar.jsp"></jsp:include>
+	<jsp:include page="../views/P_sidebar.jsp"></jsp:include>
 
 	<!-- Include Your parts within this comment.-->
 

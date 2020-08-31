@@ -24,11 +24,11 @@
 	opacity: 1.3;
 	border: none;
 	color: white;
-	padding: 50px 50px;
+	padding: 40px 30px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 10px;
+	font-size: 15px;
 	border-radius: 1%;
 	transition-duration: 0.4s;
 }
@@ -52,7 +52,7 @@
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn">Reports</button></a></td>
+				<td><a href="#"><button class="sidebtn">View Reports</button></a></td>
 			</tr>
 		</table>
 

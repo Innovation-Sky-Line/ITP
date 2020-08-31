@@ -31,7 +31,7 @@
 }
 
 .logo_container {
-	height: 100%;
+	height: 90%;
 	display: table;
 	float: left;
 }
@@ -106,8 +106,8 @@
 			<tr>
 				<td>
 					<div class="logo_container">
-						<img src="logo.png"><br>
-						<p>Athukotala SM Pvt. Ltd.</p>
+						<img src="../../resources/images/logo.jpg"><br>
+						<p></p>
 					</div>
 				</td>
 				<td>
