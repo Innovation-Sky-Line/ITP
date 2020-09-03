@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="resources/css/cartStyles.css" />
 <link rel="stylesheet" href="resources/css/all.css"></link>
@@ -24,12 +25,14 @@
 	        <th width="20%">Price</th>
 	        <th width="20%">Remove</th>
           </tr>
+          <c:forEach items="${userCart }" var="product">
 	      <tr>
-	        <td class="prod">&nbsp;</td>
-	        <td class="prod">&nbsp;</td>
-	        <td class="prod">&nbsp;</td>
+	        <td class="prod">${product.productId }</td>
+	        <td class="prod">${product.qty }</td>
+	        <td class="prod">${product.productId }</td>
 	        <td class="prod" style="text-align:center;"><i class="fas fa-trash-alt fa-2x"></i></td>
           </tr>
+          </c:forEach>
           <tr>
 	        <td id="last-row">Total</td>
 	        <td id="last-row">&nbsp;</td>
