@@ -12,10 +12,10 @@ import javax.persistence.Table;
 public class ShoppingCart {
 
 	@Id
-	@Column(name = "cusOrderId")
+	@Column(name = "cusorderid")
 	private int orderId;
 	@Id
-	@Column(name = "productId")
+	@Column(name = "productid")
 	private int productId;
 	@Column(name = "quantity")
 	private int qty;

@@ -11,6 +11,9 @@ import com.ossms.model.ShoppingCart;
 
 public interface CartRepository extends CrudRepository<ShoppingCart, CartId>{
 
-	@Query(value="SELECT * FROM ShoppingCart WHERE cusOrderId = :orderId", nativeQuery = true)
+	@Query(value="SELECT * FROM shoppingcart WHERE cusOrderId = :orderId", nativeQuery = true)
 	List<ShoppingCart> findItemsInCart(@Param("orderId") int cartId);
+	
+	@Query(value="SELECT * FROM shoppingcart WHERE cusOrderId = :orderId and productId = :prodId", nativeQuery = true)
+	ShoppingCart getSpecificItem(@Param("orderId") int orderId, @Param("prodId") int productId);
 }

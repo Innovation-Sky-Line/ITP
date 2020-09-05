@@ -3,10 +3,11 @@ package com.ossms.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ossms.model.ShoppingCart;
 import com.ossms.repository.CartRepository;
-
+@Service
 public class CartServiceImpl implements CartService {
 
 	@Autowired
@@ -26,9 +27,16 @@ public class CartServiceImpl implements CartService {
 	public void deleteItemFromCart(ShoppingCart shoppingcart) {
 		cartRepo.delete(shoppingcart);
 	}
-	
-	public List<ShoppingCart> getAll(){
-		return (List<ShoppingCart>) cartRepo.findAll();
+
+	@Override
+	public List<ShoppingCart> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ShoppingCart getCartItem(int orderId, int prodId) {
+		return cartRepo.getSpecificItem(orderId, prodId);
 	}
 
 }

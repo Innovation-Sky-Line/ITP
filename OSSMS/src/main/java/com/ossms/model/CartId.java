@@ -6,6 +6,10 @@ public class CartId implements Serializable{
 	private int productId;
 	private int orderId;
 	
+	public CartId() {
+		
+	}
+	
 	public CartId(int productId, int orderId) {
 		super();
 		this.productId = productId;

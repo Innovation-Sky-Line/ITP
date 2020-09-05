@@ -23,7 +23,7 @@
 			</table>
 			<table id="payTable">
 					<tbody>
-						<form>
+						<form action="">
 							<tr>
 								<td  height="60px" class="table-left">Address</td>
 								<td><textarea id="address" rows="4" cols="40"></textarea></td>
@@ -49,6 +49,10 @@
 							<tr>
 								<td class="table-left">Card Expiration Date</td>
 								<td><input type="date" id="expDate"></td>							
+							</tr>
+							<tr>
+								<td class="table-left">Total Amount</td>
+								<td><input type="text" id="amount" readonly value="${totalPrice }"></td>							
 							</tr>
 							<tr>
 								<td id="pay-row" colspan='2' id="last-row"><input type="submit" id="payBtn" value="Proceed With Payment"></td>
