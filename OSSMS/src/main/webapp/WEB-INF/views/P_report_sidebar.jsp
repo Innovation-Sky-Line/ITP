@@ -24,14 +24,13 @@
 	opacity: 1.3;
 	border: none;
 	color: white;
-	padding: 40px 30px; text-align : center; text-decoration : none;
-	display : inline-block; font-size : 15px;
-	border-radius: 1%;
-	transition-duration: 0.4s;
+	padding: 40px 30px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
+	border-radius: 1%;
+	transition-duration: 0.4s;
 }
 
 .active, .sidebtn:hover {
@@ -39,25 +38,23 @@
 	color: white;
 }
 </style>
-
-
 </head>
 <body>
 	<div class="sideBar" id="sidebtns">
 		<table>
 			<!-- button 01 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn active">Manage
+				<td><a href="/padmin/proAdmin"><button class="sidebtn">Manage
 							Products</button></a></td>
 			</tr>
 			<!-- button 02 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn">Manage
+				<td><a href="/padmin/proCate"><button class="sidebtn">Manage
 							Categories</button></a></td>
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn">Manage
+				<td><a href="#"><button class="sidebtn active">Manage
 							Reports</button></a></td>
 			</tr>
 		</table>
@@ -82,6 +79,5 @@
 			});
 		}
 	</script>
-
 </body>
 </html>

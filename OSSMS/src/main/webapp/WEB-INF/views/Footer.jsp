@@ -9,16 +9,11 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title></title>
 <style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	text-decoration: none;
-}
+
 
 .header {
 	width: 100%;
-	height: 120px;
+	height: 130px;
 	display: block;
 	color: white;
 	background-color: #000080;
@@ -30,17 +25,13 @@
 	width: 100%;
 }
 
+
 .logo_container {
-	height: 90%;
+	height: 85%;
 	display: table;
 	float: left;
 }
 
-.logo_container h2 {
-	height: 100%;
-	display: table-cell;
-	vertical-align: middle;
-}
 
 /*.func_name {
 	margin: auto;

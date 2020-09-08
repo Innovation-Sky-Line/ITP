@@ -141,8 +141,8 @@
 	<div class="nav">
 		<table>
 			<tr>
-				<td><a href="#"><button class="navtb">empty</button></a></td>
-				<td><a href="#"><button class="navtb">empty</button></a></td>
+				<td><a href="#"><button class="navtb">Products</button></a></td>
+				<td><a href="#"><button class="navtb">Profile</button></a></td>
 			</tr>
 		</table>
 	</div>
