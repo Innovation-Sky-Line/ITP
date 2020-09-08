@@ -116,8 +116,8 @@
 			<tr>
 				<td>
 					<div class="logo_container">
-						<img src="logo.png"><br>
-						<p>Athukotala SM Pvt. Ltd.</p>
+						<img src="../../resources/images/logo.jpg"><br>
+						<p></p>
 					</div>
 				</td>
 				<td>
@@ -141,8 +141,8 @@
 	<div class="nav">
 		<table>
 			<tr>
-				<td><a href="#"><button class="navtb">empty</button></a></td>
-				<td><a href="#"><button class="navtb">empty</button></a></td>
+				<td><a href="#"><button class="navtb">Products</button></a></td>
+				<td><a href="#"><button class="navtb">Profile</button></a></td>
 			</tr>
 		</table>
 	</div>
