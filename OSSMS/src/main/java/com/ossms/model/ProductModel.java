@@ -1,5 +1,8 @@
 package com.ossms.model;
 
+import java.sql.Blob;
+import java.util.Locale.Category;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,35 +10,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name = "product")
 public class ProductModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int idProduct;
+	@Column(name="idproduct")
+	private int idProduct;
 	
-	@Column(name = "productName")
-	String productName;
+	@Column(name = "productname")
+	private String productName;
 	
 	@Column(name = "price")
-	float price;
+	private float price;
 	
 	@Column(name = "discount")
-	float discount;
+	private float discount;
 	
-	@Column(name = "currentStock")
-	int currentStock;
+	@Column(name = "currentstock")
+	private int currentStock;
 	
-	@Column(name = "productImage")
-	byte[] pImage;
+	@Column(name = "productimage")
+	private Blob[] productImage;
 	
-	@Column(name = "supplierId")
-	int supplierId;
+	@Column(name = "supplierid")
+	private int supplierId;
 	
-	@Column(name = "categoryId")
-	int categoryId;
+	@Column(name = "categoryid")
+	private int categoryId;
 	
+//	private Supplier supplier;
+//	
+//	private ProductCategoryModel category;
 	
 	public int getIdProduct() {
 		return idProduct;
@@ -43,6 +52,7 @@ public class ProductModel {
 	public void setIdProduct(int idProduct) {
 		this.idProduct = idProduct;
 	}
+	
 	public String getProductName() {
 		return productName;
 	}
@@ -67,11 +77,13 @@ public class ProductModel {
 	public void setCurrentStock(int currentStock) {
 		this.currentStock = currentStock;
 	}
-	public byte[] getpImage() {
-		return pImage;
+	
+	
+	public Blob[] getProductImage() {
+		return productImage;
 	}
-	public void setpImage(byte[] pImage) {
-		this.pImage = pImage;
+	public void setProductImage(Blob[] productImage) {
+		this.productImage = productImage;
 	}
 	public int getSupplierId() {
 		return supplierId;
