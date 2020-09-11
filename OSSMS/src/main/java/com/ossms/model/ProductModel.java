@@ -33,7 +33,7 @@ public class ProductModel {
 	private int currentStock;
 	
 	@Column(name = "productimage")
-	private Blob[] productImage;
+	private byte[] productImage;
 	
 	@Column(name = "supplierid")
 	private int supplierId;
@@ -77,11 +77,10 @@ public class ProductModel {
 		this.currentStock = currentStock;
 	}
 	
-	
-	public Blob[] getProductImage() {
+	public byte[] getProductImage() {
 		return productImage;
 	}
-	public void setProductImage(Blob[] productImage) {
+	public void setProductImage(byte[] productImage) {
 		this.productImage = productImage;
 	}
 	public int getSupplierId() {

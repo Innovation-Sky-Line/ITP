@@ -43,12 +43,18 @@
 			
 			<div class="form-group">
 				<label>Supplier : </label>
-				<form:select path="supplierId" cssClass="form-control"  id="supplierId" />
+				<form:select path="supplierId" cssClass="form-control"  id="supplierId" >
+				<form:option value = "0">Select</form:option>
+				<form:option value = "1">1</form:option>
+				</form:select>
 			</div>
 			
 			<div class="form-group">
 				<label>Category : </label>
-				<form:select path="categoryId" cssClass="form-control"  id="categoryId" />
+				<form:select path="categoryId" cssClass="form-control"  id="categoryId" >
+				<form:option value = "0">Select</form:option>
+				<form:option value = "6">6</form:option>
+				</form:select>
 			</div>
 			
 			<div class="form-group">
@@ -76,48 +82,10 @@
 				<form:input path="productImage" cssClass="form-control" id="productImage" type ="file" />
 			</div>
 			<div class="btn"  style="position: relative; left : 200px;"  >
-			<button type="reset" class="btn btn-primary">Reset</button>  <button type="submit" class="btn btn-primary">Save</button>
+			  <button type="submit" class="btn btn-primary">Save</button>
 			</div>
 		</form:form>
 	
-	
-		<!--<form action="">
-			<label>Product Name : </label> <input type="text"> <br>
-			<br> <label for="suppliers">Choose a supplier : </label> <select
-				id="suppliers" name="suppliers">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-				<option value="fiat">Fiat</option>
-				<option value="audi">Audi</option>
-			</select> <br>
-			<br> <label for="category"> Category : </label> <select
-				id="category" name="category">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-				<option value="fiat">Fiat</option>
-				<option value="audi">Audi</option>
-			</select> &nbsp &nbsp &nbsp <label for="subcategory">Sub category : </label> <select
-				id="subcategory" name="subcategory">
-				<option value="volvo">Volvo</option>
-				<option value="saab">Saab</option>
-				<option value="fiat">Fiat</option>
-				<option value="audi">Audi</option>
-			</select><br>
-			<br> <label>Unit Price : </label> <input type="Number">
-			<br>
-			<br> <label># of Units : </label> <input type="Number">
-			<br>
-			<br> <label>Buying Limit : </label> <input type="Number">
-			<br>
-			<br> <label>Discount Rate : </label> <input type="Number">
-			<br>
-			<br> <label for="img">Select image:</label> <input type="file"
-				id="img" name="img" accept="image/*"><br><br>
-			<div style="position: relative; left : 60px;" >
-				<input type="reset">  &nbsp &nbsp &nbsp<input type="submit">
-			</div>
-		</form>-->
-		
 		</div>
 	<!-- End of Your Parts!!! -->
 	<div class = "footer">

@@ -44,7 +44,9 @@
 			<div class="form-group">
 				<label>Select Main Category : </label>
 				<form:select path="mainCategoryId" cssClass="form-control"  id="supplierId">
-					<form:option value = "">Select Main Category</form:option>
+					<form:option value = ""></form:option>
+					<form:option value = "${allCategories }" itemLable = "id" itemValue = "category"></form:option>
+					
 				</form:select>
 			</div>
 			

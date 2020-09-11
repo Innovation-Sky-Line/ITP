@@ -10,6 +10,8 @@ import com.ossms.dao.ProCategoryDao;
 import com.ossms.dao.ProductDao;
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
+import com.ossms.repository.ProCateRepository;
+import com.ossms.repository.ProductRepository;
 
 
 
@@ -18,52 +20,60 @@ import com.ossms.model.ProductModel;
 public class ProductsServiceImp implements ProductService{
 
 	@Autowired
-	ProductDao productDao;
+	ProductRepository repository;
 	@Autowired
-	ProCategoryDao proCategoryDao;
+	ProCateRepository proCateRepository;
 
 	@Override
 	public List<ProductModel> getAllproducts() {
-		return (List<ProductModel>) productDao.findAll();
+		return (List<ProductModel>) repository.findAll();
 	}
 	@Override
 	public List<ProductCategoryModel> getAllcategories() {
-		return (List<ProductCategoryModel>) proCategoryDao.findAll();
+		return (List<ProductCategoryModel>) proCateRepository.findAll();
 	}
 
 
 	@Override
 	public ProductModel getProductById(int id) {
-		return productDao.findById(id).get();
+		return repository.findById(id).get();
 	}
 	@Override
 	public ProductCategoryModel getCategoryById(int id) {
-		return proCategoryDao.findById(id).get();
+		return proCateRepository.findById(id).get();
 	}
 	
 
 	@Override
 	public void saveOrUpdate(ProductModel products) {
-		productDao.save(products);
+		repository.save(products);
 		
 	}
 
 	@Override
 	public void saveOrUpdate(ProductCategoryModel category) {
-		proCategoryDao.save(category);
+		proCateRepository.save(category);
 		
 	}
 
 	@Override
 	public void deleteProduct(int id) {
-		productDao.deleteById(id);
+		repository.deleteById(id);
 		
 	}
 	@Override
 	public void deleteCategory(int id) {
-		proCategoryDao.deleteById(id);
+		proCateRepository.deleteById(id);
 		
 	}
+	
+	
+	
+//	@Override
+//	public List<ProductCategoryModel> allCategoryNames() {
+//		
+//		return (List<ProductCategoryModel>) proCateRepository.allCategoryNames();
+//	}
 
 	
 

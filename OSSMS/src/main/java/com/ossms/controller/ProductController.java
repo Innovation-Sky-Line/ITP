@@ -3,6 +3,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,12 +38,25 @@ public class ProductController {
 		model.addObject("categoryForm", category);
 		return model;
 	}
+//	@GetMapping("/")
+//	public String allCategories(@ModelAttribute("category") ProductCategoryModel productCategoryModel, Model model) {
+//		List<ProductCategoryModel> categoriesCategoryModels = productService.allCategoryNames();
+//		return "ProManage/CateManage";
+//		
+//	}
+//	
+//	@ModelAttribute("allCategories")
+//	 public List<ProductCategoryModel> allCategories() {
+//	      List<ProductCategoryModel> allCategories = productService.allCategoryNames();
+//	      return allCategories;
+//	   } 
+//	
 	
 	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
 	 public ModelAndView addProduct(ProductModel product) {
 	  ModelAndView model = new ModelAndView();
 	  productService.saveOrUpdate(product);
-	  model.setViewName("redirect:/ProManage/ProductList");
+	  model.setViewName("redirect:/padmin/productList");
 	  
 	  return model;
 	 }
@@ -49,7 +65,7 @@ public class ProductController {
 	 public ModelAndView addCategory(ProductCategoryModel category) {
 	  ModelAndView model = new ModelAndView();
 	  productService.saveOrUpdate(category);
-	  model.setViewName("redirect:/ProManage/ProCateList");
+	  model.setViewName("redirect:/padmin/categoryList");
 	  
 	  return model;
 	 }
@@ -133,6 +149,8 @@ public class ProductController {
 
 		return new ModelAndView("redirect:/padmin/categoryList");
 	}
+	
+	
 }
 
 

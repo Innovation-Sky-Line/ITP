@@ -18,4 +18,6 @@ public interface ProductService {
 
 	public void deleteProduct(int id);
 	public void deleteCategory(int id);
+	
+//	public List<ProductCategoryModel> allCategoryNames();
 }
