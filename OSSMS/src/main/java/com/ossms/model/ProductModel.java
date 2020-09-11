@@ -1,7 +1,6 @@
 package com.ossms.model;
 
 import java.sql.Blob;
-import java.util.Locale.Category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.sun.istack.NotNull;
+
 
 @Entity
 @Table(name = "product")
@@ -42,9 +41,9 @@ public class ProductModel {
 	@Column(name = "categoryid")
 	private int categoryId;
 	
-//	private Supplier supplier;
-//	
-//	private ProductCategoryModel category;
+	@Column(name = "buyinglimit")
+	private int buyingLimit;
+	
 	
 	public int getIdProduct() {
 		return idProduct;
@@ -97,6 +96,15 @@ public class ProductModel {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public int getBuyingLimit() {
+		return buyingLimit;
+	}
+	public void setBuyingLimit(int buyingLimit) {
+		this.buyingLimit = buyingLimit;
+	}
+	
+	
 	
 	
 }

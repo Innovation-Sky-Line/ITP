@@ -10,11 +10,10 @@
 <title></title>
 <style type="text/css">
 .sideBar {
+	position:absolute;
 	width: 10%;
-	height: 600px;
-	display: block;
+	height: 400px;
 	border: 2px solid black;
-	background-color: white;
 	opacity: 0.9;
 	padding: 15px;
 }

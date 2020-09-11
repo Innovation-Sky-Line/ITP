@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
+
 @Entity
 @Table(name = "category")
 public class ProductCategoryModel {
@@ -18,8 +21,9 @@ public class ProductCategoryModel {
 	@Column(name = "categoryname")
 	private String categoryName;
 	@Column(name = "maincategoryid")
-	private int mainCategoryId;
+	private Integer mainCategoryId;
 	
+
 	public int getIdCategory() {
 		return idCategory;
 	}
@@ -32,10 +36,10 @@ public class ProductCategoryModel {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	public int getMainCategoryId() {
+	public Integer getMainCategoryId() {
 		return mainCategoryId;
 	}
-	public void setMainCategoryId(int mainCategoryId) {
+	public void setMainCategoryId(Integer mainCategoryId) {
 		this.mainCategoryId = mainCategoryId;
 	}
 	

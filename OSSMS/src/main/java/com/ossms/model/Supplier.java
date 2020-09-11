@@ -31,6 +31,23 @@ public class Supplier {
 	@Column(name = "contactno")
 	private String contactNo;
 	
+	public Supplier() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Supplier(int idSupplier, String supplierName, String address, String email, String status,
+			String contactNo) {
+		super();
+		this.idSupplier = idSupplier;
+		this.supplierName = supplierName;
+		this.address = address;
+		this.email = email;
+		this.status = status;
+		this.contactNo = contactNo;
+	}
+
+
 	public int getIdSupplier() {
 		return idSupplier;
 	}
