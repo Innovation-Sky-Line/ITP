@@ -7,10 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 
 
 
 @Entity
+@Component
 @Table(name = "category")
 public class ProductCategoryModel {
 
@@ -23,6 +26,22 @@ public class ProductCategoryModel {
 	@Column(name = "maincategoryid")
 	private Integer mainCategoryId;
 	
+	
+
+	public ProductCategoryModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public ProductCategoryModel(String categoryName, Integer mainCategoryId) {
+		super();
+		this.categoryName = categoryName;
+		this.mainCategoryId = mainCategoryId;
+	}
+
+
 
 	public int getIdCategory() {
 		return idCategory;
@@ -42,5 +61,14 @@ public class ProductCategoryModel {
 	public void setMainCategoryId(Integer mainCategoryId) {
 		this.mainCategoryId = mainCategoryId;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "ProductCategoryModel [idCategory=" + idCategory + ", categoryName=" + categoryName + ", mainCategoryId="
+				+ mainCategoryId + "]";
+	}
+	
 	
 }

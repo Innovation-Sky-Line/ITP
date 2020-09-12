@@ -31,23 +31,24 @@
 	<!-- Include Your parts within this comment.-->
 	<div class="body">
 	
-	<spring:url value="/padmin/addCategory" var="saveURL" />
+	<spring:url value="/padmin/addCategory1" var="saveURL" />
 		
 		<form:form modelAttribute="categoryForm" method="post"
 			action="${saveURL }" cssClass="form">
 			<form:hidden path="idCategory" />
 			<div class="form-group">
 				<label>Category Name : </label>
-				<form:input path="categoryName" cssClass="form-control"  id="categoryName" />
+				<form:input path="categoryName" cssClass="form-control"  id="categoryName" required = "required"/>
 			</div>
 			
 			<div class="form-group">
 				<label>Select Main Category : </label>
-				<form:select path="mainCategoryId" cssClass="form-control"  id="supplierId">
+				<form:select  path="mainCategoryId" cssClass="form-control"  id="mainCategoryId">
 					<form:option value = ""></form:option>
-					<form:option value = "${allCategories }" itemLable = "id" itemValue = "category"></form:option>
+					<form:options value = "" items = "${mainCategories }"></form:options>
 					
 				</form:select>
+				
 			</div>
 			
 			

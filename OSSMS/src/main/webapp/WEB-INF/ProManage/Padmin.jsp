@@ -44,7 +44,7 @@
 			<div class="form-group">
 				<label>Supplier : </label>
 				<form:select path="supplierId" cssClass="form-control"  id="supplierId" required = "required">
-				<form:option value = "0">Select</form:option>
+				<form:option value = "-1">Select</form:option>
 				<form:option value = "1">1</form:option>
 				</form:select>
 			</div>
@@ -52,7 +52,7 @@
 			<div class="form-group">
 				<label>Category : </label>
 				<form:select path="categoryId" cssClass="form-control"  id="categoryId" required = "required">
-				<form:option value = "0">Select</form:option>
+				<form:option value = "-1">Select</form:option>
 				<form:option value = "6">6</form:option>
 				</form:select>
 			</div>

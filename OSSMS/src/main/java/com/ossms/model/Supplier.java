@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 @Table(name = "supplier")
 public class Supplier {
 	
@@ -36,10 +39,10 @@ public class Supplier {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Supplier(int idSupplier, String supplierName, String address, String email, String status,
+	public Supplier( String supplierName, String address, String email, String status,
 			String contactNo) {
 		super();
-		this.idSupplier = idSupplier;
+		
 		this.supplierName = supplierName;
 		this.address = address;
 		this.email = email;
@@ -83,6 +86,12 @@ public class Supplier {
 	}
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
+	}
+
+	@Override
+	public String toString() {
+		return "Supplier [idSupplier=" + idSupplier + ", supplierName=" + supplierName + ", address=" + address
+				+ ", email=" + email + ", status=" + status + ", contactNo=" + contactNo + "]";
 	}
 	
 	

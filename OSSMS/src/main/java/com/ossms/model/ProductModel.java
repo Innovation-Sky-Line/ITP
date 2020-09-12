@@ -1,6 +1,5 @@
 package com.ossms.model;
 
-import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 
 
 @Entity
+@Component
 @Table(name = "product")
 public class ProductModel {
 	
@@ -33,18 +35,38 @@ public class ProductModel {
 	private int currentStock;
 	
 	@Column(name = "productimage")
-	private byte[] productImage;
+	private String productImage;
 	
 	@Column(name = "supplierid")
-	private int supplierId;
+	private Integer supplierId;
 	
 	@Column(name = "categoryid")
-	private int categoryId;
+	private Integer categoryId;
 	
 	@Column(name = "buyinglimit")
 	private int buyingLimit;
 	
 	
+	public ProductModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public ProductModel(String productName, float price, float discount, int currentStock, String productImage,
+			int supplierId, int categoryId, int buyingLimit) {
+		super();
+		this.productName = productName;
+		this.price = price;
+		this.discount = discount;
+		this.currentStock = currentStock;
+		this.productImage = productImage;
+		this.supplierId = supplierId;
+		this.categoryId = categoryId;
+		this.buyingLimit = buyingLimit;
+	}
+
+
 	public int getIdProduct() {
 		return idProduct;
 	}
@@ -77,22 +99,22 @@ public class ProductModel {
 		this.currentStock = currentStock;
 	}
 	
-	public byte[] getProductImage() {
+	public String getProductImage() {
 		return productImage;
 	}
-	public void setProductImage(byte[] productImage) {
+	public void setProductImage(String productImage) {
 		this.productImage = productImage;
 	}
-	public int getSupplierId() {
+	public Integer getSupplierId() {
 		return supplierId;
 	}
-	public void setSupplierId(int supplierId) {
+	public void setSupplierId(Integer supplierId) {
 		this.supplierId = supplierId;
 	}
-	public int getCategoryId() {
+	public Integer getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 

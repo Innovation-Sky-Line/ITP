@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ossms.model.ProductCategoryModel;
@@ -28,29 +29,27 @@ public class ProductController {
 		ModelAndView model = new ModelAndView("ProManage/Padmin");
 		ProductModel product = new ProductModel();
 		model.addObject("productForm", product);
+		List<String> allSuppliers = productService.allSupplierNames();
+		model.addObject("allSuppliers", allSuppliers);
+		List<Integer> allSupplierIds = productService.allSupplierIds(); 
+		model.addObject("SupplierId", allSupplierIds);
+		List<String> allCategories = productService.allCategoryNames();
+		model.addObject("allCategories", allCategories);
 		return model;
 	}
 	
 	@RequestMapping(value = "/CateManage")
 	public ModelAndView addCategory() {
 		ModelAndView model = new ModelAndView("ProManage/CateManage");
+		List<String> mainCategories = productService.mainCategoryNames();
+		model.addObject("mainCategories", mainCategories);
 		ProductCategoryModel category = new ProductCategoryModel();
 		model.addObject("categoryForm", category);
+
 		return model;
 	}
-//	@GetMapping("/")
-//	public String allCategories(@ModelAttribute("category") ProductCategoryModel productCategoryModel, Model model) {
-//		List<ProductCategoryModel> categoriesCategoryModels = productService.allCategoryNames();
-//		return "ProManage/CateManage";
-//		
-//	}
-//	
-//	@ModelAttribute("allCategories")
-//	 public List<ProductCategoryModel> allCategories() {
-//	      List<ProductCategoryModel> allCategories = productService.allCategoryNames();
-//	      return allCategories;
-//	   } 
-//	
+	
+	
 	
 	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
 	 public ModelAndView addProduct(ProductModel product) {
@@ -64,6 +63,19 @@ public class ProductController {
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	 public ModelAndView addCategory(ProductCategoryModel category) {
 	  ModelAndView model = new ModelAndView();
+	  productService.saveOrUpdate(category);
+	  model.setViewName("redirect:/padmin/categoryList");
+	  
+	  return model;
+	 }
+	
+	@RequestMapping(value="/addCategory1", method=RequestMethod.POST)
+	 public ModelAndView addCategory1(@RequestParam("categoryName") String categoryName, String mainCategoryId ) {
+	  ModelAndView model = new ModelAndView();
+	  ProductCategoryModel category = new ProductCategoryModel();
+	  category.setCategoryName(categoryName);
+	  Integer mainCateId = productService.getCategoryIdBy(mainCategoryId);
+	  category.setMainCategoryId(mainCateId);
 	  productService.saveOrUpdate(category);
 	  model.setViewName("redirect:/padmin/categoryList");
 	  
@@ -135,10 +147,11 @@ public class ProductController {
 	
 	@RequestMapping(value = "/updateCategory/{idCategory}", method = RequestMethod.GET)
 	public ModelAndView editCategory(@PathVariable int idCategory) {
-		ModelAndView model = new ModelAndView();
+		ModelAndView model = new ModelAndView("ProManage/CateManage");
 		ProductCategoryModel category = productService.getCategoryById(idCategory);
 		model.addObject("categoryForm", category);
-		model.setViewName("ProManage/CateManage");
+		List<String> mainCategories = productService.mainCategoryNames();
+		model.addObject("mainCategories", mainCategories);
 
 		return model;
 	}

@@ -12,6 +12,7 @@ import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
 import com.ossms.repository.ProCateRepository;
 import com.ossms.repository.ProductRepository;
+import com.ossms.repository.SupplierRepository;
 
 
 
@@ -23,6 +24,8 @@ public class ProductsServiceImp implements ProductService{
 	ProductRepository repository;
 	@Autowired
 	ProCateRepository proCateRepository;
+	@Autowired
+	SupplierRepository supplierRepository;
 
 	@Override
 	public List<ProductModel> getAllproducts() {
@@ -69,12 +72,39 @@ public class ProductsServiceImp implements ProductService{
 	
 	
 	
-//	@Override
-//	public List<ProductCategoryModel> allCategoryNames() {
-//		
-//		return (List<ProductCategoryModel>) proCateRepository.allCategoryNames();
-//	}
+	@Override
+	public List<String> allCategoryNames() {
+		
+		return (List<String>) proCateRepository.allCategoryNames();
+	}
+	@Override
+	public List<String> subCategoryNames() {
+		return (List<String>) proCateRepository.subCategoryNames();
+	}
+	@Override
+	public List<String> mainCategoryNames() {
+		return (List<String>) proCateRepository.mainCategoryNames();
+	}
+	@Override
+	public Integer getCategoryIdBy(String firstName) {
+		return proCateRepository.getCategoryIdBy(firstName);
+		
+	}
 
+	
+	
+	
+	
+	
+	@Override
+	public List<String> allSupplierNames() {
+		return (List<String>) supplierRepository.allSupplierNames();
+	}
+	@Override
+	public List<Integer> allSupplierIds() {
+		return (List<Integer>) supplierRepository.allSupplierIds();
+	}
+	
 	
 
 
