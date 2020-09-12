@@ -122,7 +122,7 @@
 				</td>
 				<td>
 					<div class="func_name">
-						<h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Admin
+						<h1>&nbsp &nbsp &nbsp &nbsp &nbsp  Admin
 							Panel.</h1>
 					</div>
 				</td>

@@ -44,12 +44,12 @@
 		<table>
 			<!-- button 01 -->
 			<tr>
-				<td><a href="/padmin/proAdmin"><button class="sidebtn">Manage
+				<td><a href="/padmin/proManage"><button class="sidebtn">Manage
 							Products</button></a></td>
 			</tr>
 			<!-- button 02 -->
 			<tr>
-				<td><a href="/padmin/proCate"><button class="sidebtn">Manage
+				<td><a href="/padmin/CateManage"><button class="sidebtn">Manage
 							Categories</button></a></td>
 			</tr>
 			<!-- button 03 -->

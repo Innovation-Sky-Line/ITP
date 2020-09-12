@@ -11,8 +11,8 @@
 <style type="text/css">
 .sideBar {
 	position:absolute;
-	width: 10%;
-	height: 400px;
+	width: 13%;
+	height: 90%;
 	border: 2px solid black;
 	opacity: 0.9;
 	padding: 15px;
@@ -28,7 +28,7 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
-	border-radius: 1%;
+	border-radius: 10%;
 	transition-duration: 0.4s;
 }
 
@@ -43,7 +43,7 @@
 		<table>
 			<!-- button 01 -->
 			<tr>
-				<td><a href="/padmin/proAdmin"><button class="sidebtn">Manage
+				<td><a href="/padmin/proManage"><button class="sidebtn">Manage
 							Products</button></a></td>
 			</tr>
 			<!-- button 02 -->

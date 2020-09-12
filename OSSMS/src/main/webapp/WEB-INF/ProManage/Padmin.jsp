@@ -38,12 +38,12 @@
 			<form:hidden path="idProduct" />
 			<div class="form-group">
 				<label>Product Name : </label>
-				<form:input path="productName" cssClass="form-control"  id="product" />
+				<form:input path="productName" cssClass="form-control"  id="product" required = "required"/>
 			</div>
 			
 			<div class="form-group">
 				<label>Supplier : </label>
-				<form:select path="supplierId" cssClass="form-control"  id="supplierId" >
+				<form:select path="supplierId" cssClass="form-control"  id="supplierId" required = "required">
 				<form:option value = "0">Select</form:option>
 				<form:option value = "1">1</form:option>
 				</form:select>
@@ -51,7 +51,7 @@
 			
 			<div class="form-group">
 				<label>Category : </label>
-				<form:select path="categoryId" cssClass="form-control"  id="categoryId" >
+				<form:select path="categoryId" cssClass="form-control"  id="categoryId" required = "required">
 				<form:option value = "0">Select</form:option>
 				<form:option value = "6">6</form:option>
 				</form:select>
@@ -59,22 +59,22 @@
 			
 			<div class="form-group">
 				<label>Unit Price : </label>
-				<form:input path="price" cssClass="form-control" id="price" />
+				<form:input path="price" cssClass="form-control" id="price" type = "number" required = "required"/>
 			</div>
 			
 			<div class="form-group">
 				<label># of units : </label>
-				<form:input path="currentStock" cssClass="form-control" id="currentStock" />
+				<form:input path="currentStock" cssClass="form-control" id="currentStock" type = "number" required = "required"/>
 			</div>
 			
 			 <div class="form-group">
 				<label>Buying Limit : </label>
-				<form:input path="buyingLimit" cssClass="form-control" id="buyingLimit" />
+				<form:input path="buyingLimit" cssClass="form-control" id="buyingLimit" type = "number"/>
 			</div>
 			
 			<div class="form-group">
 				<label>Discount Rate : </label>
-				<form:input path="discount" cssClass="form-control" id="discount" />
+				<form:input path="discount" cssClass="form-control" id="discount" type = "number" />
 			</div>
 			
 			<div class="form-group">
@@ -82,7 +82,7 @@
 				<form:input path="productImage" cssClass="form-control" id="productImage" type ="file" />
 			</div>
 			<div class="btn"  style="position: relative; left : 200px;"  >
-			  <button type="submit" class="btn btn-primary">Save</button>
+			   <button type="reset" class="btn btn-primary">Reset</button>&nbsp &nbsp &nbsp<button type="submit" class="btn btn-primary">Save</button>
 			</div>
 		</form:form>
 	

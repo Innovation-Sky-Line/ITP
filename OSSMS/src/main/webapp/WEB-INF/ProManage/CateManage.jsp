@@ -19,7 +19,7 @@
 
 .footer{
 	 position:relative;
-	 top: 105px;
+	 top: 400px;
 }
 </style>
 <meta charset="ISO-8859-1">
