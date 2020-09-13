@@ -95,7 +95,7 @@ form.example::after {
 				
 			</thead>
 			<tbody>
-				<c:forEach items="${categoryList }" var="category">
+				<c:forEach items="${SearchedCategoryList }" var="category">
 					<tr>
 						<td>${category.idCategory }</td>
 						<td>${category.categoryName }</td>

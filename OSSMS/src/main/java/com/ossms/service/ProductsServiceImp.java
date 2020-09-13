@@ -10,6 +10,7 @@ import com.ossms.dao.ProCategoryDao;
 import com.ossms.dao.ProductDao;
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
+import com.ossms.model.Supplier;
 import com.ossms.repository.ProCateRepository;
 import com.ossms.repository.ProductRepository;
 import com.ossms.repository.SupplierRepository;
@@ -73,13 +74,13 @@ public class ProductsServiceImp implements ProductService{
 	
 	
 	@Override
-	public List<String> allCategoryNames() {
+	public List<ProductCategoryModel> allCategoryNames() {
 		
-		return (List<String>) proCateRepository.allCategoryNames();
+		return proCateRepository.allCategoryNames();
 	}
 	@Override
-	public List<String> subCategoryNames() {
-		return (List<String>) proCateRepository.subCategoryNames();
+	public List<ProductCategoryModel> subCategoryNames() {
+		return proCateRepository.subCategoryNames();
 	}
 	@Override
 	public List<ProductCategoryModel> mainCategoryNames() {
@@ -97,12 +98,19 @@ public class ProductsServiceImp implements ProductService{
 	
 	
 	@Override
-	public List<String> allSupplierNames() {
-		return (List<String>) supplierRepository.allSupplierNames();
+	public List<Supplier> allSupplierNames() {
+		return supplierRepository.allSupplierNames();
 	}
 	@Override
 	public List<Integer> allSupplierIds() {
 		return (List<Integer>) supplierRepository.allSupplierIds();
+	}
+	
+	
+	
+	@Override
+	public List<ProductCategoryModel> findProductCategoryModelByCategoryNameContaining(String name) {
+		return proCateRepository.findProductCategoryModelByCategoryNameContaining(name);
 	}
 	
 	

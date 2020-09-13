@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
+import com.ossms.model.Supplier;
 import com.ossms.service.ProductService;
 
 
@@ -29,11 +30,9 @@ public class ProductController {
 		ModelAndView model = new ModelAndView("ProManage/Padmin");
 		ProductModel product = new ProductModel();
 		model.addObject("productForm", product);
-		List<String> allSuppliers = productService.allSupplierNames();
+		List<Supplier> allSuppliers = productService.allSupplierNames();
 		model.addObject("allSuppliers", allSuppliers);
-		List<Integer> allSupplierIds = productService.allSupplierIds(); 
-		model.addObject("SupplierId", allSupplierIds);
-		List<String> allCategories = productService.allCategoryNames();
+		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
 		model.addObject("allCategories", allCategories);
 		return model;
 	}
@@ -118,9 +117,12 @@ public class ProductController {
 	@RequestMapping(value = "/updateProduct/{idProduct}", method = RequestMethod.GET)
 	public ModelAndView editProduct(@PathVariable int idProduct) {
 		ModelAndView model = new ModelAndView();
-
 		ProductModel product = productService.getProductById(idProduct);
 		model.addObject("productForm", product);
+		List<Supplier> allSuppliers = productService.allSupplierNames();
+		model.addObject("allSuppliers", allSuppliers);
+		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
+		model.addObject("allCategories", allCategories);
 		model.setViewName("ProManage/Padmin");
 
 		return model;
@@ -160,6 +162,20 @@ public class ProductController {
 		return new ModelAndView("redirect:/padmin/categoryList");
 	}
 	
+	
+	
+	@RequestMapping(value = "/searchCate", method=RequestMethod.POST)
+	public ModelAndView searchCategory(@RequestParam("searchCate") String name) {
+		ModelAndView mView = new ModelAndView("ProManage/SearchedCategories");
+		List<ProductCategoryModel> cat = productService.findProductCategoryModelByCategoryNameContaining(name);
+		if(!cat.isEmpty()) {
+			mView.addObject("SearchedCategoryList", cat);
+			return mView;
+		}else {
+			mView.setViewName("ProManage/Error");
+			return mView;
+		}
+	}
 	
 }
 

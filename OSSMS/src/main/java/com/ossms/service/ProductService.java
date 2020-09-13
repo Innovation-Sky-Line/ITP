@@ -21,12 +21,14 @@ public interface ProductService {
 	public void deleteProduct(int id);
 	public void deleteCategory(int id);
 	
-	public List<String> allCategoryNames();
-	public List<String> subCategoryNames();
+	public List<ProductCategoryModel> allCategoryNames();
+	public List<ProductCategoryModel> subCategoryNames();
 	public List<ProductCategoryModel> mainCategoryNames();
 	Integer getCategoryIdBy(@Param("firstName") String firstName);
 	
-	public List<String> allSupplierNames();
+	public List<Supplier> allSupplierNames();
 	public List<Integer> allSupplierIds();
+	
+	 List<ProductCategoryModel> findProductCategoryModelByCategoryNameContaining(String name);
 
 }

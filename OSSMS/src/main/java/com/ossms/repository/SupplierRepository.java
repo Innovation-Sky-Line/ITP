@@ -9,8 +9,8 @@ import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.Supplier;
 
 public interface SupplierRepository extends CrudRepository<Supplier, Integer>{
-	@Query(value = "SELECT supplierName FROM supplier order by supplierName ASC", nativeQuery = true)
-	List<String> allSupplierNames();
+	@Query(value = "SELECT * FROM supplier order by supplierName ASC", nativeQuery = true)
+	List<Supplier> allSupplierNames();
 	
 	@Query(value = "SELECT idSupplier FROM supplier order by supplierName ASC", nativeQuery = true)
 	List<Integer> allSupplierIds();

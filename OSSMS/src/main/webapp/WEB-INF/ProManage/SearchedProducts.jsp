@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product Category List</title>
+<title>Product List</title>
 <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" />
 <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -73,48 +73,55 @@ form.example::after {
 </style>
 </head>
 <body>
-	<jsp:include page="../views/Header.jsp"></jsp:include>
-	<div class = "sideBox">
+<jsp:include page="../views/Header.jsp"></jsp:include>
+<div class = "sideBox">
 		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder ="Search Categories.." name="search2">
+  			<input type="text" placeholder ="Search.." name="search2">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
-		<a href="/padmin/CateManage"><button class="listBtn">Add New Categories</button></a>
+		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
 	</div>
-	
-	
 	<div class="container">
-		<h2>Category List</h2>
+		<h2>Product List</h2>
 		<table class="table table-striped">
 			<thead>
 				
 				<th scope="row">#ID</th>
-				<th scope="row">Category Name</th>
-				<th scope="row">Main Category ID</th>
-				<!--  <th scope="row">Main Category Name</th>-->
-				
+				<th scope="row">Product Name</th>
+				<th scope="row">Price</th>
+				<th scope="row">Discount</th>
+				<th scope="row">Current Stock</th>
+				<th scope="row">Image</th>
+				<th scope="row">Supplier ID</th>
+				<th scope="row">Category ID</th>
+				<th scope="row">Buying Limit</th>
 			</thead>
 			<tbody>
-				<c:forEach items="${categoryList }" var="category">
+				<c:forEach items="${SearchedroductList }" var="product">
 					<tr>
-						<td>${category.idCategory }</td>
-						<td>${category.categoryName }</td>
-						<td>${category.mainCategoryId }</td>
-						<!--  <td><c:if test="${category.mainCategoryId != null}">${category.categoryName }</c:if></td>-->
+						<td>${product.idProduct }</td>
+						<td>${product.productName }</td>
+						<td>${product.price }</td>
+						<td>${product.discount }</td>
+						<td>${product.currentStock }</td>
+						<td>${product.productImage }</td>
+						<td>${product.supplierId }</td>
+						<td>${product.categoryId }</td>
+						<td>${product.buyingLimit }</td>
 						
-						<td><spring:url value="/padmin/updateCategory/${category.idCategory}"
+						<td><spring:url value="/padmin/updateProduct/${product.idProduct }"
 								var="updateURL" /> <a class="btn btn-primary"
 							href="${updateURL }" role="button">Update</a></td>
-						<td><spring:url value="/padmin/deleteCategory/${category.idCategory}"
+						<td><spring:url value="/padmin/deleteProduct/${product.idProduct }"
 								var="deleteURL" /> <a class="btn btn-primary"
 							href="${deleteURL }" role="button">Delete</a></td> 
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<spring:url value="/padmin/CateManage" var="addURL" />
+		<spring:url value="/padmin/proManage" var="addURL" />
 		<a class="btn btn-primary" href="${addURL }" role="button">Add
-			New Category</a>
+			New Product</a>
 	</div>
 </body>
 </html>

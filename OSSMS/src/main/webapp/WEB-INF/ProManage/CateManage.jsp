@@ -62,7 +62,7 @@ form.example button {
   padding: 10px;
   background: green;
   color: white;
-  font-size: 15px;
+  font-size: 12px;
   border: 1px solid grey;
   border-left: none;
   cursor: pointer;
@@ -87,11 +87,11 @@ form.example::after {
 	<jsp:include page="../views/Cate_sidebar.jsp"></jsp:include>
 	<!-- Include Your parts within this comment.-->
 	<div class = "sideBox">
-		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder="Search.." name="search2">
+		<form:form class="example" action="/padmin/searchCate" method ="POST" style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder="Search Categories.." name="searchCate" required = "required">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
-		<a href="/padmin/categoryList"><button class="listBtn">All Products</button></a>
+		<a href="/padmin/categoryList"><button class="listBtn">All Categories</button></a>
 	</div>
 	
 	<div class="body">

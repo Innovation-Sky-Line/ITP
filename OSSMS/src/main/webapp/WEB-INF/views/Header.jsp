@@ -141,6 +141,7 @@
 	<div class="nav">
 		<table>
 			<tr>
+				<td><a href="/padmin/proManage"><button class="navtb">Main Panel</button></a></td>
 				<td><a href="#"><button class="navtb">Products</button></a></td>
 				<td><a href="#"><button class="navtb">Profile</button></a></td>
 			</tr>
