@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,8 +13,76 @@
 	rel="stylesheet" />
 <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+<style type="text/css">
+
+sideBox{
+	position: absolute;
+	width : 40%;
+	height: 20%;
+	right:0px;
+	 
+}
+form.example input[type=text] {
+border-radius: 25px;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+ 
+  opacity: 0.9;
+  border-radius: 25px;
+  width: 20%;
+  padding: 15px;
+  background: #2196F3;
+  color: white;
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.listBtn{
+ float : right;
+  opacity: 0.9;
+  border-radius: 25px;
+  width: 20%;
+  padding: 10px;
+  background: green;
+  color: white;
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
 </head>
 <body>
+	<jsp:include page="../views/Header.jsp"></jsp:include>
+	<div class = "sideBox">
+		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder ="Search.." name="search2">
+  			<button type="submit"><i class="fa fa-search"></i></button>
+		</form:form>
+		<a href="/padmin/CateManage"><button class="listBtn">Add New Products</button></a>
+	</div>
+	
+	
 	<div class="container">
 		<h2>Category List</h2>
 		<table class="table table-striped">

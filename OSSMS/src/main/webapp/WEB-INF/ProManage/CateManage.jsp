@@ -1,26 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>	
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>	
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" />
 <style type="text/css">
 
 .body {
-	position: relative;
+	position: absolute;
 	left: 200px;
 	width: 40%;
-	top : 40px;
+	top : 200px;
 }
 
 .footer{
 	 position:relative;
-	 top: 400px;
+	 top: 600px;
 }
+.sideBox{
+	position: absolute;
+	width : 40%;
+	height: 20%;
+	right:0px;
+	 
+}
+form.example input[type=text] {
+border-radius: 25px;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+ 
+  opacity: 0.9;
+  border-radius: 25px;
+  width: 20%;
+  padding: 1px;
+  background: #2196F3;
+  color: white;
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+.listBtn{
+ 
+  opacity: 0.9;
+  border-radius: 25px;
+  width: 20%;
+  padding: 10px;
+  background: green;
+  color: white;
+  font-size: 15px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 </style>
 <meta charset="ISO-8859-1">
 <title>Product Administration.</title>
@@ -29,6 +86,14 @@
 	<jsp:include page="../views/Header.jsp"></jsp:include>
 	<jsp:include page="../views/Cate_sidebar.jsp"></jsp:include>
 	<!-- Include Your parts within this comment.-->
+	<div class = "sideBox">
+		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder="Search.." name="search2">
+  			<button type="submit"><i class="fa fa-search"></i></button>
+		</form:form>
+		<a href="/padmin/categoryList"><button class="listBtn">All Products</button></a>
+	</div>
+	
 	<div class="body">
 	
 	<spring:url value="/padmin/addCategory1" var="saveURL" />
@@ -43,12 +108,17 @@
 			
 			<div class="form-group">
 				<label>Select Main Category : </label>
-				<form:select  path="mainCategoryId" cssClass="form-control"  id="mainCategoryId">
-					<form:option value = ""></form:option>
-					<form:options value = "" items = "${mainCategories }"></form:options>
-					
-				</form:select>
+
 				
+				<form:select path="mainCategoryId" cssClass="form-control"  id="categoryName">
+					<option value="" label ="${cat.categoryName }"></option>
+					<c:forEach var="cat" items="${mainCategories }">
+					<option value="${cat.idCategory }">${cat.categoryName }</option>
+						<c:if test="${cat.mainCategoryId == null }">	
+						</c:if>
+					</c:forEach>
+				</form:select>
+				     
 			</div>
 			
 			

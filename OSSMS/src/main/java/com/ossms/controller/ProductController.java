@@ -41,7 +41,7 @@ public class ProductController {
 	@RequestMapping(value = "/CateManage")
 	public ModelAndView addCategory() {
 		ModelAndView model = new ModelAndView("ProManage/CateManage");
-		List<String> mainCategories = productService.mainCategoryNames();
+		List<ProductCategoryModel> mainCategories = productService.mainCategoryNames();
 		model.addObject("mainCategories", mainCategories);
 		ProductCategoryModel category = new ProductCategoryModel();
 		model.addObject("categoryForm", category);
@@ -70,13 +70,10 @@ public class ProductController {
 	 }
 	
 	@RequestMapping(value="/addCategory1", method=RequestMethod.POST)
-	 public ModelAndView addCategory1(@RequestParam("categoryName") String categoryName, String mainCategoryId ) {
+	 public ModelAndView addCategory1(@ModelAttribute("categoryForm") ProductCategoryModel cat) {
 	  ModelAndView model = new ModelAndView();
-	  ProductCategoryModel category = new ProductCategoryModel();
-	  category.setCategoryName(categoryName);
-	  Integer mainCateId = productService.getCategoryIdBy(mainCategoryId);
-	  category.setMainCategoryId(mainCateId);
-	  productService.saveOrUpdate(category);
+	  
+	  productService.saveOrUpdate(cat);
 	  model.setViewName("redirect:/padmin/categoryList");
 	  
 	  return model;
@@ -150,7 +147,7 @@ public class ProductController {
 		ModelAndView model = new ModelAndView("ProManage/CateManage");
 		ProductCategoryModel category = productService.getCategoryById(idCategory);
 		model.addObject("categoryForm", category);
-		List<String> mainCategories = productService.mainCategoryNames();
+		List<ProductCategoryModel> mainCategories = productService.mainCategoryNames();
 		model.addObject("mainCategories", mainCategories);
 
 		return model;

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 
 import com.ossms.model.ProductCategoryModel;
-import com.ossms.model.ProductModel;
+import com.ossms.model.*;
 
 
 public interface ProductService {
@@ -23,7 +23,7 @@ public interface ProductService {
 	
 	public List<String> allCategoryNames();
 	public List<String> subCategoryNames();
-	public List<String> mainCategoryNames();
+	public List<ProductCategoryModel> mainCategoryNames();
 	Integer getCategoryIdBy(@Param("firstName") String firstName);
 	
 	public List<String> allSupplierNames();

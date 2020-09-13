@@ -35,11 +35,20 @@ public class ProductCategoryModel {
 	
 	
 	
-	public ProductCategoryModel(String categoryName, Integer mainCategoryId) {
+	
+
+
+
+	public ProductCategoryModel(int idCategory, String categoryName, Integer mainCategoryId) {
 		super();
+		this.idCategory = idCategory;
 		this.categoryName = categoryName;
 		this.mainCategoryId = mainCategoryId;
 	}
+
+
+
+
 
 
 

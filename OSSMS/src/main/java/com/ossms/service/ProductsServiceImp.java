@@ -82,8 +82,8 @@ public class ProductsServiceImp implements ProductService{
 		return (List<String>) proCateRepository.subCategoryNames();
 	}
 	@Override
-	public List<String> mainCategoryNames() {
-		return (List<String>) proCateRepository.mainCategoryNames();
+	public List<ProductCategoryModel> mainCategoryNames() {
+		return proCateRepository.mainCategoryNames();
 	}
 	@Override
 	public Integer getCategoryIdBy(String firstName) {
