@@ -39,4 +39,9 @@ public class CartServiceImpl implements CartService {
 		return cartRepo.getSpecificItem(orderId, prodId);
 	}
 
+	@Override
+	public void addToCart(ShoppingCart shoppingcart) {
+		cartRepo.save(shoppingcart);	
+	}
+
 }

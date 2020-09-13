@@ -32,7 +32,6 @@ public class CartItems {
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-
 	public String getProdName() {
 		return prodName;
 	}
@@ -50,6 +49,12 @@ public class CartItems {
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "CartItems [prodId=" + prodId + ", orderId=" + orderId + ", prodName=" + prodName + ", qty=" + qty
+				+ ", price=" + price + "]";
 	}
 	
 	

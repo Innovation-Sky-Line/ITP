@@ -23,4 +23,8 @@ public class ProductService{
 	public Optional<Product> getProdById(int id) {
 		return pr.findById(id);
 	}
+	
+	public List<Product> findProductsByName(String prodName){
+		return pr.findProductByProductNameContaining(prodName);
+	}
 }

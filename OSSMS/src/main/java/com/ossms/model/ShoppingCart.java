@@ -12,14 +12,23 @@ import javax.persistence.Table;
 public class ShoppingCart {
 
 	@Id
-	@Column(name = "cusorderid")
-	private int orderId;
-	@Id
 	@Column(name = "productid")
 	private int productId;
+	@Id
+	@Column(name = "cusorderid")
+	private int orderId;	
 	@Column(name = "quantity")
 	private int qty;
 	
+	public ShoppingCart() {
+		super();
+	}
+	public ShoppingCart(int productId, int orderId, int qty) {
+		super();
+		this.productId = productId;
+		this.orderId = orderId;
+		this.qty = qty;
+	}
 	public int getOrderId() {
 		return orderId;
 	}
@@ -38,5 +47,10 @@ public class ShoppingCart {
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
+	@Override
+	public String toString() {
+		return "ShoppingCart [orderId=" + orderId + ", productId=" + productId + ", qty=" + qty + "]";
+	}
+	
 	
 }

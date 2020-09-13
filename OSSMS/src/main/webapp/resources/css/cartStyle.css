@@ -1,6 +1,14 @@
 body{
 	background-image: url("../images/cartBg.jpg");
 }
+a{
+	color: black;
+	text-decoration:none;
+}
+.cart_btns{
+	background-color:white;
+	border:none;
+}
 .main_content{
 	margin-right:1%;
 	margin-top: 2.5%;
@@ -22,6 +30,7 @@ body{
 	height: 80%;
 	width: 80%;
 	padding: 20px;
+	border-radius:15px;
 }
 #cart{	
 	font-family: arial;

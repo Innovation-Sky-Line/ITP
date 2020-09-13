@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.ossms.model.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Integer>{
-	
+	List<Product> findProductByProductNameContaining(String name);
 }

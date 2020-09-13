@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,6 +15,7 @@ public class Payment {
 	
 	@Id
 	@Column(name = "idpayment")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int paymentId;
 	@Column(name = "paymentdate")
 	private LocalDate date;
@@ -20,13 +23,18 @@ public class Payment {
 	private float amount;
 	@Column(name = "type")
 	private String type;
+	@Column(name="orderid")
+	private int orderId;
 	
-	public Payment(int paymentId, LocalDate date, float amount, String type) {
+	public Payment() {
+		
+	}
+	public Payment(LocalDate date, float amount, String type, int orderId) {
 		super();
-		this.paymentId = paymentId;
 		this.date = date;
 		this.amount = amount;
 		this.type = type;
+		this.orderId = orderId;
 	}
 	public int getPaymentId() {
 		return paymentId;
@@ -51,6 +59,12 @@ public class Payment {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 		
 }

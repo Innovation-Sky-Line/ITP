@@ -16,4 +16,6 @@ public interface CartService {
 	
 	public ShoppingCart getCartItem(int orderId, int prodId);
 	
+	public void addToCart(ShoppingCart shoppingcart);
+	
 }
