@@ -9,6 +9,9 @@ import com.ossms.model.*;
 
 
 public interface ProductService {
+	
+//	public List<String> listProductInfo();
+	
 	public List<ProductModel> getAllproducts();
 	public List<ProductCategoryModel> getAllcategories();
 
@@ -29,6 +32,7 @@ public interface ProductService {
 	public List<Supplier> allSupplierNames();
 	public List<Integer> allSupplierIds();
 	
-	 List<ProductCategoryModel> findProductCategoryModelByCategoryNameContaining(String name);
+	public List<ProductCategoryModel> searchCategory(String name);
+	List<ProductModel> searchProduct(String name);
 
 }

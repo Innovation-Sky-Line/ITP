@@ -35,10 +35,10 @@ form.example input[type=text] {
 border-radius: 25px;
   padding: 10px;
   font-size: 17px;
-  border: 3px solid grey;
+  border: 2px solid grey;
   float: left;
   width: 80%;
-  background: white;
+  background: #f1f1f1;
 }
 
 form.example button {
@@ -63,7 +63,7 @@ form.example button {
   padding: 10px;
   background: #0b7dda;
   color: white;
-  font-size: 15px;
+  font-size: 12px;
   border: 1px solid grey;
   border-left: none;
   cursor: pointer;
@@ -91,8 +91,8 @@ form.example::after {
 	<jsp:include page="../views/P_sidebar.jsp"></jsp:include>
 	<!-- Include Your parts within this comment.-->
 	<div class = "sideBox">
-		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder="Search Products.." name="search2">
+		<form:form class="example" action="/padmin/searchPro" method = "POST" style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder="Search Products.." name="product">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
 		<a href="/padmin/productList"><button class="listBtn">All Products</button></a>

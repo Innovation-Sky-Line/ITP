@@ -167,9 +167,22 @@ public class ProductController {
 	@RequestMapping(value = "/searchCate", method=RequestMethod.POST)
 	public ModelAndView searchCategory(@RequestParam("searchCate") String name) {
 		ModelAndView mView = new ModelAndView("ProManage/SearchedCategories");
-		List<ProductCategoryModel> cat = productService.findProductCategoryModelByCategoryNameContaining(name);
+		List<ProductCategoryModel> cat = productService.searchCategory(name);
 		if(!cat.isEmpty()) {
 			mView.addObject("SearchedCategoryList", cat);
+			return mView;
+		}else {
+			mView.setViewName("ProManage/Error");
+			return mView;
+		}
+	}
+	
+	@RequestMapping(value = "/searchPro", method=RequestMethod.POST)
+	public ModelAndView searchProduct(@RequestParam("product") String name) {
+		ModelAndView mView = new ModelAndView("ProManage/SearchedProducts");
+		List<ProductModel> pro = productService.searchProduct(name);
+		if(!pro.isEmpty()) {
+			mView.addObject("SearchedroductList", pro);
 			return mView;
 		}else {
 			mView.setViewName("ProManage/Error");

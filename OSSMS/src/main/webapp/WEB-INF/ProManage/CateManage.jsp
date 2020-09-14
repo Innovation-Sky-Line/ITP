@@ -34,7 +34,7 @@ form.example input[type=text] {
 border-radius: 25px;
   padding: 10px;
   font-size: 17px;
-  border: 1px solid grey;
+  border: 2px solid grey;
   float: left;
   width: 80%;
   background: #f1f1f1;
@@ -60,7 +60,7 @@ form.example button {
   border-radius: 25px;
   width: 20%;
   padding: 10px;
-  background: green;
+  background: #0b7dda;
   color: white;
   font-size: 12px;
   border: 1px solid grey;

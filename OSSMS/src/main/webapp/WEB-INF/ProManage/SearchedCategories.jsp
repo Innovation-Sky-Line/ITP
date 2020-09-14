@@ -75,8 +75,8 @@ form.example::after {
 <body>
 	<jsp:include page="../views/Header.jsp"></jsp:include>
 	<div class = "sideBox">
-		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder ="Search Categories.." name="search2">
+		<form:form class="example" action="/padmin/searchCate" method ="POST"  style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder ="Search Categories.." name="searchCate">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
 		<a href="/padmin/CateManage"><button class="listBtn">Add New Categories</button></a>

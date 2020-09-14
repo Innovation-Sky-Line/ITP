@@ -10,11 +10,10 @@
 <title></title>
 <style type="text/css">
 .sideBar {
-	width: 10%;
-	height: 600px;
-	display: block;
+	position:absolute;
+	width: 13%;
+	height: 90%;
 	border: 2px solid black;
-	background-color: white;
 	opacity: 0.9;
 	padding: 15px;
 }
@@ -29,7 +28,7 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
-	border-radius: 1%;
+	border-radius: 10%;
 	transition-duration: 0.4s;
 }
 

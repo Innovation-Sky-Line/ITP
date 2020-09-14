@@ -75,8 +75,8 @@ form.example::after {
 <body>
 <jsp:include page="../views/Header.jsp"></jsp:include>
 <div class = "sideBox">
-		<form:form class="example" action="" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder ="Search.." name="search2">
+		<form:form class="example" action="/padmin/searchPro" method = "POST" style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder ="Search.." name="product">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
 		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
@@ -88,8 +88,8 @@ form.example::after {
 				
 				<th scope="row">#ID</th>
 				<th scope="row">Product Name</th>
-				<th scope="row">Price</th>
-				<th scope="row">Discount</th>
+				<th scope="row">Price(LKR)</th>
+				<th scope="row">Discount(%)</th>
 				<th scope="row">Current Stock</th>
 				<th scope="row">Image</th>
 				<th scope="row">Supplier ID</th>

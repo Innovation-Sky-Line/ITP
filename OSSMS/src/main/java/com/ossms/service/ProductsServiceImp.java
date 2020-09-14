@@ -27,6 +27,11 @@ public class ProductsServiceImp implements ProductService{
 	ProCateRepository proCateRepository;
 	@Autowired
 	SupplierRepository supplierRepository;
+	
+//	public List<String> listProductInfo(){
+//		return repository.listProductInfo();
+//	}
+	
 
 	@Override
 	public List<ProductModel> getAllproducts() {
@@ -107,13 +112,13 @@ public class ProductsServiceImp implements ProductService{
 	}
 	
 	
-	
-	@Override
-	public List<ProductCategoryModel> findProductCategoryModelByCategoryNameContaining(String name) {
-		return proCateRepository.findProductCategoryModelByCategoryNameContaining(name);
+
+	public List<ProductModel> searchProduct(String name){
+		return repository.searchProduct(name);
 	}
-	
-	
+	 public List<ProductCategoryModel> searchCategory(String name){
+		 return proCateRepository.searchCategory(name);
+	 }
 
 
 }
