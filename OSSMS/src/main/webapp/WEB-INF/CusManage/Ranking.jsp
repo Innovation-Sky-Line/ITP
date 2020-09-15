@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--
 =========================================================
 Material Dashboard - v2.1.2
@@ -119,10 +120,10 @@ The above copyright notice and this permission notice shall be included in all c
                           ID
                         </th>
                         <th>
-                          Name
+                         First Name
                         </th>
                         <th>
-                          Amount
+                         email
                         </th>
                         <th>
                           City
@@ -131,25 +132,27 @@ The above copyright notice and this permission notice shall be included in all c
                           Date
                         </th>
                       </thead>
+                      <c:forEach var="customers" items="${customer }">
                       <tbody>
                         <tr>
                           <td>
-                            1
+                            ${customer.idCustomer}
                           </td>
                           <td>
-                            Dakota Rice
+                             ${customer.firstname}
                           </td>
                           <td>
-                            $20000
+                             ${customer.email}
                           </td>
                           <td>
-                            Oud-Turnhout
+                              ${customer.password}
                           </td>
                           <td class="text-primary">
                             2020/12/12
                           </td>
                         </tr>
                       </tbody>
+                      </c:forEach>
                     </table>
                   </div>
                 </div>

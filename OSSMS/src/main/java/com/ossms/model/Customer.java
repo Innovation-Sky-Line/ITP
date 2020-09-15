@@ -23,7 +23,7 @@ public class Customer {
 	private String lastName;
 	
 	@Column(name="address")
-	private String address;
+	private String city;
 	
 	@Column(name="contactno")
 	private String contactNo;
@@ -61,12 +61,12 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public String getAddrss() {
-		return address;
+	public String getCity() {
+		return city;
 	}
 
-	public void setAddrss(String address) {
-		this.address = address;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getContactNo() {
@@ -104,7 +104,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", address=" + address + ", contactNo=" + contactNo + ", password=" + password + ", username="
+				+ ", address=" + city + ", contactNo=" + contactNo + ", password=" + password + ", username="
 				+ username + ", email=" + email + "]";
 	}
 	

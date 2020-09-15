@@ -1,7 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <html lang="en">
 
 <head>
@@ -36,13 +49,13 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item  ">
-            <a class="nav-link" href="CustomerDashbord">
+            <a class="nav-link" href="CustomerDashbord?id=${customer.idCustomer}">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" href="CustomerProfile">
+            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
@@ -54,18 +67,11 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Dashboard</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
           <div class="collapse navbar-collapse justify-content-end">
-      
-            <ul class="navbar-nav">  
+           
+            <ul class="navbar-nav">
+              <li class="nav-item">
+             
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
@@ -74,16 +80,16 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="CustomerDashbord">Profile</a>
+                  <a class="dropdown-item" href="CustomerProfile?id=${customer.idCustomer}">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="login">Log out</a>
+                  <a class="dropdown-item" href="invalidate">Log out</a>
                 </div>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-      <!-- End Navbar -->
+      <!-- End Navigation-bar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
@@ -94,38 +100,39 @@
                   <p class="card-category">Complete your profile</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form:form action="/update" method="post">
+                  
                     <div class="row">
-                      <div class="col-md-5">
+                  <!--<div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Company (disabled)</label>
                           <input type="text" class="form-control" disabled>
                         </div>
-                      </div>
+                      </div> --> 
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">id</label>
-                          <input type="text" class="form-control"th:field="*{idCustomer}">
+                          <label class="bmd-label-floating">id (disabled)</label>
+                          <input type="text" name="idCustomer" class="form-control" value="${customer.idCustomer }" disabled/>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control" th:field="*{email}">
+                          <input type="email" class="form-control" value="${customer.email }"/>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control" th:field="*{firstname}">
+                          <label class="bmd-label-floating">First Name</label>
+                          <input type="text" class="form-control" value="${customer.firstName }" />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control" th:field="*{lastname}">
+                          <input type="text" class="form-control" value="${customer.lastName }" />
                         </div>
                       </div>
                     </div>
@@ -133,13 +140,13 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
-                          <input type="text" class="form-control" th:field="*{address}">
+                          <input type="text" class="form-control" value="${customer.city }" />
                         </div>
                       </div>
                        <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">phone</label>
-                          <input type="text" class="form-control"th:field="*{phone}">
+                          <input type="text" class="form-control" value="${customer.contactNo }" />
                         </div>
                       </div>
                     </div>      
@@ -147,20 +154,25 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">User Name</label>
-                          <input type="text" class="form-control"th:field="*{username}">
+                          <input type="text" class="form-control" value="${customer.username }" />
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label>
-                          <input type="password" class="form-control">
+                          <input type="password" class="form-control" value="${customer.password }" />
                         </div>
                       </div>
                     </div>
+                    </form:form>
                     <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                     <button type="submit" class="btn btn-primary pull-right" style="background:red" >delete Account</button>
+                    <form:form action="/customer/delete" method="post">
+                    <input type="text" value="${customer.idCustomer }" name="cusid" hidden/>
+                    <button type="submit" class="btn btn-primary pull-right" style="background:red" >delete Account</button>
+                    
+                    </form:form>
                     <div class="clearfix"></div>
-                  </form>
+                  
                 </div>
               </div>
             </div>
@@ -174,49 +186,49 @@
     </div>
   </div>
  
-  <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+   <!--   Core JS Files   -->
+  <script src="../../resources/assets/js/core/jquery.min.js"></script>
+  <script src="../../resources/assets/js/core/popper.min.js"></script>
+  <script src="../../resources/assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="../../resources/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!-- Plugin for the momentJs  -->
-  <script src="../assets/js/plugins/moment.min.js"></script>
+  <script src="../../resources/assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Sweet Alert -->
-  <script src="../assets/js/plugins/sweetalert2.js"></script>
+  <script src="../../resources/assets/js/plugins/sweetalert2.js"></script>
   <!-- Forms Validations Plugin -->
-  <script src="../assets/js/plugins/jquery.validate.min.js"></script>
+  <script src="../../resources/assets/js/plugins/jquery.validate.min.js"></script>
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-  <script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+  <script src="../../resources/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
   <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-  <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
+  <script src="../../resources/assets/js/plugins/bootstrap-selectpicker.js"></script>
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-  <script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+  <script src="../../resources/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
+  <script src="../../resources/assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-  <script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
+  <script src="../../resources/assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-  <script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
+  <script src="../../resources/assets/js/plugins/jasny-bootstrap.min.js"></script>
   <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-  <script src="../assets/js/plugins/fullcalendar.min.js"></script>
+  <script src="../../resources/assets/js/plugins/fullcalendar.min.js"></script>
   <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-  <script src="../assets/js/plugins/jquery-jvectormap.js"></script>
+  <script src="../../resources/assets/js/plugins/jquery-jvectormap.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../assets/js/plugins/nouislider.min.js"></script>
+  <script src="../../resources/assets/js/plugins/nouislider.min.js"></script>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- Library for adding dinamically elements -->
-  <script src="../assets/js/plugins/arrive.min.js"></script>
+  <script src="../../resources/assets/js/plugins/arrive.min.js"></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chartist JS -->
-  <script src="../assets/js/plugins/chartist.min.js"></script>
+  <script src="../../resources/assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="../../resources/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+  <script src="../../resources/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
+  <script src="../../resources/assets/demo/demo.js"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {

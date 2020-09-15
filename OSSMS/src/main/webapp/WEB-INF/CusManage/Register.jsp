@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-<title>Costomer Registration</title>
+<title>Customer Registration</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -123,7 +123,7 @@ body {
             <input type="text" class="form-control" name="address" placeholder="City"  required="required">
         </div>
         <div class="form-group">
-            <input type="phone" class="form-control" name="phone" placeholder="Phone"  required="required">
+            <input type="text" class="form-control" name="contactNo" placeholder="Phone"  required="required">
 		</div>
         <div class="form-group">
             <input type="text" class="form-control" name="username" placeholder="Username"  required="required">
