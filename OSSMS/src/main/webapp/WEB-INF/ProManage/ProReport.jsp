@@ -16,12 +16,12 @@
 	position: absolute;
 	left: 200px;
 	width: 40%;
-	top : 200px;
+	top : 450px;
 }
 
 .footer{
 	 position:relative;
-	 top: 600px;
+	 top: 800px;
 }
 .sideBox{
 	position: absolute;
@@ -117,6 +117,20 @@ form.example::after {
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+.title{
+	
+	width : 60%;
+	height: 40%;
+	text-align: center;
+	
+}
+
+.logo_container {
+	height: 85%;
+	display: table;
+	
+}
+
 </style>
 <meta charset="ISO-8859-1">
 <title>Product Administration.</title>
@@ -136,14 +150,106 @@ form.example::after {
 
 	</div>
 	
+	<div class = "title" style ="margin : auto">
+		<img src="../../resources/images/logo.jpg"><br>
+		<h2>Athukorala SuperMarket PVT. LTD.</h2>
+		<h3>Product Report</h3>
+		<p>T.P : +94 68-222 22 54/ +94 76 324 45 66, FAX : 87686756778 ,Email : athukoralasm@gmail.com </p>
+	</div>	
+	
 	<div class="body">
 	
+		<div class="container" style="font-size:14px;">
+		<h2>Insufficient Products.</h2>
+		<table class="table table-striped">
+			<thead>
+				
+				<th scope="row">#ID</th>
+				<th scope="row">Product Name</th>
+				<th scope="row">Price(LKR)</th>
+				<th scope="row">Discount(%)</th>
+				<th scope="row">Final Price(LKR)</th>
+				<th scope="row">Current Stock</th>
+				<th scope="row">Image</th>
+				<th scope="row">Supplier ID</th>
+				<th scope="row">Supplier Name</th>
+				<th scope="row">Category ID</th>
+				<th scope="row">Category Name</th>
+				<th scope="row">Buying Limit</th>
+			</thead>
+			<tbody>
+				<c:forEach items="${insufficient }" var="p">
+					<tr>
+						<td>${p.productModel.idProduct }</td>
+						<td>${p.productModel.productName }</td>
+						<td>${p.productModel.price }</td>
+						<c:set var = "price" value = "${p.productModel.price }"></c:set>
+						<td>${p.productModel.discount }</td>
+						<c:set var = "dis" value = "${p.productModel.discount }"></c:set>
+						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
+						<td><c:out value = "${fPrice }"></c:out></td>	
+						<td>${p.productModel.currentStock }</td>
+						<td>${p.productModel.productImage }</td>
+						<td>${p.productModel.supplierId }</td>
+						<td>${p.supplier.supplierName }</td>
+						<td>${p.productModel.categoryId }</td>
+						<td>${p.categoryModel.categoryName  }</td>
+						<td>${p.productModel.buyingLimit }</td>
+						
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div><br><br><br>
+	
+	
+	
+	<div class="container" style="font-size:14px;">
+		<h2>Products With discounts.</h2>
+		<table class="table table-striped">
+			<thead>
+				
+				<th scope="row">#ID</th>
+				<th scope="row">Product Name</th>
+				<th scope="row">Price(LKR)</th>
+				<th scope="row">Discount(%)</th>
+				<th scope="row">Final Price(LKR)</th>
+				<th scope="row">Current Stock</th>
+				<th scope="row">Image</th>
+				<th scope="row">Supplier ID</th>
+				<th scope="row">Supplier Name</th>
+				<th scope="row">Category ID</th>
+				<th scope="row">Category Name</th>
+				<th scope="row">Buying Limit</th>
+			</thead>
+			<tbody>
+				<c:forEach items="${discounted }" var="p">
+					<tr>
+						<td>${p.productModel.idProduct }</td>
+						<td>${p.productModel.productName }</td>
+						<td>${p.productModel.price }</td>
+						<c:set var = "price" value = "${p.productModel.price }"></c:set>
+						<td>${p.productModel.discount }</td>
+						<c:set var = "dis" value = "${p.productModel.discount }"></c:set>
+						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
+						<td><c:out value = "${fPrice }"></c:out></td>	
+						<td>${p.productModel.currentStock }</td>
+						<td>${p.productModel.productImage }</td>
+						<td>${p.productModel.supplierId }</td>
+						<td>${p.supplier.supplierName }</td>
+						<td>${p.productModel.categoryId }</td>
+						<td>${p.categoryModel.categoryName  }</td>
+						<td>${p.productModel.buyingLimit }</td>
+						
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 	
 		
-		</div>
-	<!-- End of Your Parts!!! -->
-	<div class = "footer">
-	<jsp:include page="../views/Footer.jsp"></jsp:include>
 	</div>
+	<!-- End of Your Parts!!! -->
+	
 </body>
 </html>

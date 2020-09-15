@@ -53,7 +53,7 @@
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="/padmin/proRepo"><button
+				<td><a href="/padmin/proReport"><button
 							class="sidebtn">Manage Reports</button></a></td>
 			</tr>
 		</table>

@@ -14,4 +14,10 @@ public interface ProductRepository extends CrudRepository<ProductModel, Integer>
 //	List<String> listProductInfo();
 	 @Query(value ="select * from product where productName like %?1%", nativeQuery = true)
 	    List<ProductModel> searchProduct(String name);
+	 
+	 @Query(value ="select * from product where currentStock < 50", nativeQuery = true)
+	    List<ProductModel> getInsufficientProducts();
+	 
+	 @Query(value ="select * from product where discount > 0", nativeQuery = true)
+	    List<ProductModel> getDiscountProducts();
 }

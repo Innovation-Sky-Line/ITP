@@ -235,6 +235,34 @@ public class ProductController {
 		}
 	}
 	
+
+	@RequestMapping(value="/proReport", method=RequestMethod.GET)
+	 public ModelAndView proReport() {
+		ModelAndView mv = new ModelAndView("ProManage/ProReport");
+		List<ProductModel> products = productService.getInsufficientProducts();
+		List<ProductList> pList = new ArrayList<ProductList>();
+		for(ProductModel productModel : products) {
+			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
+			Supplier supplier = productService.getSupplierById(productModel.getSupplierId());
+			ProductList list = new ProductList(productModel, categoryModel, supplier);
+			
+			pList.add(list);
+		}
+		mv.addObject("insufficient", pList);
+		
+		List<ProductModel> p = productService.getDiscountProducts();
+		List<ProductList> pList2 = new ArrayList<ProductList>();
+		for(ProductModel productModels : p) {
+			ProductCategoryModel categoryModel2 = productService.getCategoryById(productModels.getCategoryId());
+			Supplier supplier2 = productService.getSupplierById(productModels.getSupplierId());
+			ProductList list2 = new ProductList(productModels, categoryModel2, supplier2);
+			
+			pList2.add(list2);
+		}
+		mv.addObject("discounted", pList2);
+		return mv;
+	}
+	
 }
 
 

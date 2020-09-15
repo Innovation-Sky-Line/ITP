@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 
-import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.*;
 
 
@@ -41,6 +40,10 @@ public interface ProductService {
 	
 	public List<String> getCategoryName();
 	public List<String> getSupName();
+	
+	
+	public List<ProductModel> getInsufficientProducts();
+	public List<ProductModel> getDiscountProducts();
 	
 
 }

@@ -138,6 +138,17 @@ public class ProductsServiceImp implements ProductService{
 	public Supplier getSupplierById(int id) {
 		return supplierRepository.findById(id).get();
 	}
+	
+	
+	
+	@Override
+	public List<ProductModel> getInsufficientProducts() {
+		return repository.getInsufficientProducts();
+	}
+	@Override
+	public List<ProductModel> getDiscountProducts() {
+		return repository.getDiscountProducts();
+	}
 
 
 }
