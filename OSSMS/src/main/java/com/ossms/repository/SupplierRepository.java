@@ -14,4 +14,8 @@ public interface SupplierRepository extends CrudRepository<Supplier, Integer>{
 	
 	@Query(value = "SELECT idSupplier FROM supplier order by supplierName ASC", nativeQuery = true)
 	List<Integer> allSupplierIds();
+	
+	@Query(value = "SELECT supplierName FROM supplier", nativeQuery = true)
+	List<String> getSupName();
+
 }

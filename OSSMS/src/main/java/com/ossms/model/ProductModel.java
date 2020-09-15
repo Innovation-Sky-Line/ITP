@@ -46,6 +46,7 @@ public class ProductModel {
 	@Column(name = "buyinglimit")
 	private int buyingLimit;
 	
+
 	
 	public ProductModel() {
 		super();
@@ -53,6 +54,23 @@ public class ProductModel {
 	}
 	
 	
+	
+	public ProductModel(int idProduct, String productName, float price, float discount, int currentStock,
+			String productImage, Integer supplierId, Integer categoryId, int buyingLimit) {
+		super();
+		this.idProduct = idProduct;
+		this.productName = productName;
+		this.price = price;
+		this.discount = discount;
+		this.currentStock = currentStock;
+		this.productImage = productImage;
+		this.supplierId = supplierId;
+		this.categoryId = categoryId;
+		this.buyingLimit = buyingLimit;
+	}
+
+
+
 	public ProductModel(String productName, float price, float discount, int currentStock, String productImage,
 			int supplierId, int categoryId, int buyingLimit) {
 		super();

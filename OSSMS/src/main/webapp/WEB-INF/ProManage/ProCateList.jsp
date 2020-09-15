@@ -70,13 +70,27 @@ form.example::after {
   display: table;
 }
 
+
 </style>
+
+<script>
+			function sure(){
+				var con = confirm("Are you sure?");
+				if(con){
+					return true;
+					
+				}else{
+					return false;
+				}
+			}
+			
+		</script>
 </head>
 <body>
 	<jsp:include page="../views/Header.jsp"></jsp:include>
 	<div class = "sideBox">
 		<form:form class="example" action="/padmin/searchCate" method ="POST"  style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder ="Search Categories.." name="searchCate">
+  			<input type="text" placeholder ="Search Categories.." name="searchCate" required = "required">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
 		<a href="/padmin/CateManage"><button class="listBtn">Add New Categories</button></a>
@@ -107,7 +121,7 @@ form.example::after {
 							href="${updateURL }" role="button">Update</a></td>
 						<td><spring:url value="/padmin/deleteCategory/${category.idCategory}"
 								var="deleteURL" /> <a class="btn btn-primary"
-							href="${deleteURL }" role="button">Delete</a></td> 
+							href="${deleteURL }" onclick="return sure()" role="button">Delete</a></td> 
 					</tr>
 				</c:forEach>
 			</tbody>

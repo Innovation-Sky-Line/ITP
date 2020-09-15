@@ -9,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ossms.dao.ProCategoryDao;
 import com.ossms.dao.ProductDao;
 import com.ossms.model.ProductCategoryModel;
+import com.ossms.model.ProductList;
 import com.ossms.model.ProductModel;
 import com.ossms.model.Supplier;
 import com.ossms.repository.ProCateRepository;
+
 import com.ossms.repository.ProductRepository;
 import com.ossms.repository.SupplierRepository;
 
@@ -28,8 +30,9 @@ public class ProductsServiceImp implements ProductService{
 	@Autowired
 	SupplierRepository supplierRepository;
 	
+	
 //	public List<String> listProductInfo(){
-//		return repository.listProductInfo();
+//		return pListRepo.listProductInfo();
 //	}
 	
 
@@ -41,7 +44,9 @@ public class ProductsServiceImp implements ProductService{
 	public List<ProductCategoryModel> getAllcategories() {
 		return (List<ProductCategoryModel>) proCateRepository.findAll();
 	}
-
+	public List<Supplier> getAllSuppliers(){
+		return (List<Supplier>) supplierRepository.findAll();
+	}
 
 	@Override
 	public ProductModel getProductById(int id) {
@@ -119,6 +124,20 @@ public class ProductsServiceImp implements ProductService{
 	 public List<ProductCategoryModel> searchCategory(String name){
 		 return proCateRepository.searchCategory(name);
 	 }
+	 
+	 
+	@Override
+	public List<String> getCategoryName() {
+		return proCateRepository.getCategoryName();
+	}
+	@Override
+	public List<String> getSupName() {
+		return supplierRepository.getSupName();
+	}
+	@Override
+	public Supplier getSupplierById(int id) {
+		return supplierRepository.findById(id).get();
+	}
 
 
 }

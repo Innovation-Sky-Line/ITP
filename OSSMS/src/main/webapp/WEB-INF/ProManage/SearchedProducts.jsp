@@ -70,51 +70,74 @@ form.example::after {
   display: table;
 }
 
+
 </style>
+
+<script>
+			function sure(){
+				var con = confirm("Are you sure?");
+				if(con){
+					return true;
+					
+				}else{
+					return false;
+				}
+			}
+			
+		</script>
 </head>
 <body>
 <jsp:include page="../views/Header.jsp"></jsp:include>
 <div class = "sideBox">
 		<form:form class="example" action="/padmin/searchPro" method = "POST" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder ="Search.." name="product">
+  			<input type="text" placeholder ="Search.." name="product" required = "required">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
 		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
 	</div>
-	<div class="container">
+	<div class="container" style="font-size:14px;">
 		<h2>Product List</h2>
 		<table class="table table-striped">
 			<thead>
 				
 				<th scope="row">#ID</th>
 				<th scope="row">Product Name</th>
-				<th scope="row">Price</th>
-				<th scope="row">Discount</th>
+				<th scope="row">Price(LKR)</th>
+				<th scope="row">Discount(%)</th>
+				<th scope="row">Final Price(LKR)</th>
 				<th scope="row">Current Stock</th>
 				<th scope="row">Image</th>
 				<th scope="row">Supplier ID</th>
+				<th scope="row">Supplier Name</th>
 				<th scope="row">Category ID</th>
+				<th scope="row">Category Name</th>
 				<th scope="row">Buying Limit</th>
 			</thead>
 			<tbody>
-				<c:forEach items="${SearchedroductList }" var="product">
+				<c:forEach items="${SearchedroductList }" var="p">
 					<tr>
-						<td>${product.idProduct }</td>
-						<td>${product.productName }</td>
-						<td>${product.price }</td>
-						<td>${product.discount }</td>
-						<td>${product.currentStock }</td>
-						<td>${product.productImage }</td>
-						<td>${product.supplierId }</td>
-						<td>${product.categoryId }</td>
-						<td>${product.buyingLimit }</td>
+						<td>${p.productModel.idProduct }</td>
+						<td>${p.productModel.productName }</td>
+						<td>${p.productModel.price }</td>
+						<c:set var = "price" value = "${p.productModel.price }"></c:set>
+						<td>${p.productModel.discount }</td>
+						<c:set var = "dis" value = "${p.productModel.discount }"></c:set>
+						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
+						<td><c:out value = "${fPrice }"></c:out></td>	
+						<td>${p.productModel.currentStock }</td>
+						<td>${p.productModel.productImage }</td>
+						<td>${p.productModel.supplierId }</td>
+						<td>${p.supplier.supplierName }</td>
+						<td>${p.productModel.categoryId }</td>
+						<td>${p.categoryModel.categoryName  }</td>
+						<td>${p.productModel.buyingLimit }</td>
 						
-						<td><spring:url value="/padmin/updateProduct/${product.idProduct }"
+						<td><spring:url value="/padmin/updateProduct/${p.productModel.idProduct }"
 								var="updateURL" /> <a class="btn btn-primary"
 							href="${updateURL }" role="button">Update</a></td>
-						<td><spring:url value="/padmin/deleteProduct/${product.idProduct }"
+						<td><spring:url value="/padmin/deleteProduct/${p.productModel.idProduct }"
 								var="deleteURL" /> <a class="btn btn-primary"
-							href="${deleteURL }" role="button">Delete</a></td> 
+							href="${deleteURL } "onclick="return sure()" role="button">Delete</a></td> 
 					</tr>
 				</c:forEach>
 			</tbody>

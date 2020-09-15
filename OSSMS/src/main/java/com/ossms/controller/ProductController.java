@@ -1,6 +1,8 @@
 package com.ossms.controller;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryCollectionReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ossms.model.ProductCategoryModel;
+import com.ossms.model.ProductList;
 import com.ossms.model.ProductModel;
 import com.ossms.model.Supplier;
 import com.ossms.service.ProductService;
+
 
 
 @Controller
@@ -54,7 +58,7 @@ public class ProductController {
 	 public ModelAndView addProduct(ProductModel product) {
 	  ModelAndView model = new ModelAndView();
 	  productService.saveOrUpdate(product);
-	  model.setViewName("redirect:/padmin/productList");
+	  model.setViewName("redirect:/padmin/productList2");
 	  
 	  return model;
 	 }
@@ -83,6 +87,19 @@ public class ProductController {
 		ModelAndView model = new ModelAndView("ProManage/Padmin");
 		return model;
 	}
+	
+	@RequestMapping(value = "/php")
+	public ModelAndView productHome() {
+		ModelAndView model = new ModelAndView("ProManage/P_home");
+		return model;
+	}
+	
+	@RequestMapping(value = "/myProfile")
+	public ModelAndView profile() {
+		ModelAndView model = new ModelAndView("ProManage/myProfile");
+		return model;
+	}
+	
 	
 
 	@RequestMapping(value = "/proCate")
@@ -114,6 +131,24 @@ public class ProductController {
 	  return model;
 	 }
 	
+	
+	@RequestMapping(value="/productList2", method=RequestMethod.GET)
+	 public ModelAndView proList() {
+		ModelAndView mv = new ModelAndView("ProManage/ProductList");
+		List<ProductModel> products = productService.getAllproducts();
+		List<ProductList> pList = new ArrayList<ProductList>();
+		for(ProductModel productModel : products) {
+			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
+			Supplier supplier = productService.getSupplierById(productModel.getSupplierId());
+			ProductList list = new ProductList(productModel, categoryModel, supplier);
+			
+			pList.add(list);
+		}
+		mv.addObject("productList", pList);
+		return mv;
+	}
+
+	
 	@RequestMapping(value = "/updateProduct/{idProduct}", method = RequestMethod.GET)
 	public ModelAndView editProduct(@PathVariable int idProduct) {
 		ModelAndView model = new ModelAndView();
@@ -132,7 +167,7 @@ public class ProductController {
 	public ModelAndView delete(@PathVariable("idProduct") int idProduct) {
 		productService.deleteProduct(idProduct);
 
-		return new ModelAndView("redirect:/padmin/productList");
+		return new ModelAndView("redirect:/padmin/productList2");
 	}
 	
 	@RequestMapping(value="/categoryList", method=RequestMethod.GET)
@@ -179,14 +214,24 @@ public class ProductController {
 	
 	@RequestMapping(value = "/searchPro", method=RequestMethod.POST)
 	public ModelAndView searchProduct(@RequestParam("product") String name) {
-		ModelAndView mView = new ModelAndView("ProManage/SearchedProducts");
+		ModelAndView mv = new ModelAndView("ProManage/SearchedProducts");
 		List<ProductModel> pro = productService.searchProduct(name);
+		List<ProductList> pList = new ArrayList<ProductList>();
+		for(ProductModel productModel : pro) {
+			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
+			Supplier supplier = productService.getSupplierById(productModel.getSupplierId());
+			ProductList list = new ProductList(productModel, categoryModel, supplier);
+			
+			pList.add(list);
+		}
+		
+		
 		if(!pro.isEmpty()) {
-			mView.addObject("SearchedroductList", pro);
-			return mView;
+			mv.addObject("SearchedroductList", pList);
+			return mv; 
 		}else {
-			mView.setViewName("ProManage/Error");
-			return mView;
+			mv.setViewName("ProManage/Error");
+			return mv;
 		}
 	}
 	

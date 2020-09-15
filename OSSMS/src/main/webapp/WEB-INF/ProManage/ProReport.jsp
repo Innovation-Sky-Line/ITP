@@ -25,7 +25,7 @@
 }
 .sideBox{
 	position: absolute;
-	width : 40%;
+	width : 8%;
 	height: 20%;
 	right:0px;
 	 
@@ -67,9 +67,11 @@ form.example button {
   border-left: none;
   cursor: pointer;
 }
-
+.listBtn:hover {
+  background: green;
+}
 form.example button:hover {
-  background: #0b7dda;
+  background: green;
 }
 
 form.example::after {
@@ -77,6 +79,43 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+.dropbtn {
+ 
+  border-radius: 25px;
+  background-color: #0b7dda;
+  color: white;
+  padding: 13px;
+  font-size: 14px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 </style>
 <meta charset="ISO-8859-1">
@@ -87,11 +126,14 @@ form.example::after {
 	<jsp:include page="../views/P_report_sidebar.jsp"></jsp:include>
 	<!-- Include Your parts within this comment.-->
 	<div class = "sideBox">
-		<form:form class="example" action="" method ="POST" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder="Search.." name="searchCate" required = "required">
-  			<button type="submit"><i class="fa fa-search"></i></button>
-		</form:form>
-		<a href="/padmin/categoryList"><button class="listBtn">Reports</button></a>
+		<div class="dropdown">
+		  <button class="dropbtn">Print Reports</button>
+		  <div class="dropdown-content">
+		    <a href="#">Insufficient Products</a>
+		    <a href="#">Discounts</a>
+		  </div>
+		</div>
+
 	</div>
 	
 	<div class="body">

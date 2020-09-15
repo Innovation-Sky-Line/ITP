@@ -67,9 +67,12 @@ form.example button {
   border-left: none;
   cursor: pointer;
 }
+.listBtn:hover {
+  background: green;
+}
 
 form.example button:hover {
-  background: #0b7dda;
+  background: green;
 }
 
 form.example::after {
@@ -111,7 +114,7 @@ form.example::after {
 
 				
 				<form:select path="mainCategoryId" cssClass="form-control"  id="categoryName">
-					<option value="" label ="${cat.categoryName }"></option>
+					<option value=""></option>
 					<c:forEach var="cat" items="${mainCategories }">
 					<option value="${cat.idCategory }">${cat.categoryName }</option>
 						<c:if test="${cat.mainCategoryId == null }">	

@@ -106,7 +106,19 @@
 	background-color: black;
 	color: white;
 }
+
+
 </style>
+<script>function sure (){var con = confirm("Are you sure?");if (con){
+	return true;
+	
+}
+
+else {return false;
+	
+}
+}
+</script>
 <meta charset="ISO-8859-1">
 <title></title>
 </head>
@@ -122,16 +134,15 @@
 				</td>
 				<td>
 					<div class="func_name">
-						<h1>&nbsp &nbsp &nbsp &nbsp &nbsp  Admin
-							Panel.</h1>
+						<h1> Product Admin Panel</h1>
 					</div>
 				</td>
 				<td>
 					<div class="profile_container">
-						<span>&nbsp &nbsp Kiri Hami</span><br>
-						<br>
+						<span>Product Admin</span><br> <br>
 						<form method="POST" action="#">
-							<input type="submit" class="button" value="Log out">
+							<input type="submit" onclick="return sure()" class="button"
+								value="Log out">
 						</form>
 					</div>
 				</td>
@@ -141,9 +152,10 @@
 	<div class="nav">
 		<table>
 			<tr>
-				<td><a href="/padmin/proManage"><button class="navtb">Main Panel</button></a></td>
-				<td><a href="#"><button class="navtb">Products</button></a></td>
-				<td><a href="#"><button class="navtb">Profile</button></a></td>
+				<td><a href="/padmin/proManage"><button class="navtb">Main
+							Panel</button></a></td>
+				<td><a href="/padmin/php"><button class="navtb">CPHP</button></a></td>
+				
 			</tr>
 		</table>
 	</div>

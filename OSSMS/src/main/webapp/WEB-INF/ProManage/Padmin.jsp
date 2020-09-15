@@ -70,10 +70,10 @@ form.example button {
 }
 
 form.example button:hover {
-  background: black;
+  background: Green;
 }
 .listBtn:hover {
-  background: black;
+  background: Green;
 }
 
 form.example::after {
@@ -83,6 +83,31 @@ form.example::after {
 }
 
 </style>
+<script>
+function validateForm(){
+if( document.pFrom.price.value < 1 ) {
+    alert( "Unit Price must not be 0 or less !!!" );
+    document.pFrom.price.focus() ;
+    return false;
+ }
+else if( document.pFrom.currentStock.value < 1 ) {
+    alert( "# of Units must not be 0 or less !!!" );
+    document.pFrom.currentStock.focus() ;
+    return false;
+ }
+else if( document.pFrom.buyingLimit.value < 1 ) {
+    alert( "Buying Limit must not be 0 or less !!!" );
+    document.pFrom.buyingLimit.focus() ;
+    return false;
+ }
+else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 100) {
+    alert( "Discount must be between 0-100% !!!" );
+    document.pFrom.discount.focus() ;
+    return false;
+ }else
+ return(true);
+}
+</script>
 <meta charset="ISO-8859-1">
 <title>Product Administration.</title>
 </head>
@@ -92,10 +117,10 @@ form.example::after {
 	<!-- Include Your parts within this comment.-->
 	<div class = "sideBox">
 		<form:form class="example" action="/padmin/searchPro" method = "POST" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder="Search Products.." name="product">
+  			<input type="text" placeholder="Search Products.." name="product" required = "required">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
-		<a href="/padmin/productList"><button class="listBtn">All Products</button></a>
+		<a href="/padmin/productList2"><button class="listBtn">All Products</button></a>
 	</div>
 	
 	
@@ -103,8 +128,8 @@ form.example::after {
 	
 	<spring:url value="/padmin/addProduct" var="saveURL" />
 		
-		<form:form modelAttribute="productForm" method="post"
-			action="${saveURL }" cssClass="form">
+		<form:form name = "pFrom" modelAttribute="productForm" method="post"
+			action="${saveURL }" cssClass="form" onsubmit="return validateForm()">
 			<form:hidden path="idProduct" />
 			<div class="form-group">
 				<label>Product Name : </label>
@@ -122,7 +147,7 @@ form.example::after {
 			<div class="form-group">
 			<label>Select Supplier : </label>
 			<form:select class="form-group" path="supplierId" cssClass="form-control"  id="categoryName" required = "required">
-					<option value="-1" >Select</option>
+					
 					<c:forEach var="sup" items="${allSuppliers }">
 					<option value="${sup.idSupplier }">${sup.supplierName }</option>
 					</c:forEach>
@@ -133,7 +158,7 @@ form.example::after {
 			<div class="form-group">
 			<label>Select Category : </label>
 			<form:select class="form-group" path="categoryId" cssClass="form-control"  id="categoryName" required = "required">
-					<option value="">Select</option>
+					
 					<c:forEach var="cat" items="${allCategories }">
 					<option value="${cat.idCategory }">${cat.categoryName }</option>
 					</c:forEach>
@@ -142,22 +167,22 @@ form.example::after {
 			
 			<div class="form-group">
 				<label>Unit Price (LKR) : </label>
-				<form:input path="price" cssClass="form-control" id="price" type = "number"  min="0"  required = "required"/>
+				<form:input path="price" cssClass="form-control" id="price" type = "number"  min="1" name = "price" required = "required"/>
 			</div>
 			
 			<div class="form-group">
 				<label># of units : </label>
-				<form:input path="currentStock" cssClass="form-control" id="currentStock" type = "number"  min="0" required = "required"/>
+				<form:input path="currentStock" cssClass="form-control" id="currentStock" name = "currentStock" type = "number"  min="1" required = "required"/>
 			</div>
 			
 			 <div class="form-group">
 				<label>Buying Limit : </label>
-				<form:input path="buyingLimit" cssClass="form-control" id="buyingLimit"  min="0" type = "number"/>
+				<form:input path="buyingLimit" cssClass="form-control" id="buyingLimit" name = "buyingLimit" min="1 " type = "number"/>
 			</div>
 			
 			<div class="form-group">
 				<label>Discount Rate (%): </label>
-				<form:input path="discount" cssClass="form-control" id="discount"  min="0" max="100" type = "number" />
+				<form:input path="discount" cssClass="form-control" id="discount" name = "discount" min="0" max="100" type = "number" />
 			</div>
 			
 			<div class="form-group">
