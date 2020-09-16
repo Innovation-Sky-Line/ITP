@@ -7,10 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.ossms.model.ProductCategoryModel;
+import com.ossms.model.ProductModel;
 
 public interface ProCateRepository extends JpaRepository<ProductCategoryModel, Integer> {
 	@Query(value = "SELECT * FROM category order by categoryName ASC", nativeQuery = true)
 	List<ProductCategoryModel> allCategoryNames();
+	
+	 @Query(value ="SELECT * FROM category WHERE idCategory=(SELECT max(idCategory) FROM category);", nativeQuery = true)
+	    List<ProductCategoryModel> getLastCate();
 	
 	@Query(value = "SELECT * FROM category WHERE mainCategoryId IS NULL order by categoryName ASC", nativeQuery = true)
 	List<ProductCategoryModel> mainCategoryNames();

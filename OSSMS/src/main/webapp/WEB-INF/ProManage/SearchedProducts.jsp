@@ -95,6 +95,7 @@ form.example::after {
 		</form:form>
 		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
 	</div>
+	
 	<div class="container" style="font-size:14px;">
 		<h2>Product List</h2>
 		<table class="table table-striped">
@@ -113,6 +114,7 @@ form.example::after {
 				<th scope="row">Category Name</th>
 				<th scope="row">Buying Limit</th>
 			</thead>
+			
 			<tbody>
 				<c:forEach items="${SearchedroductList }" var="p">
 					<tr>
@@ -142,6 +144,7 @@ form.example::after {
 				</c:forEach>
 			</tbody>
 		</table>
+		<div class = "msg" style = "margin : auto; color : red; width : 30%;"><p>${fail }</p></div>
 		<spring:url value="/padmin/proManage" var="addURL" />
 		<a class="btn btn-primary" href="${addURL }" role="button">Add
 			New Product</a>

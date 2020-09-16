@@ -41,9 +41,18 @@ public class ProductsServiceImp implements ProductService{
 		return (List<ProductModel>) repository.findAll();
 	}
 	@Override
+	public List<ProductModel> getLastProduct() {
+		return repository.getLastProduct();
+	}
+	@Override
 	public List<ProductCategoryModel> getAllcategories() {
 		return (List<ProductCategoryModel>) proCateRepository.findAll();
 	}
+	@Override
+	public List<ProductCategoryModel> getLastCate() {
+		return proCateRepository.getLastCate();
+	}
+	
 	public List<Supplier> getAllSuppliers(){
 		return (List<Supplier>) supplierRepository.findAll();
 	}

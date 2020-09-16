@@ -12,7 +12,9 @@ public interface ProductService {
 	//public List<String> listProductInfo();
 	
 	public List<ProductModel> getAllproducts();
+	public List<ProductModel> getLastProduct();
 	public List<ProductCategoryModel> getAllcategories();
+	public List<ProductCategoryModel> getLastCate();
 	public List<Supplier> getAllSuppliers();
 
 	public ProductModel getProductById(int id);

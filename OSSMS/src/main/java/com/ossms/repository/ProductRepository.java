@@ -20,4 +20,7 @@ public interface ProductRepository extends CrudRepository<ProductModel, Integer>
 	 
 	 @Query(value ="select * from product where discount > 0", nativeQuery = true)
 	    List<ProductModel> getDiscountProducts();
+	 
+	 @Query(value ="SELECT * FROM product WHERE idProduct=(SELECT max(idProduct) FROM product);", nativeQuery = true)
+	    List<ProductModel> getLastProduct();
 }

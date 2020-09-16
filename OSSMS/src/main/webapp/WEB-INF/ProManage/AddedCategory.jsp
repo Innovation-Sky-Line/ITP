@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product List</title>
+<title>Product Category List</title>
 <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" />
 <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -69,8 +69,10 @@ form.example::after {
   clear: both;
   display: table;
 }
-		
+
+
 </style>
+
 <script>
 			function sure(){
 				var con = confirm("Are you sure?");
@@ -83,68 +85,50 @@ form.example::after {
 			}
 			
 		</script>
-
 </head>
 <body>
-<jsp:include page="../views/Header.jsp"></jsp:include>
-<div class = "sideBox">
-		<form:form class="example" action="/padmin/searchPro" method = "POST" style="margin:auto;right:2px;max-width:550px">
-  			<input type="text" placeholder ="Search.." name="product" required = "required">
+	<jsp:include page="../views/Header.jsp"></jsp:include>
+	<div class = "sideBox">
+		<form:form class="example" action="/padmin/searchCate" method ="POST"  style="margin:auto;right:2px;max-width:550px">
+  			<input type="text" placeholder ="Search Categories.." name="searchCate" required = "required">
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
-		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
-	</div>
-	<!--  <div class = "msg" style = "margin : auto; color : green; width : 20%;"><p>${success }</p></div>-->
-	<div class="container" style="font-size:14px;">
-		<h2>Product List</h2>
+		<a href="/padmin/CateManage"><button class="listBtn">Add New Categories</button></a>
+	</div><br>
+	
+	<div class = "msg" style = "margin : auto; color : green; width : 30%;"><h3>${suc}</h3></div>
+	<div class="container">
+		<h2>Category List</h2>
 		<table class="table table-striped">
 			<thead>
 				
 				<th scope="row">#ID</th>
-				<th scope="row">Product Name</th>
-				<th scope="row">Price(LKR)</th>
-				<th scope="row">Discount(%)</th>
-				<th scope="row">Final Price(LKR)</th>
-				<th scope="row">Current Stock</th>
-				<th scope="row">Image</th>
-				<th scope="row">Supplier ID</th>
-				<th scope="row">Supplier Name</th>
-				<th scope="row">Category ID</th>
 				<th scope="row">Category Name</th>
-				<th scope="row">Buying Limit</th>
+				<th scope="row">Main Category ID</th>
+				<!--  <th scope="row">Main Category Name</th>-->
+				
 			</thead>
 			<tbody>
-				<c:forEach items="${productList }" var="p">
+				<c:forEach items="${categoryList }" var="category">
 					<tr>
-						<td>${p.productModel.idProduct }</td>
-						<td>${p.productModel.productName }</td>
-						<td>${p.productModel.price }</td>
-						<c:set var = "price" value = "${p.productModel.price }"></c:set>
-						<td>${p.productModel.discount }</td>
-						<c:set var = "dis" value = "${p.productModel.discount }"></c:set>
-						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
-						<td><c:out value = "${fPrice }"></c:out></td>	
-						<td>${p.productModel.currentStock }</td>
-						<td>${p.productModel.productImage }</td>
-						<td>${p.productModel.supplierId }</td>
-						<td>${p.supplier.supplierName }</td>
-						<td>${p.productModel.categoryId }</td>
-						<td>${p.categoryModel.categoryName  }</td>
-						<td>${p.productModel.buyingLimit }</td>
+						<td>${category.idCategory }</td>
+						<td>${category.categoryName }</td>
+						<td>${category.mainCategoryId }</td>
+						<!--  <td><c:if test="${category.mainCategoryId != null}">${category.categoryName }</c:if></td>-->
 						
-						<td><spring:url value="/padmin/updateProduct/${p.productModel.idProduct }"
+						<td><spring:url value="/padmin/updateCategory/${category.idCategory}"
 								var="updateURL" /> <a class="btn btn-primary"
 							href="${updateURL }" role="button">Update</a></td>
-						<td><spring:url value="/padmin/deleteProduct/${p.productModel.idProduct }"
+						<td><spring:url value="/padmin/deleteCategory2/${category.idCategory}"
 								var="deleteURL" /> <a class="btn btn-primary"
-							href="${deleteURL } "onclick="return sure()" role="button">Delete</a></td> 
+							href="${deleteURL }" onclick="return sure()" role="button">Delete</a></td> 
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<spring:url value="/padmin/proManage" var="addURL" />
+		<spring:url value="/padmin/CateManage" var="addURL" />
 		<a class="btn btn-primary" href="${addURL }" role="button">Add
-			New Product</a>
+			New Category</a>
 	</div>
 </body>
 </html>

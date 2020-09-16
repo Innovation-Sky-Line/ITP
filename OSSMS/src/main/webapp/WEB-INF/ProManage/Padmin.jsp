@@ -177,7 +177,7 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 			
 			 <div class="form-group">
 				<label>Buying Limit : </label>
-				<form:input path="buyingLimit" cssClass="form-control" id="buyingLimit" name = "buyingLimit" min="1 " type = "number"/>
+				<form:input path="buyingLimit" cssClass="form-control" id="buyingLimit" name = "buyingLimit" min="1" type = "number"/>
 			</div>
 			
 			<div class="form-group">

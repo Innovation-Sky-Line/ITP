@@ -93,8 +93,8 @@ form.example::after {
   			<button type="submit"><i class="fa fa-search"></i></button>
 		</form:form>
 		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
-	</div>
-	<!--  <div class = "msg" style = "margin : auto; color : green; width : 20%;"><p>${success }</p></div>-->
+	</div><br>
+	<div class = "msg" style = "margin : auto; color : green; width : 30%;"><h3>${suc }</h3></div>
 	<div class="container" style="font-size:14px;">
 		<h2>Product List</h2>
 		<table class="table table-striped">
@@ -135,7 +135,7 @@ form.example::after {
 						<td><spring:url value="/padmin/updateProduct/${p.productModel.idProduct }"
 								var="updateURL" /> <a class="btn btn-primary"
 							href="${updateURL }" role="button">Update</a></td>
-						<td><spring:url value="/padmin/deleteProduct/${p.productModel.idProduct }"
+						<td><spring:url value="/padmin/deleteProduct2/${p.productModel.idProduct }"
 								var="deleteURL" /> <a class="btn btn-primary"
 							href="${deleteURL } "onclick="return sure()" role="button">Delete</a></td> 
 					</tr>

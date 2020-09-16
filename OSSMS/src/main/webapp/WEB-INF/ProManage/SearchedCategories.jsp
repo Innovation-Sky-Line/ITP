@@ -125,6 +125,7 @@ form.example::after {
 				</c:forEach>
 			</tbody>
 		</table>
+		<div class = "msg" style = "margin : auto; color : red; width : 30%;"><p>${fail }</p></div>
 		<spring:url value="/padmin/CateManage" var="addURL" />
 		<a class="btn btn-primary" href="${addURL }" role="button">Add
 			New Category</a>

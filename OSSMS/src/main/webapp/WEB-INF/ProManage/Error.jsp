@@ -7,6 +7,6 @@
 <title>Oops...Error!!!</title>
 </head>
 <body>
-Oops...Error!!!
+<div style = "margin:auto;"><h1>Oops...No results Found !!!</h1></div>
 </body>
 </html>

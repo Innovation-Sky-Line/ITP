@@ -65,13 +65,14 @@
 	opacity: 1.3;
 	border: none;
 	color: white;
-	padding: 15px 32px;
+	padding: 10px 26px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
 	border-radius: 15%;
 	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
 .button:hover {
