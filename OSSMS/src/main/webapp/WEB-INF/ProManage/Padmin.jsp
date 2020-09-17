@@ -126,10 +126,10 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 	
 	<div class="body">
 	
-	<spring:url value="/padmin/addProduct" var="saveURL" />
+	<spring:url value="/padmin/addProduct2" var="saveURL" />
 		
 		<form:form name = "pFrom" modelAttribute="productForm" method="post"
-			action="${saveURL }" cssClass="form" onsubmit="return validateForm()">
+			action="${saveURL }" cssClass="form" onsubmit="return validateForm()" enctype="multipart/form-data" >
 			<form:hidden path="idProduct" />
 			<div class="form-group">
 				<label>Product Name : </label>
@@ -187,7 +187,7 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 			
 			<div class="form-group">
 				<label>Upload image : </label>
-				<form:input path="productImage" cssClass="form-control" id="productImage" type ="file" />
+				<input  name ="image" id="productImage"  type ="file"  accept = "image/png, image/jpeg" required = "required"/>
 			</div>
 			<div class="btn"  style="position: relative; left : 200px;"  >
 			   <button type="reset" class="btn btn-primary">Reset</button>&nbsp &nbsp &nbsp<button type="submit" class="btn btn-primary">Save</button>

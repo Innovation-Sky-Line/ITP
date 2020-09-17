@@ -94,7 +94,7 @@ form.example::after {
 		</form:form>
 		<a href="/padmin/proManage"><button class="listBtn">Add New Products</button></a>
 	</div><br>
-	<div class = "msg" style = "margin : auto; color : green; width : 30%;"><h3>${suc }</h3></div>
+	<div class = "msg" style = "margin : auto; color : green; width : 40%;"><h3>${suc }</h3></div>
 	<div class="container" style="font-size:14px;">
 		<h2>Product List</h2>
 		<table class="table table-striped">

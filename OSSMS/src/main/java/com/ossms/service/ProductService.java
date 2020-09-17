@@ -13,8 +13,13 @@ public interface ProductService {
 	
 	public List<ProductModel> getAllproducts();
 	public List<ProductModel> getLastProduct();
+	public List<ProductModel> productList();
+	public String getImage(int id);
+	
 	public List<ProductCategoryModel> getAllcategories();
 	public List<ProductCategoryModel> getLastCate();
+	public List<ProductCategoryModel> cateList();
+	
 	public List<Supplier> getAllSuppliers();
 
 	public ProductModel getProductById(int id);

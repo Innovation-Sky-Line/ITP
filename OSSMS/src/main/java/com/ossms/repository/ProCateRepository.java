@@ -31,4 +31,6 @@ public interface ProCateRepository extends JpaRepository<ProductCategoryModel, I
     @Query(value ="select * from category where categoryName like %?1%", nativeQuery = true)
     List<ProductCategoryModel> searchCategory(String name);
 	
+    @Query(value ="select * from category order by idCategory DESC", nativeQuery = true)
+	 List<ProductCategoryModel> cateList();
 }

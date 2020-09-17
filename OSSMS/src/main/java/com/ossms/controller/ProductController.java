@@ -1,17 +1,25 @@
 package com.ossms.controller;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.engine.query.spi.sql.NativeSQLQueryCollectionReturn;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.JpaSort.Path;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -53,12 +61,43 @@ public class ProductController {
 		return model;
 	}
 	
-	
-	
-	@RequestMapping(value="/addProduct", method=RequestMethod.POST)
+	@RequestMapping(value="/addProduct", method=RequestMethod.POST) 
 	 public ModelAndView addProduct(ProductModel product) {
 	  ModelAndView model = new ModelAndView();
 	  productService.saveOrUpdate(product);
+	 
+	  model.setViewName("redirect:/padmin/productList3");
+	  
+	  return model;
+	 }
+	
+	
+	@RequestMapping(value="/addProduct2", method=RequestMethod.POST) 
+	 public ModelAndView addProduct(ProductModel product, @RequestParam("image") MultipartFile mFile) throws IOException {
+	  ModelAndView model = new ModelAndView();
+	  String fileName = StringUtils.cleanPath(mFile.getOriginalFilename());
+	  product.setProductImage(fileName);
+	  productService.saveOrUpdate(product);
+	  if(fileName == "") {
+		  model.setViewName("redirect:/padmin/productList3");
+		  return model;
+	  }
+	  String dir = "Product-Images";
+	  java.nio.file.Path path = Paths.get(dir);
+	  if(!Files.exists(path)) {
+		  Files.createDirectories(path);
+	  }
+	 try(InputStream inputStream = mFile.getInputStream()) {
+		 java.nio.file.Path filePath = path.resolve(fileName);
+		  System.out.println(filePath.toFile().getAbsolutePath());
+		  
+		  Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+	} catch (IOException e) {
+		 
+		throw new IOException("Could not save image file: " + fileName, e);
+	} ;
+	 
+	 
 	  model.setViewName("redirect:/padmin/productList3");
 	  
 	  return model;
@@ -168,7 +207,7 @@ public class ProductController {
 	@RequestMapping(value="/productList2", method=RequestMethod.GET)
 	 public ModelAndView proList() {
 		ModelAndView mv = new ModelAndView("ProManage/ProductList");
-		List<ProductModel> products = productService.getAllproducts();
+		List<ProductModel> products = productService.productList();
 		List<ProductList> pList = new ArrayList<ProductList>();
 		for(ProductModel productModel : products) {
 			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
@@ -190,8 +229,8 @@ public class ProductController {
 	
 	@RequestMapping(value="/productList3", method=RequestMethod.GET)
 	 public ModelAndView proLastList(Model model) {
-		ModelAndView mv = new ModelAndView("ProManage/AddedProduct");
-		List<ProductModel> products = productService.getLastProduct();
+		ModelAndView mv = new ModelAndView("ProManage/ProductList");
+		List<ProductModel> products = productService.productList();
 		List<ProductList> pList = new ArrayList<ProductList>();
 		for(ProductModel productModel : products) {
 			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
@@ -201,7 +240,7 @@ public class ProductController {
 			pList.add(list);
 		}
 		if(!products.isEmpty()) {
-			String str = "Product Added Successfully.";
+			String str = "Product Added/Updated Successfully.";
 			model.addAttribute("suc", str);
 			mv.addObject("productList", pList);
 			return mv; 
@@ -218,6 +257,7 @@ public class ProductController {
 	public ModelAndView editProduct(@PathVariable int idProduct) {
 		ModelAndView model = new ModelAndView();
 		ProductModel product = productService.getProductById(idProduct);
+
 		model.addObject("productForm", product);
 		List<Supplier> allSuppliers = productService.allSupplierNames();
 		model.addObject("allSuppliers", allSuppliers);
@@ -245,7 +285,7 @@ public class ProductController {
 	@RequestMapping(value="/categoryList", method=RequestMethod.GET)
 	 public ModelAndView cateList() {
 	  ModelAndView model = new ModelAndView("ProManage/ProCateList");
-	  List<ProductCategoryModel> categoryList = productService.getAllcategories();
+	  List<ProductCategoryModel> categoryList = productService.cateList();
 	  model.addObject("categoryList", categoryList);
 	  
 	  return model;
@@ -253,11 +293,11 @@ public class ProductController {
 	
 	@RequestMapping(value="/categoryList2", method=RequestMethod.GET)
 	 public ModelAndView cateLastList(Model m) {
-	  ModelAndView model = new ModelAndView("ProManage/AddedCategory");
-	  List<ProductCategoryModel> categoryList = productService.getLastCate();
+	  ModelAndView model = new ModelAndView("ProManage/ProCateList");
+	  List<ProductCategoryModel> categoryList = productService.cateList();
 	 
 	  if(!categoryList.isEmpty()) {
-		  String str = "Category Added Successfully.";
+		  String str = "Category Added/Updated Successfully.";
 			m.addAttribute("suc", str);	
 			 model.addObject("categoryList", categoryList);
 			return model;

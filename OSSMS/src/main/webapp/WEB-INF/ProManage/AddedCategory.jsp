@@ -96,7 +96,7 @@ form.example::after {
 		<a href="/padmin/CateManage"><button class="listBtn">Add New Categories</button></a>
 	</div><br>
 	
-	<div class = "msg" style = "margin : auto; color : green; width : 30%;"><h3>${suc}</h3></div>
+	<div class = "msg" style = "margin : auto; color : green; width : 40%;"><h3>${suc}</h3></div>
 	<div class="container">
 		<h2>Category List</h2>
 		<table class="table table-striped">

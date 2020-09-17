@@ -33,7 +33,7 @@ public class ProductModel {
 	
 	@Column(name = "currentstock")
 	private int currentStock;
-	
+	 
 	@Column(name = "productimage")
 	private String productImage;
 	

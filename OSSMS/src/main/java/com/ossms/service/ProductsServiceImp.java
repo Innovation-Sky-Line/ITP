@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ossms.dao.ProCategoryDao;
-import com.ossms.dao.ProductDao;
+
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductList;
 import com.ossms.model.ProductModel;
@@ -45,6 +44,16 @@ public class ProductsServiceImp implements ProductService{
 		return repository.getLastProduct();
 	}
 	@Override
+	public List<ProductModel> productList() {
+		return repository.productList();
+	}
+	@Override
+	public String getImage(int id) {
+		return repository.getImage(id);
+	}
+	
+	
+	@Override
 	public List<ProductCategoryModel> getAllcategories() {
 		return (List<ProductCategoryModel>) proCateRepository.findAll();
 	}
@@ -52,6 +61,11 @@ public class ProductsServiceImp implements ProductService{
 	public List<ProductCategoryModel> getLastCate() {
 		return proCateRepository.getLastCate();
 	}
+	public List <ProductCategoryModel> cateList() {
+		return proCateRepository.cateList();
+	}
+	
+	
 	
 	public List<Supplier> getAllSuppliers(){
 		return (List<Supplier>) supplierRepository.findAll();
@@ -158,6 +172,10 @@ public class ProductsServiceImp implements ProductService{
 	public List<ProductModel> getDiscountProducts() {
 		return repository.getDiscountProducts();
 	}
+	
+	
+	
+	
 
 
 }
