@@ -152,9 +152,9 @@ form.example::after {
 	
 	<div class = "title" style ="margin : auto">
 		<img src="../../resources/images/logo.jpg"><br>
-		<h2>Athukorala SuperMarket PVT. LTD.</h2>
-		<h3>Product Report</h3>
-		<p>T.P : +94 68-222 22 54/ +94 76 324 45 66, FAX : 87686756778 ,Email : athukoralasm@gmail.com </p>
+		<h3>Athukorala SuperMarket PVT. LTD.</h3>
+		<h4>Product Report</h4>
+		<p>T.P : +94 68-222 22 54/ +94 76 324 45 66 | FAX : 87686756778 | Email : athukoralasm@gmail.com </p>
 	</div>	
 	
 	<div class="body">
