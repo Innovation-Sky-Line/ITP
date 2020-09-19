@@ -36,6 +36,7 @@ public interface ProductService {
 	public List<ProductCategoryModel> allCategoryNames();
 	public List<ProductCategoryModel> subCategoryNames();
 	public List<ProductCategoryModel> mainCategoryNames();
+	public List<ProductCategoryModel> mainCategories();
 	public Integer getCategoryIdBy(@Param("firstName") String firstName);
 	
 	

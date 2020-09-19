@@ -18,6 +18,8 @@ public interface ProCateRepository extends JpaRepository<ProductCategoryModel, I
 	
 	@Query(value = "SELECT * FROM category WHERE mainCategoryId IS NULL order by categoryName ASC", nativeQuery = true)
 	List<ProductCategoryModel> mainCategoryNames();
+	@Query(value = "SELECT * FROM category WHERE mainCategoryId IS NULL", nativeQuery = true)
+	List<ProductCategoryModel> mainCategories();
 	
 	@Query(value =  "SELECT * FROM category WHERE mainCategoryId IS NOT NULL ORDER BY categoryName ASC", nativeQuery = true)
 	List<ProductCategoryModel> subCategoryNames();
@@ -33,4 +35,6 @@ public interface ProCateRepository extends JpaRepository<ProductCategoryModel, I
 	
     @Query(value ="select * from category order by idCategory DESC", nativeQuery = true)
 	 List<ProductCategoryModel> cateList();
+    
+    
 }

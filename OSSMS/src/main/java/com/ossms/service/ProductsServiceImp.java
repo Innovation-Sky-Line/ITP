@@ -48,6 +48,10 @@ public class ProductsServiceImp implements ProductService{
 		return repository.productList();
 	}
 	@Override
+	public List<ProductCategoryModel> mainCategories() {
+		return proCateRepository.mainCategories();
+	}
+	@Override
 	public String getImage(int id) {
 		return repository.getImage(id);
 	}
@@ -172,6 +176,7 @@ public class ProductsServiceImp implements ProductService{
 	public List<ProductModel> getDiscountProducts() {
 		return repository.getDiscountProducts();
 	}
+	
 	
 	
 	

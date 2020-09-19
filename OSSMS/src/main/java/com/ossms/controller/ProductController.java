@@ -134,9 +134,9 @@ public class ProductController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/php")
+	@RequestMapping(value = "/cphp")
 	public ModelAndView productHome() {
-		ModelAndView model = new ModelAndView("ProManage/P_home");
+		ModelAndView model = new ModelAndView("ProManage/CusProductHome");
 		return model;
 	}
 	
@@ -286,8 +286,9 @@ public class ProductController {
 	 public ModelAndView cateList() {
 	  ModelAndView model = new ModelAndView("ProManage/ProCateList");
 	  List<ProductCategoryModel> categoryList = productService.cateList();
+	  List<ProductCategoryModel> mainCate = productService.mainCategories();
 	  model.addObject("categoryList", categoryList);
-	  
+	  model.addObject("mainCategoryList", mainCate);
 	  return model;
 	 }
 	
@@ -295,11 +296,12 @@ public class ProductController {
 	 public ModelAndView cateLastList(Model m) {
 	  ModelAndView model = new ModelAndView("ProManage/ProCateList");
 	  List<ProductCategoryModel> categoryList = productService.cateList();
-	 
+	  List<ProductCategoryModel> mainCate = productService.mainCategories();
 	  if(!categoryList.isEmpty()) {
 		  String str = "Category Added/Updated Successfully.";
 			m.addAttribute("suc", str);	
 			 model.addObject("categoryList", categoryList);
+			 model.addObject("mainCategoryList", mainCate);
 			return model;
 		}else {
 			
@@ -340,8 +342,11 @@ public class ProductController {
 	public ModelAndView searchCategory(@RequestParam("searchCate") String name, Model model) {
 		ModelAndView mView = new ModelAndView("ProManage/SearchedCategories");
 		List<ProductCategoryModel> cat = productService.searchCategory(name);
+		List<ProductCategoryModel> mainCate = productService.mainCategories();
 		if(!cat.isEmpty()) {
 			mView.addObject("SearchedCategoryList", cat);
+			mView.addObject("mainCategoryList", mainCate);
+			 
 			return mView;
 		}else {
 			String string = "Oops...No Matching Category Found!!!";

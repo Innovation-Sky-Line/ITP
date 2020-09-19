@@ -155,7 +155,7 @@ else {return false;
 			<tr>
 				<td><a href="/padmin/proManage"><button class="navtb">Main
 							Panel</button></a></td>
-				<td><a href="/padmin/php"><button class="navtb">CPHP</button></a></td>
+				<td><a href="/padmin/cphp"><button class="navtb">CPHP</button></a></td>
 				
 			</tr>
 		</table>
