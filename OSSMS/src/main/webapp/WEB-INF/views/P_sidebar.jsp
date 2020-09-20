@@ -11,7 +11,7 @@
 .sideBar {
 	position: absolute;
     width: 13%;
-    height: 138%;
+    height: 850px;
     border: 2px solid black;
     opacity: 0.9;
     padding: 15px;

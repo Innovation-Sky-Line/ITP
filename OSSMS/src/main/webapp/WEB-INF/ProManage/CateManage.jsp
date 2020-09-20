@@ -106,7 +106,7 @@ form.example::after {
 			<form:hidden path="idCategory" />
 			<div class="form-group">
 				<label>Category Name : </label>
-				<form:input path="categoryName" cssClass="form-control"  id="categoryName" required = "required"/>
+				<form:input path="categoryName"  pattern = "^[A-Za-z0-9_]{1,32}$" title = "Can only use Underscore as Characters." cssClass="form-control"  id="categoryName" required = "required"/>
 			</div>
 			
 			<div class="form-group">

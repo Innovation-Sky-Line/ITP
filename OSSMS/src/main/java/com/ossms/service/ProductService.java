@@ -21,6 +21,10 @@ public interface ProductService {
 	public List<ProductCategoryModel> cateList();
 	
 	public List<Supplier> getAllSuppliers();
+	
+	
+	public Supplier getSupNamebyId(int id);
+	public ProductCategoryModel cateNameById(Integer ID);
 
 	public ProductModel getProductById(int id);
 	public ProductCategoryModel getCategoryById(int id);

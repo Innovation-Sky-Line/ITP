@@ -45,8 +45,10 @@ public class ProductController {
 		model.addObject("productForm", product);
 		List<Supplier> allSuppliers = productService.allSupplierNames();
 		model.addObject("allSuppliers", allSuppliers);
-		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
+		List<ProductCategoryModel> allCategories = productService.subCategoryNames();
 		model.addObject("allCategories", allCategories);
+		
+		
 		return model;
 	}
 	
@@ -256,12 +258,24 @@ public class ProductController {
 	@RequestMapping(value = "/updateProduct/{idProduct}", method = RequestMethod.GET)
 	public ModelAndView editProduct(@PathVariable int idProduct) {
 		ModelAndView model = new ModelAndView();
-		ProductModel product = productService.getProductById(idProduct);
-
+		ProductModel product = productService.getProductById(idProduct); 
+		
+		Supplier supplier = productService.getSupNamebyId(product.getSupplierId());
+		String sName = supplier.getSupplierName();
+		int sId = supplier.getIdSupplier();		
+		model.addObject("sName", sName);
+		model.addObject("sId", sId);
+		
+		ProductCategoryModel pc = productService.cateNameById(product.getCategoryId());
+		String cName = pc.getCategoryName();
+		Integer cId = pc.getIdCategory();
+		model.addObject("cName", cName);
+		model.addObject("cId", cId);
+		
 		model.addObject("productForm", product);
 		List<Supplier> allSuppliers = productService.allSupplierNames();
 		model.addObject("allSuppliers", allSuppliers);
-		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
+		List<ProductCategoryModel> allCategories = productService.subCategoryNames();
 		model.addObject("allCategories", allCategories);
 		model.setViewName("ProManage/Padmin");
 

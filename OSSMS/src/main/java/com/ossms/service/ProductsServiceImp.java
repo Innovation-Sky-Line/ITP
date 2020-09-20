@@ -178,6 +178,16 @@ public class ProductsServiceImp implements ProductService{
 	}
 	
 	
+	@Override
+	public Supplier getSupNamebyId(int id) {
+		return supplierRepository.findById(id).get();
+	}
+	@Override
+	public ProductCategoryModel cateNameById(Integer ID) {
+		return proCateRepository.findById(ID).get();
+	}
+	
+	
 	
 	
 	

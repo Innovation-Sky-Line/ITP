@@ -17,5 +17,8 @@ public interface SupplierRepository extends CrudRepository<Supplier, Integer>{
 	
 	@Query(value = "SELECT supplierName FROM supplier", nativeQuery = true)
 	List<String> getSupName();
+	
+	@Query(value = "SELECT * FROM supplier WHERE idSupplier = :id", nativeQuery = true)
+	List<Supplier> getSupNamebyId(int id);
 
 }

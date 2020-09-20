@@ -36,5 +36,8 @@ public interface ProCateRepository extends JpaRepository<ProductCategoryModel, I
     @Query(value ="select * from category order by idCategory DESC", nativeQuery = true)
 	 List<ProductCategoryModel> cateList();
     
+    @Query(value ="select * from category WHERE idCategory = :ID ", nativeQuery = true)
+    List<ProductCategoryModel> cateNameById(Integer ID);
+    
     
 }
