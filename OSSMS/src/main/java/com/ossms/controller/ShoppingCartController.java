@@ -62,7 +62,7 @@ public class ShoppingCartController {
 		List<ShoppingCart> userCart = cs.getItemsInCart((int)session.getAttribute("orderId"));
 		if(!userCart.isEmpty()) {
 			for(ShoppingCart c: userCart) {
-				if(cart.getProductId() == c.getProductId()) 
+				if(c.getProductId() == prodId) 
 					incrementProduct(prodId, session);
 				else {
 					cs.addToCart(cart);
@@ -147,6 +147,12 @@ public class ShoppingCartController {
 		order.setDeliveryAddress(address);
 		ods.saveOrder(order);
 		
+		List<CartItems> cartItems = this.getCartItems(orderId);	//to update the stocks of products
+		for(CartItems c : cartItems) {
+			Product product = ps.getProdById(c.getProdId()).get();
+			product.setCurrentStock(product.getCurrentStock() - c.getQty());
+		}
+		
 		//create new order then set it into session
 		
 		return previousOrdersPage();
@@ -170,7 +176,7 @@ public class ShoppingCartController {
 	public ModelAndView previousOrdersPage() {
 		ModelAndView mv = new ModelAndView("ShoppingCart/PreviousOrders");
 		float total = 0;
-		List<Order> orders = ods.getPreviousOrders(1);
+		List<Order> orders = ods.getPreviousOrders(1);	//pass session cusId
 		List<PastOrder> preOrders = new ArrayList<PastOrder>();
 		for(Order porders : orders) {
 			total = pm.findPaymentByOrderId(porders.getOrderId()).getAmount();
@@ -193,7 +199,7 @@ public class ShoppingCartController {
 	public ModelAndView allProds(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ShoppingCart/ProdsPage");
-		session.setAttribute("orderId", 1);
+		session.setAttribute("orderId", 2);
 		List<Product> allProds = ps.getProd();
 		mv.addObject("prods", allProds);
 		//mv.addObject("order", 2);

@@ -2,6 +2,7 @@ package com.ossms.service;
 
 import java.util.List;
 
+import com.ossms.model.Product;
 import com.ossms.model.ShoppingCart;
 
 public interface CartService {

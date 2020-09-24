@@ -38,6 +38,7 @@
 	
 	<table id="prod" border="1">
 		<tr>
+			<td>Image</td>
 			<td>Product</td>
 			<td>Price</td>
 			<td>Discount</td>
@@ -47,6 +48,7 @@
 		<c:forEach var="prod" items="${prods }">
 		<form:form action="/addToCart" method="POST">
 		<tr>
+			<td><img src="${prod.img }" style="width:50px; height:50px;" /></td>
 			<td>${prod.productName }</td>
 			<td>${prod.price }</td>
 			<td>${prod.discount }</td>

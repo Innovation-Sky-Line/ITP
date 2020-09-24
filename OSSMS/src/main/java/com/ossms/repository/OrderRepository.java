@@ -10,6 +10,6 @@ import com.ossms.model.Order;
 
 public interface OrderRepository extends CrudRepository<Order, Integer> {
 
-	@Query(value="SELECT * FROM orders WHERE customerId = 1 AND deliveryStatus LIKE 'Delivered'", nativeQuery = true)
+	@Query(value="SELECT * FROM orders WHERE customerId = :cusId AND deliveryStatus LIKE 'Delivered'", nativeQuery = true)
 	List<Order> getPreviousOrders(@Param("cusId") int cusId);
 }

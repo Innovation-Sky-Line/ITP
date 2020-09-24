@@ -27,4 +27,8 @@ public class ProductService{
 	public List<Product> findProductsByName(String prodName){
 		return pr.findProductByProductNameContaining(prodName);
 	}
+	
+	public void updateProduct(Product product) {
+		pr.save(product);
+	}
 }
