@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,9 +28,9 @@
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
-               
+              <a href="forgotpassword">
                 <label >forgot password</label>
-              
+              </a>
               </div>
               
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
@@ -37,7 +38,17 @@
                <a href="Register">
               <button class="btn btn-lg btn-google btn-block text-uppercase" type="button" ><i class="fab fa-google mr-2"></i>Register</button>
               </a>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="button"><i class="fab fa-facebook-f mr-2"></i>home</button>
+              		<c:set var="sucess" value="${requestScope['sucess']}"/>
+              		<c:choose>
+			        <c:when test="${empty sucess}">
+			        </c:when>
+			        <c:otherwise>
+			             <div class="alert alert-warning alert-dismissible fade show" style="margin-top:10px">
+		         	  		${sucess }
+						 </div>  
+					</c:otherwise>
+			    	</c:choose>
+   
             </form>
           </div>
         </div>

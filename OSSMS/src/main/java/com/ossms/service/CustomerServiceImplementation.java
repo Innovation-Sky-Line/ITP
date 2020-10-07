@@ -50,18 +50,6 @@ public class CustomerServiceImplementation implements CustomerService {
 		customerRepository.save(customer);
 	}
 
-	@Override
-	public List<Customer> getallCustomer() {
-		
-		List <Customer> customer = new ArrayList<Customer>();
-		
-		for(Customer customers : customerRepository.findAll()) {
-			
-			customer.add(customers);
-		}
-		
-		return customer;
-	}
 
 	@Override
 	public String getPasswordByEmail(String email) {
@@ -76,25 +64,6 @@ public class CustomerServiceImplementation implements CustomerService {
 		return customerRepository.findCustomerByEmail(email);
 	}
 
-	@Override
-	public List<Order> getIncompleteOrders(int id) {
-		
-		List <Order> orders = (List<Order>) orderRepository.findOrderBycustomerId(id);
-		
-			for(Order order : orders) {
-			
-			if(order.getStatus()=="Not Delivered")
-			{
-				
-				orders.add(order);
-				
-			}	
-			
-		}
-		
-		return orders;
-	}
 
-	
 
 }

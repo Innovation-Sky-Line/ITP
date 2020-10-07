@@ -48,18 +48,24 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="CustomerDashbord?id=${customer.idCustomer}">
+          <li class="nav-item ">
+            <a class="nav-link" href="/customer/list">
               <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+              <p>Pending Orders</p>
             </a>
           </li>
           <li class="nav-item active ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
+            <a class="nav-link" href="/customer/CustomerProfile">
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
-          </li>
+          </li>  
+           <li class="nav-item ">
+            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
+              <i class="material-icons">shopping_cart</i>
+              <p>Previous Orders </p>
+            </a>
+            </li>
         </ul>
       </div>
     </div>
@@ -80,7 +86,7 @@ The above copyright notice and this permission notice shall be included in all c
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="CustomerProfile?id=${customer.idCustomer}">Profile</a>
+                  <a class="dropdown-item" href="/customer/CustomerProfile">Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="invalidate">Log out</a>
                 </div>
@@ -100,7 +106,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <p class="card-category">Complete your profile</p>
                 </div>
                 <div class="card-body">
-                  <form:form action="/update" method="post">
+                  <form:form action="/customer/update" method="post">
                   
                     <div class="row">
                   <!--<div class="col-md-5">
@@ -112,13 +118,13 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">id (disabled)</label>
-                          <input type="text" name="idCustomer" class="form-control" value="${customer.idCustomer }" disabled/>
+                          <input type="text" name="idCustomer" class="form-control" value="${customer.idCustomer }"  />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control" value="${customer.email }"/>
+                          <input type="email" class="form-control" value="${customer.email }"name="email"/>
                         </div>
                       </div>
                     </div>
@@ -126,13 +132,13 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">First Name</label>
-                          <input type="text" class="form-control" value="${customer.firstName }" />
+                          <input type="text" class="form-control" value="${customer.firstName }" name="firstName" />
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control" value="${customer.lastName }" />
+                          <input type="text" class="form-control" value="${customer.lastName }" name="lastName" />
                         </div>
                       </div>
                     </div>
@@ -140,13 +146,13 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
-                          <input type="text" class="form-control" value="${customer.city }" />
+                          <input type="text" class="form-control" value="${customer.city }" name="city" />
                         </div>
                       </div>
                        <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">phone</label>
-                          <input type="text" class="form-control" value="${customer.contactNo }" />
+                          <input type="text" class="form-control" value="${customer.contactNo }" name="contactNo" />
                         </div>
                       </div>
                     </div>      
@@ -154,18 +160,20 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">User Name</label>
-                          <input type="text" class="form-control" value="${customer.username }" />
+                          <input type="text" class="form-control" value="${customer.username }" name="userName" />
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Password</label>
-                          <input type="password" class="form-control" value="${customer.password }" />
+                          <input type="text" class="form-control" value="${customer.password }" name="password" />
                         </div>
                       </div>
                     </div>
-                    </form:form>
+                    
                     <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    
+                    </form:form>
                     <form:form action="/customer/delete" method="post">
                     <input type="text" value="${customer.idCustomer }" name="cusid" hidden/>
                     <button type="submit" class="btn btn-primary pull-right" style="background:red" >delete Account</button>

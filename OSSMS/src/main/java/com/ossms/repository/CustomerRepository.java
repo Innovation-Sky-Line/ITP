@@ -9,4 +9,5 @@ public interface CustomerRepository extends CrudRepository< Customer , Integer >
 	String findPasswordByEmail(String email);
 	
 	Customer findCustomerByEmail( String email);
+	
 }

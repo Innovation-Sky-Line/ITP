@@ -1,18 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <html lang="en">
 
 <head>
@@ -36,20 +27,16 @@ The above copyright notice and this permission notice shall be included in all c
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
+    
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+          Pending Orders
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active ">
-            <a class="nav-link" href="CustomerDashbord?id=${customer.idCustomer}">
+            <a class="nav-link" href="/customer/list">
               <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+              <p>Pending Orders</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -60,7 +47,7 @@ The above copyright notice and this permission notice shall be included in all c
           </li>  
            <li class="nav-item ">
             <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
-              <i class="material-icons">person</i>
+              <i class="material-icons">shopping_cart</i>
               <p>Previous Orders </p>
             </a>
           </li>  
@@ -90,10 +77,10 @@ The above copyright notice and this permission notice shall be included in all c
                     Account
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="AdminDashbord.html">Profile</a>
+               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="CustomerProfile?id=${customer.idCustomer }">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="login.html">Log out</a>
+                  <a class="dropdown-item" href="invalidate">Log out</a>
                 </div>
               </li>
             </ul>
@@ -101,10 +88,9 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </nav>
       <!-- End Navigation-bar -->
-     
-      
+
             <div class="col-lg-6 col-md-12">
-              <div class="card" style="margin-top:100px;">
+              <div class="card" style="margin-top:20%;margin-left:50%">
                 <div class="card-header card-header-warning">
                   <h4 class="card-title">Pending Orders </h4>
                   <p class="card-category">Incomplete orders which are in store</p>
@@ -113,18 +99,25 @@ The above copyright notice and this permission notice shall be included in all c
                   <table class="table table-hover" >
                     <thead class="text-warning">
                       <th>Order ID</th>
-                      <th>Order Data</th>
+                      <th>Date</th>
                       <th>Cost</th>
                       <th>Button</th>
                     </thead>
                     <tbody>
-                    <c:forEach items="${orderList}" var="order">
-                      <tr>
-                        <td>${order.idOrder }</td>
-                        <td>${order.idOrder }</td>
-                        <td>${order.idOrder }</td>
-                        <td>${order.idOrder }</td>
-                      </tr>
+                    <c:forEach var="order" items="${pending }">
+                    	<tr>
+                    		<td>${order.order.orderId }</td>
+                    		<td>${order.order.date }</td>
+                    		<td>${order.total }</td>
+                    		<td>
+                    		<form:form action="/detailBill" methos="POST">
+                    		<input type="text" name="orderId" value="${order.order.orderId }" hidden />
+                    		
+                    		<input type="submit" value="view" />
+                    		
+                    		</form:form>
+                    		</td>
+                    	</tr>
                     </c:forEach>
                     </tbody>
                   </table>
@@ -133,7 +126,7 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
           </div>
         </div>
-      </div>
+     
       <footer class="footer">
       
       </footer>
