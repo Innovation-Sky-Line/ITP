@@ -10,11 +10,10 @@
 <title></title>
 <style type="text/css">
 .sideBar {
-	width: 10%;
+	position:absolute;
+	width: 13%;
 	height: 600px;
-	display: block;
 	border: 2px solid black;
-	background-color: white;
 	opacity: 0.9;
 	padding: 15px;
 }
@@ -29,7 +28,7 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
-	border-radius: 1%;
+	border-radius: 10%;
 	transition-duration: 0.4s;
 }
 
@@ -44,7 +43,7 @@
 		<table>
 			<!-- button 01 -->
 			<tr>
-				<td><a href="/padmin/proAdmin"><button class="sidebtn">Manage
+				<td><a href="/padmin/proManage"><button class="sidebtn">Manage
 							Products</button></a></td>
 			</tr>
 			<!-- button 02 -->
@@ -54,7 +53,7 @@
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="/padmin/proRepo"><button class="sidebtn">Manage
+				<td><a href="/padmin/proReport"><button class="sidebtn">Manage
 							Reports</button></a></td>
 			</tr>
 		</table>

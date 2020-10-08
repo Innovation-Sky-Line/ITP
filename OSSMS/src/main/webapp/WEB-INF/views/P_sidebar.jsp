@@ -9,12 +9,12 @@
 <title></title>
 <style type="text/css">
 .sideBar {
-	position:absolute;
-	width: 10%;
-	height: 400px;
-	border: 2px solid black;
-	opacity: 0.9;
-	padding: 15px;
+	position: absolute;
+    width: 13%;
+    height: 850px;
+    border: 2px solid black;
+    opacity: 0.9;
+    padding: 15px;
 	
 }
 
@@ -28,7 +28,7 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
-	border-radius: 1%;
+	border-radius: 10%;
 	transition-duration: 0.4s;
 }
 
@@ -48,12 +48,12 @@
 			</tr>
 			<!-- button 02 -->
 			<tr>
-				<td><a href="/padmin/proCate"><button
+				<td><a href="/padmin/CateManage"><button
 							class="sidebtn">Manage Categories</button></a></td>
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="/padmin/proRepo"><button
+				<td><a href="/padmin/proReport"><button
 							class="sidebtn">Manage Reports</button></a></td>
 			</tr>
 		</table>
