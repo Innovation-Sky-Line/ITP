@@ -159,9 +159,9 @@ form.example::after {
 	
 	<div class="body">
 	
-		<div class="container" style="font-size:14px;">
+		<div class="container" style="font-size:16px;">
 		<h2>Insufficient Products.</h2>
-		<table class="table table-striped">
+		<table class="table table-dark table-hover">
 			<thead>
 				
 				<th scope="row">#ID</th>
@@ -170,12 +170,10 @@ form.example::after {
 				<th scope="row">Discount(%)</th>
 				<th scope="row">Final Price(LKR)</th>
 				<th scope="row">Current Stock</th>
-				<th scope="row">Image</th>
 				<th scope="row">Supplier ID</th>
 				<th scope="row">Supplier Name</th>
 				<th scope="row">Category ID</th>
 				<th scope="row">Category Name</th>
-				<th scope="row">Buying Limit</th>
 			</thead>
 			<tbody>
 				<c:forEach items="${insufficient }" var="p">
@@ -189,12 +187,11 @@ form.example::after {
 						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
 						<td><c:out value = "${fPrice }"></c:out></td>	
 						<td>${p.productModel.currentStock }</td>
-						<td>${p.productModel.productImage }</td>
 						<td>${p.productModel.supplierId }</td>
 						<td>${p.supplier.supplierName }</td>
 						<td>${p.productModel.categoryId }</td>
 						<td>${p.categoryModel.categoryName  }</td>
-						<td>${p.productModel.buyingLimit }</td>
+						
 						
 					</tr>
 				</c:forEach>
@@ -204,9 +201,9 @@ form.example::after {
 	
 	
 	
-	<div class="container" style="font-size:14px;">
+	<div class="container" style="font-size:15px;">
 		<h2>Products With discounts.</h2>
-		<table class="table table-striped">
+		<table class="table table-dark table-hover">
 			<thead>
 				
 				<th scope="row">#ID</th>
@@ -215,12 +212,11 @@ form.example::after {
 				<th scope="row">Discount(%)</th>
 				<th scope="row">Final Price(LKR)</th>
 				<th scope="row">Current Stock</th>
-				<th scope="row">Image</th>
 				<th scope="row">Supplier ID</th>
 				<th scope="row">Supplier Name</th>
 				<th scope="row">Category ID</th>
 				<th scope="row">Category Name</th>
-				<th scope="row">Buying Limit</th>
+		
 			</thead>
 			<tbody>
 				<c:forEach items="${discounted }" var="p">
@@ -234,12 +230,11 @@ form.example::after {
 						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
 						<td><c:out value = "${fPrice }"></c:out></td>	
 						<td>${p.productModel.currentStock }</td>
-						<td>${p.productModel.productImage }</td>
 						<td>${p.productModel.supplierId }</td>
 						<td>${p.supplier.supplierName }</td>
 						<td>${p.productModel.categoryId }</td>
 						<td>${p.categoryModel.categoryName  }</td>
-						<td>${p.productModel.buyingLimit }</td>
+						
 						
 					</tr>
 				</c:forEach>

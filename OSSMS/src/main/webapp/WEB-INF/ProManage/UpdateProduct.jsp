@@ -189,7 +189,7 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 
 	<div class="body">
 
-		<spring:url value="/padmin/addProduct2" var="saveURL" />
+		<spring:url value="/padmin/updateProduct2" var="saveURL" />
 
 		<form:form name="pFrom" modelAttribute="productForm" method="post"
 			action="${saveURL }" cssClass="form" onsubmit="return validateForm()"

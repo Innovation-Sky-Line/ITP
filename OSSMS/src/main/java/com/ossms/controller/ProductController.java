@@ -107,7 +107,45 @@ public class ProductController {
 		  model.setViewName("redirect:/padmin/productList3");
 		  return model;
 	  }
-	  String dir = "Product-Images";
+	  String dir = "src/main/webapp/resources/Product-Images";
+	  java.nio.file.Path path = Paths.get(dir);
+	  if(!Files.exists(path)) {
+		  Files.createDirectories(path);
+	  }
+	 try(InputStream inputStream = mFile.getInputStream()) {
+		 java.nio.file.Path filePath = path.resolve(fileName);
+		  System.out.println(filePath.toFile().getAbsolutePath());
+		  
+		  Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+	} catch (IOException e) {
+		 
+		throw new IOException("Could not save image file: " + fileName, e);
+	} ;
+	 
+	 
+	  model.setViewName("redirect:/padmin/productList3");
+	  
+	  return model;
+	 }
+	
+	
+
+	@RequestMapping(value="/updateProduct2", method=RequestMethod.POST) 
+	 public ModelAndView updateProduct( ProductModel product, @RequestParam("image") MultipartFile mFile) throws IOException {
+	  ModelAndView model = new ModelAndView();
+//	  if(productService.existsByProductName(product.getProductName())) {
+//		  model.setViewName("ProManage/Exist_Erorr");
+//		  return model;
+//	  }
+	  
+	  String fileName = StringUtils.cleanPath(mFile.getOriginalFilename());
+	  product.setProductImage(fileName);
+	  productService.saveOrUpdate(product);
+	  if(fileName == "") {
+		  model.setViewName("redirect:/padmin/productList3");
+		  return model;
+	  }
+	  String dir = "src/main/webapp/resources/Product-Images";
 	  java.nio.file.Path path = Paths.get(dir);
 	  if(!Files.exists(path)) {
 		  Files.createDirectories(path);
@@ -264,7 +302,11 @@ public class ProductController {
 			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
 			Supplier supplier = productService.getSupplierById(productModel.getSupplierId());
 			ProductList list = new ProductList(productModel, categoryModel, supplier);
+			float price = productModel.getPrice();
+			float dis = productModel.getDiscount();
+			float fPrice = price - price * dis/100;
 			
+			model.addAttribute("finalPrice", fPrice);
 			pList.add(list);
 		}
 		if(!products.isEmpty()) {
@@ -303,7 +345,7 @@ public class ProductController {
 		model.addObject("allSuppliers", allSuppliers);
 		List<ProductCategoryModel> allCategories = productService.subCategoryNames();
 		model.addObject("allCategories", allCategories);
-		model.setViewName("ProManage/Padmin");
+		model.setViewName("ProManage/UpdateProduct");
 
 		return model;
 	}
