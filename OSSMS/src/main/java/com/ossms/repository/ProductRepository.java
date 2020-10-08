@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
@@ -29,5 +30,7 @@ public interface ProductRepository extends CrudRepository<ProductModel, Integer>
 	 @Query(value ="select productImage from product where idProduct = :id", nativeQuery = true)
 	 String getImage(int id);
 	 
+
+	 boolean existsByProductName(@Param("pName") String pName);
 	 
 }

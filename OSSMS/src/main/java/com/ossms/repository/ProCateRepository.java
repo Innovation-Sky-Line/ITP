@@ -27,6 +27,7 @@ public interface ProCateRepository extends JpaRepository<ProductCategoryModel, I
 	@Query(value = "SELECT idCategory FROM category WHERE categoryName LIKE :firstName", nativeQuery = true)
 	Integer getCategoryIdBy(@Param("firstName") String firstName);
 	
+	
 	@Query(value = "SELECT categoryName FROM category ", nativeQuery = true)
 	List<String> getCategoryName();
     

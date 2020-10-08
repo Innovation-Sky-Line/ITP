@@ -47,7 +47,8 @@ public class ProductController {
 		model.addObject("allSuppliers", allSuppliers);
 		List<ProductCategoryModel> allCategories = productService.subCategoryNames();
 		model.addObject("allCategories", allCategories);
-		
+		List<ProductCategoryModel> mainCategories = productService.mainCategoryNames();
+		model.addObject("mainCategories", mainCategories);
 		
 		return model;
 	}
@@ -74,9 +75,31 @@ public class ProductController {
 	 }
 	
 	
+	@RequestMapping(value="/getSubs", method=RequestMethod.POST) 
+	 public ModelAndView addProduct(ProductCategoryModel cat, @RequestParam("mCatName") String mCateName) {
+	  ModelAndView model = new ModelAndView("ProManage/Padmin");
+	  ProductModel product = new ProductModel();
+		model.addObject("productForm", product);
+		List<Supplier> allSuppliers = productService.allSupplierNames();
+		model.addObject("allSuppliers", allSuppliers);
+	  Integer i =productService.getCategoryIdBy(mCateName);
+	  cat = productService.cateNameById(i);
+	  model.addObject("subCate", cat);
+	  
+	  return model;
+	 }
+	
+	
+	
+	
 	@RequestMapping(value="/addProduct2", method=RequestMethod.POST) 
-	 public ModelAndView addProduct(ProductModel product, @RequestParam("image") MultipartFile mFile) throws IOException {
+	 public ModelAndView addProduct( ProductModel product, @RequestParam("image") MultipartFile mFile) throws IOException {
 	  ModelAndView model = new ModelAndView();
+	  if(productService.existsByProductName(product.getProductName())) {
+		  model.setViewName("ProManage/Exist_Erorr");
+		  return model;
+	  }
+	  
 	  String fileName = StringUtils.cleanPath(mFile.getOriginalFilename());
 	  product.setProductImage(fileName);
 	  productService.saveOrUpdate(product);
@@ -104,6 +127,9 @@ public class ProductController {
 	  
 	  return model;
 	 }
+	
+	
+	
 	
 	@RequestMapping(value="/addCategory", method=RequestMethod.POST)
 	 public ModelAndView addCategory(ProductCategoryModel category) {

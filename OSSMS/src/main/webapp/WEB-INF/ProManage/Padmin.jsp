@@ -80,8 +80,58 @@ form.example::after {
 	clear: both;
 	display: table;
 }
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #0b7dda;
+}
+
+.dropbtn {
+	border-radius: 25px;
+	background-color: #3e8e41;
+	color: white;
+	padding: 13px;
+	font-size: 14px;
+	border: none;
+}
 </style>
 <script>
+
+function populate(s1,s2){
+	var s1 = document.getElementById(s1);
+	var s2 = document.getElementById(s2);
+}
+
+
+
 function validateForm(){
 if( document.pFrom.price.value < 1 ) {
     alert( "Unit Price must not be 0 or less !!!" );
@@ -147,7 +197,9 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 			<form:hidden path="idProduct" />
 			<div class="form-group">
 				<label>Product Name : </label>
-				<form:input path="productName" cssClass="form-control" pattern = "^[A-Za-z0-9_]{1,32}$" title = "Can only use Underscore as Characters." id="product"
+				<form:input name = "pronm" path="productName" cssClass="form-control"
+					pattern="^[A-Za-z0-9&_/\s]{1,32}$"
+					title="Can only use '_','/' and '&' as Characters." id="idpnm" 
 					required="required" />
 			</div>
 
@@ -164,7 +216,8 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 			<div class="form-group">
 				<label>Select Supplier : </label>
 				<form:select class="form-group" path="supplierId"
-					cssClass="form-control" id="supName" name = "supName" required="required">
+					cssClass="form-control" id="supName" name="supName"
+					required="required">
 					<c:set value="${sName } " var="sn"></c:set>
 					<c:set value="${sId } " var="si"></c:set>
 					<c:if test="${not empty sName}">
@@ -179,9 +232,66 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 
 
 			<div class="form-group">
-				<label>Select Category : </label>
+				<label>Select the Main Category : </label>
 				<form:select class="form-group" path="categoryId"
-					cssClass="form-control" id="catName" name = "catName" required="required">
+					cssClass="form-control" id="mcatName" name="mcatName"
+					onchange="populate(this.id,catName)" required="required">
+					<c:set value="${cName } " var="cn"></c:set>
+					<c:set value="${cId } " var="ci"></c:set>
+					<c:if test="${not empty cName}">
+						<option value="${ci }">${cn }</option>
+					</c:if>
+					<option value="">Select</option>
+					<c:forEach var="cat" items="${mainCategories }">
+						<option value="${cat.idCategory }">${cat.categoryName }</option>
+					</c:forEach>
+				</form:select>
+			</div>
+
+
+
+
+
+			<!--  <div class="dropdown">
+			<button class="dropbtn">Select Main Categories</button>
+			<div class="dropdown-content">
+				<div class="container">
+					<table class="table table-striped">
+						<thead>
+
+						</thead>
+						<tbody>
+						<form:form action = "/padmin/getSubs" method = "POST">
+							<c:forEach items="${mainCategories }" var="mcategory">
+								<tr>
+									<td><input type="hidden" id="mCatName" name="mCatName" value="${mcategory.categoryName }"></td>
+									<td><input type="submit" value="${mcategory.categoryName }"></td>
+								</tr>
+							</c:forEach>
+						</form:form>
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+		</div>-->
+
+
+
+
+
+
+
+
+
+
+
+			<div class="form-group">
+				<label>Select the Sub Category : </label>
+				<form:select class="form-group" path="categoryId"
+					cssClass="form-control" id="catName" name="catName"
+					required="required">
 					<c:set value="${cName } " var="cn"></c:set>
 					<c:set value="${cId } " var="ci"></c:set>
 					<c:if test="${not empty cName}">

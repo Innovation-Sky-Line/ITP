@@ -29,6 +29,12 @@ public class ProductsServiceImp implements ProductService{
 	@Autowired
 	SupplierRepository supplierRepository;
 	
+	 public boolean existsByProductName(String pName) {
+		 if(repository.existsByProductName(pName)) {
+			 return true;
+		 }
+		 return false;
+	 }
 	
 //	public List<String> listProductInfo(){
 //		return pListRepo.listProductInfo();
