@@ -29,6 +29,10 @@ public class Order {
 		
 	}
 	
+	public Order(int customerId) {
+		this.customerId = customerId;
+	}
+	
 	public Order(int orderId, LocalDate date, String status, String deliveryStatus, String deliveryAddress,
 			int customerId) {
 		super();

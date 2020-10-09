@@ -13,4 +13,8 @@ public interface OrderService {
 	
 	public void saveOrder(Order order);
 	
+	public List<Order> getOrdersForMonth(int month);
+	
+	public Order getNewOrder(int cusId);
+	
 }

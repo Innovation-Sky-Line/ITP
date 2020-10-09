@@ -135,6 +135,7 @@ public class ShoppingCartController {
 	public ModelAndView cusPayment(@RequestParam(value = "total", required = false) float total,
 			@RequestParam(value = "orderId") int orderId, @RequestParam(value = "address", required = false) String address) {
 		
+		HttpSession session = null;
 		LocalDate currentDate = LocalDate.now();
 		Payment payment = new Payment(currentDate, total, "Credit", orderId);
 		pm.makePayment(payment);
@@ -144,6 +145,7 @@ public class ShoppingCartController {
 			address = csi.getAddressById(1);	//change to get userId from session
 		
 		order.setStatus("Processing");
+		order.setDate(currentDate);
 		order.setDeliveryAddress(address);
 		ods.saveOrder(order);
 		
@@ -154,8 +156,22 @@ public class ShoppingCartController {
 		}
 		
 		//create new order then set it into session
+		/*int cusId = (int) session.getAttribute("cusId");
+		ods.saveOrder(new Order(cusId));
+		
+		Order newOrder = ods.getNewOrder(cusId);		
+		session.setAttribute("orderId", order.getOrderId());*/
 		
 		return previousOrdersPage();
+	}
+	
+	//test method
+	@RequestMapping(value="/checkNewOrder")
+	public ModelAndView testNewOrder() {
+		ModelAndView mv = new ModelAndView("ShoppingCart/ProdsPage");
+		Order newOrder = ods.getNewOrder(1);		
+		System.out.println(newOrder.getOrderId());
+		return mv;
 	}
 	
 	@RequestMapping(value = "/deleteCartItem")
@@ -220,6 +236,17 @@ public class ShoppingCartController {
 			return mv;
 		}
 		
+	}
+	
+	@RequestMapping(value="/ordermonth")
+	public ModelAndView orderResults() {
+		ModelAndView model = new ModelAndView("ShoppingCart/OrderResults");
+		
+		List<Order> orders = ods.getOrdersForMonth(9);
+		
+		model.addObject("orders1", orders);
+		
+		return model;
 	}
 
 	

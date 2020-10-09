@@ -29,6 +29,16 @@ public class OrderServiceImpl implements OrderService {
 	public void saveOrder(Order order) {
 		ord.save(order);		
 	}
+
+	@Override
+	public List<Order> getOrdersForMonth(int month) {
+		return ord.findOrdersForMonth(month);	
+	}
+
+	@Override
+	public Order getNewOrder(int cusId) {
+		return ord.getNewOrder(cusId);
+	}
 	
 
 }
