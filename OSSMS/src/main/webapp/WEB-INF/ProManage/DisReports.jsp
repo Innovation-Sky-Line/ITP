@@ -131,6 +131,24 @@ form.example::after {
 	display: table;
 	
 }
+.sidebtn {
+	background-color: #000080;
+	opacity: 1.3;
+	border: none;
+	color: white;
+	padding: 40px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border-radius: 10%;
+	transition-duration: 0.4s;
+}
+
+.active, .sidebtn:hover {
+	background-color: blue;
+	color: white;
+}
 .repobtn {
  border-radius: 25px;
   background-color: #0b7dda;
@@ -150,6 +168,7 @@ form.example::after {
 	 position: absolute;
 	 left:500px;
 }
+
 </style>
 <meta charset="ISO-8859-1">
 <title>Product Administration.</title>
@@ -159,8 +178,8 @@ form.example::after {
 	<jsp:include page="../views/P_report_sidebar.jsp"></jsp:include>
 	<!-- Include Your parts within this comment.-->
 	<br><div class = "sideBox1">
-		<a href="#"><button class="repobtn active">Insufficient Products</button></a>
-		<a href="/padmin/disProReport"><button class="repobtn">Discounted Products</button></a>						 	
+		<a href="/padmin/proReport"><button class="repobtn">Insufficient Products</button></a>
+		<a href="#"><button class="repobtn active">Discounted Products</button></a>						 	
 	</div>
 	
 	<div class = "sideBox">
@@ -176,9 +195,9 @@ form.example::after {
 	
 	
 	<div class="body">
-	
-		<div class="container" style="font-size:16px;">
-		<h2>Insufficient Products.</h2>
+
+	<div class="container" style="font-size:15px;">
+		<h2>Products With discounts.</h2>
 		<table class="table table-dark table-hover">
 			<thead>
 				
@@ -192,9 +211,10 @@ form.example::after {
 				<th scope="row">Supplier Name</th>
 				<th scope="row">Category ID</th>
 				<th scope="row">Category Name</th>
+		
 			</thead>
 			<tbody>
-				<c:forEach items="${insufficient }" var="p">
+				<c:forEach items="${discounted }" var="p">
 					<tr>
 						<td>${p.productModel.idProduct }</td>
 						<td>${p.productModel.productName }</td>
@@ -216,6 +236,7 @@ form.example::after {
 			</tbody>
 		</table>
 	</div>
+	
 		
 	</div>
 	<!-- End of Your Parts!!! -->

@@ -139,7 +139,7 @@ form.example::after {
 			<div class="dropdown-content">
 				<div class="container">
 					<h2>Main Categories</h2>
-					<table class="table table-striped">
+					<table class="table table-dark table-hover">
 						<thead>
 
 							<th scope="row">Main Category ID</th>
@@ -170,7 +170,7 @@ form.example::after {
 	
 	<div class="container">
 		<h2>Category List</h2>
-		<table class="table table-striped">
+		<table class="table table-dark table-hover">
 			<thead>
 				
 				<th scope="row">#ID</th>

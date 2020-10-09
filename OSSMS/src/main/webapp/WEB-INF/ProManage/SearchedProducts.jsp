@@ -98,7 +98,7 @@ form.example::after {
 	
 	<div class="container" style="font-size:14px;">
 		<h2>Product List</h2>
-		<table class="table table-striped">
+		<table class="table table-dark table-hover">
 			<thead>
 				
 				<th scope="row">#ID</th>
@@ -127,7 +127,7 @@ form.example::after {
 						<c:set var = "fPrice" scope = "page" value ="${price-price*dis/100 }"></c:set>
 						<td><c:out value = "${fPrice }"></c:out></td>	
 						<td>${p.productModel.currentStock }</td>
-						<td>${p.productModel.productImage }</td>
+						<td><img src="../../resources/Product-Images/${p.productModel.productImage }" style="width:50px; height:50px;"></td>
 						<td>${p.productModel.supplierId }</td>
 						<td>${p.supplier.supplierName }</td>
 						<td>${p.productModel.categoryId }</td>

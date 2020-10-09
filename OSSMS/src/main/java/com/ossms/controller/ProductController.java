@@ -4,8 +4,13 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.engine.query.spi.sql.NativeSQLQueryCollectionReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lowagie.text.DocumentException;
+import com.ossms.model.DiscountExportPDF;
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductList;
 import com.ossms.model.ProductModel;
+import com.ossms.model.ProductPDFexporter;
 import com.ossms.model.Supplier;
 import com.ossms.service.ProductService;
 
@@ -107,7 +115,45 @@ public class ProductController {
 		  model.setViewName("redirect:/padmin/productList3");
 		  return model;
 	  }
-	  String dir = "Product-Images";
+	  String dir = "src/main/webapp/resources/Product-Images";
+	  java.nio.file.Path path = Paths.get(dir);
+	  if(!Files.exists(path)) {
+		  Files.createDirectories(path);
+	  }
+	 try(InputStream inputStream = mFile.getInputStream()) {
+		 java.nio.file.Path filePath = path.resolve(fileName);
+		  System.out.println(filePath.toFile().getAbsolutePath());
+		  
+		  Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+	} catch (IOException e) {
+		 
+		throw new IOException("Could not save image file: " + fileName, e);
+	} ;
+	 
+	 
+	  model.setViewName("redirect:/padmin/productList3");
+	  
+	  return model;
+	 }
+	
+	
+
+	@RequestMapping(value="/updateProduct2", method=RequestMethod.POST) 
+	 public ModelAndView updateProduct( ProductModel product, @RequestParam("image") MultipartFile mFile) throws IOException {
+	  ModelAndView model = new ModelAndView();
+//	  if(productService.existsByProductName(product.getProductName())) {
+//		  model.setViewName("ProManage/Exist_Erorr");
+//		  return model;
+//	  }
+	  
+	  String fileName = StringUtils.cleanPath(mFile.getOriginalFilename());
+	  product.setProductImage(fileName);
+	  productService.saveOrUpdate(product);
+	  if(fileName == "") {
+		  model.setViewName("redirect:/padmin/productList3");
+		  return model;
+	  }
+	  String dir = "src/main/webapp/resources/Product-Images";
 	  java.nio.file.Path path = Paths.get(dir);
 	  if(!Files.exists(path)) {
 		  Files.createDirectories(path);
@@ -264,7 +310,11 @@ public class ProductController {
 			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
 			Supplier supplier = productService.getSupplierById(productModel.getSupplierId());
 			ProductList list = new ProductList(productModel, categoryModel, supplier);
+			float price = productModel.getPrice();
+			float dis = productModel.getDiscount();
+			float fPrice = price - price * dis/100;
 			
+			model.addAttribute("finalPrice", fPrice);
 			pList.add(list);
 		}
 		if(!products.isEmpty()) {
@@ -303,7 +353,7 @@ public class ProductController {
 		model.addObject("allSuppliers", allSuppliers);
 		List<ProductCategoryModel> allCategories = productService.subCategoryNames();
 		model.addObject("allCategories", allCategories);
-		model.setViewName("ProManage/Padmin");
+		model.setViewName("ProManage/UpdateProduct");
 
 		return model;
 	}
@@ -435,6 +485,13 @@ public class ProductController {
 			pList.add(list);
 		}
 		mv.addObject("insufficient", pList);
+		return mv;
+	}
+	
+
+	@RequestMapping(value="/disProReport", method=RequestMethod.GET)
+	 public ModelAndView disProReport() {
+		ModelAndView mv = new ModelAndView("ProManage/DisReports");
 		
 		List<ProductModel> p = productService.getDiscountProducts();
 		List<ProductList> pList2 = new ArrayList<ProductList>();
@@ -447,6 +504,58 @@ public class ProductController {
 		}
 		mv.addObject("discounted", pList2);
 		return mv;
+	}
+	
+	@RequestMapping("/exportProductPdf")
+	public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+		
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
+		String currentDateTimeString = dateFormat.format(new Date());
+		
+		String headerKeyString = "Content-Disposition";
+		String headerValue = "attachment; filename=Insufficient_products_"+currentDateTimeString+".pdf";
+		response.setHeader(headerKeyString, headerValue);
+		
+		List<ProductModel> products = productService.getInsufficientProducts();
+		List<ProductList> pList = new ArrayList<ProductList>();
+		for(ProductModel productModel : products) {
+			ProductCategoryModel categoryModel = productService.getCategoryById(productModel.getCategoryId());
+			Supplier supplier = productService.getSupplierById(productModel.getSupplierId());
+			ProductList list = new ProductList(productModel, categoryModel, supplier);
+			
+			pList.add(list);
+		}
+		
+		ProductPDFexporter productPDFexporter = new ProductPDFexporter(pList);
+		productPDFexporter.export(response);
+		
+	}
+	
+	@RequestMapping("/disExportProductPdf")
+	public void disExportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+		
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss");
+		String currentDateTimeString = dateFormat.format(new Date());
+		
+		String headerKeyString = "Content-Disposition";
+		String headerValue = "attachment; filename=Discounted_products_"+currentDateTimeString+".pdf";
+		response.setHeader(headerKeyString, headerValue);
+		
+		List<ProductModel> p = productService.getDiscountProducts();
+		List<ProductList> pList2 = new ArrayList<ProductList>();
+		for(ProductModel productModels : p) {
+			ProductCategoryModel categoryModel2 = productService.getCategoryById(productModels.getCategoryId());
+			Supplier supplier2 = productService.getSupplierById(productModels.getSupplierId());
+			ProductList list2 = new ProductList(productModels, categoryModel2, supplier2);
+			
+			pList2.add(list2);
+		}
+		
+		DiscountExportPDF discountExportPDF = new DiscountExportPDF(pList2);
+		discountExportPDF.export(response);
+		
 	}
 	
 }
