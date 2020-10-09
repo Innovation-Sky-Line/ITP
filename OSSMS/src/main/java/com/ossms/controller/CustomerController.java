@@ -5,16 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.boot.jaxb.cfg.spi.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -97,6 +94,8 @@ public class CustomerController {
 			
 			model.setViewName("CusManage/login");
 			
+			model.addObject("notequal","password reset complete!");
+			
 			return model ;
 			
 		}
@@ -141,7 +140,7 @@ public class CustomerController {
 	
 	
 	@RequestMapping(value="/CustomerProfile" , method=RequestMethod.GET)
-	public ModelAndView viewCustomerProfile(@RequestParam("id") int id,
+	public ModelAndView viewCustomerProfile(
 			HttpSession session
 			) {
 		ModelAndView model = new ModelAndView();
@@ -150,21 +149,25 @@ public class CustomerController {
 		
 		model.setViewName("CusManage/CustomerProfile");
 		
-		model.addObject("customer",customer);
-
+		session.setAttribute("customer", customer  );
+		
+		session.setAttribute("customerId", customer.getIdCustomer()  );
+		
 		
 		return model;
 	}
 	@RequestMapping(value="/CustomerDashbord", method=RequestMethod.GET)
-	public ModelAndView viewCustomerDashbord(@RequestParam("id") int id) {
+	public ModelAndView viewCustomerDashbord(HttpSession session) {
 		
-		Customer customer = customerService.getCustomer(id); 
+		Customer customer = (Customer) session.getAttribute("customer"); 
 		
 		ModelAndView model = new ModelAndView();
-			
-		model.setViewName("CusManage/CustomerDashbord");
 		
-		model.addObject("customer", customer);
+		session.setAttribute("customer", customer  );
+		
+		session.setAttribute("customerId", customer.getIdCustomer());
+		
+		model.setViewName("CusManage/CustomerDashbord");
 		
 		return model;
 	}
@@ -187,8 +190,12 @@ public class CustomerController {
 		ModelAndView model = new ModelAndView("CusManage/CustomerDashbord");
 		
 		float total = 0;
+			
+		int id = (int) session.getAttribute("customerId");
 		
-		int id = (int) session.getAttribute("customer");
+		session.setAttribute("customerId", id );
+		
+		session.setAttribute("customer", customerService.getCustomer(id) );
 		
 		List<Order> orders = orderService.getPendingOrders(id);	//pass session cusId
 		
@@ -231,11 +238,12 @@ public class CustomerController {
 			
 				if(dbpassword.equals(password)) {
 					
-					session.setAttribute("customer", customer.getIdCustomer());
+					session.setAttribute("customerId", customer.getIdCustomer());
 
+					session.setAttribute("customer", customer);
+					
 					model.setViewName("CusManage/CustomerProfile");
 					
-					model.addObject("customer", customer);
 			
 					return model;
 				}
@@ -254,40 +262,34 @@ public class CustomerController {
 	
 
 	@RequestMapping(value="/addcustomer" , method=RequestMethod.POST)
-	public ModelAndView addCustomer(@ModelAttribute("customer")  Customer customer, 
+	public ModelAndView addCustomer(@ModelAttribute("newcustomer")  Customer newcustomer, 
 									@RequestParam(value="city") String address ,
 									@RequestParam(value = "password") String pass1,
 									@RequestParam(value = "pass2") String pass2,
 									@RequestParam(value = "email") String email,
 									Model m,
-									HttpSession session,
-									@SessionAttribute("customer") Customer c1) {
+									HttpSession session) {
 							
 		ModelAndView model = new ModelAndView();		
 
 		if(pass1.equals(pass2))
 		{
-			//ModelAndView model = new ModelAndView("CusManage/CustomerProfile");
-			
+
 			int len = pass1.length();
 			
 			Customer iscustomer = customerService.findCustomerByEmail(email);	
 			
 			if(iscustomer==null) {
 				
-				customerService.addCustomer(customer);
+				customerService.addCustomer(newcustomer);
 				
-				session.setAttribute("customter", customer);
+				session.setAttribute("customer", newcustomer);
 				
-				System.out.println(customer);
-				
+				session.setAttribute("customerId", newcustomer.getIdCustomer());
+
 				model.setViewName("CusManage/CustomerProfile");
 				
-				model.addObject("customer",customer);
-				
-				
-				
-				//System.out.println(customer);
+				System.out.println(newcustomer);
 			}
 			else {
 				
@@ -337,11 +339,14 @@ public class CustomerController {
 	@RequestMapping(value="/update" , method=RequestMethod.POST)
 	public ModelAndView updateCustomer(@RequestParam(value = "idCustomer") int id,@RequestParam(value = "email") String email,@RequestParam(value = "password") String password,
 			@RequestParam(value = "userName") String userName,@RequestParam(value = "contactNo") String contactNo,@RequestParam(value = "firstName") String firstName
-			,@RequestParam(value = "lastName") String lastName,@RequestParam(value = "city") String city) {
+			,@RequestParam(value = "lastName") String lastName,@RequestParam(value = "city") String city,
+			HttpSession session) {
 		
 		ModelAndView model = new ModelAndView();
 		
-		Customer customer = customerService.getCustomer(id);
+		int cid = (int) session.getAttribute("customerId");
+		
+		Customer customer = customerService.getCustomer(cid);
 		
 		customer.setUsername(userName);
 		customer.setPassword(password);
@@ -352,10 +357,18 @@ public class CustomerController {
 		
 		System.out.println(customer);
 		
-		customerService.update(customer,id);
+		customerService.update(customer,cid);
+		
+		Customer newcustomer = customerService.getCustomer(cid);
+		
+		session.setAttribute("customer", newcustomer );
+		
+		session.setAttribute("customerId", newcustomer.getIdCustomer() );
 		
 		model.setViewName("CusManage/CustomerProfile");
-		model.addObject("customer", customer);
+		
+		model.addObject("customer", customer );
+		
 		
 		return model;	
 	}

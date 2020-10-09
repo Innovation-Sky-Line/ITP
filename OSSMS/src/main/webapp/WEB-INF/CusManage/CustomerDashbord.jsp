@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
+            <a class="nav-link" href="/customer/CustomerProfile">
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
@@ -78,7 +78,7 @@
                   </p>
                 </a>
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="CustomerProfile?id=${customer.idCustomer }">Profile</a>
+                  <a class="dropdown-item" href="/customer/CustomerProfile">Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="invalidate">Log out</a>
                 </div>
@@ -113,7 +113,7 @@
                     		<form:form action="/detailBill" methos="POST">
                     		<input type="text" name="orderId" value="${order.order.orderId }" hidden />
                     		
-                    		<input type="submit" value="view" />
+                    		<button type="submit" class="btn btn-primary pull-right" style="background:green" >view</button>
                     		
                     		</form:form>
                     		</td>
