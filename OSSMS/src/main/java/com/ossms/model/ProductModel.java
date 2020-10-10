@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 
 
+
 @Entity
 @Component
 @Table(name = "product")

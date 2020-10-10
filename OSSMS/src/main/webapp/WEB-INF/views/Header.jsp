@@ -107,18 +107,19 @@
 	background-color: black;
 	color: white;
 }
-
-
 </style>
-<script>function sure (){var con = confirm("Are you sure?");if (con){
-	return true;
+<script>
+	function sure (){
+		var con = confirm("Are you sure?");
+		if (con){
+			return true;
 	
-}
+		}
 
-else {return false;
-	
-}
-}
+		else {
+			return false;	
+		}
+	}
 </script>
 <meta charset="ISO-8859-1">
 <title></title>
@@ -135,7 +136,7 @@ else {return false;
 				</td>
 				<td>
 					<div class="func_name">
-						<h1> Product Admin Panel</h1>
+						<h1>Product Admin Panel</h1>
 					</div>
 				</td>
 				<td>
@@ -156,7 +157,7 @@ else {return false;
 				<td><a href="/padmin/proManage"><button class="navtb">Main
 							Panel</button></a></td>
 				<td><a href="/padmin/cphp"><button class="navtb">CPHP</button></a></td>
-				
+
 			</tr>
 		</table>
 	</div>
