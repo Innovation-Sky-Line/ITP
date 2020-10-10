@@ -133,7 +133,7 @@ body {
         </div>
         
 		<div class="form-group">
-            <input type="text" class="form-control" name="city" placeholder="City"  required="required">
+            <input type="text" class="form-control" name="address" placeholder="address"  required="required">
         </div>
         <div class="form-group">
             <input type="text" class="form-control" name="contactNo" placeholder="Phone"  required="required">

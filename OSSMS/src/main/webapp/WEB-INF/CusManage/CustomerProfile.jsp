@@ -145,7 +145,7 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
-                          <input type="text" class="form-control" value="${customer.city }" name="city" />
+                          <input type="text" class="form-control" value="${customer.address }" name="address" />
                         </div>
                       </div>
                        <div class="col-md-6">

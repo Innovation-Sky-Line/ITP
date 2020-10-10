@@ -263,7 +263,7 @@ public class CustomerController {
 
 	@RequestMapping(value="/addcustomer" , method=RequestMethod.POST)
 	public ModelAndView addCustomer(@ModelAttribute("newcustomer")  Customer newcustomer, 
-									@RequestParam(value="city") String address ,
+									@RequestParam(value="address") String address ,
 									@RequestParam(value = "password") String pass1,
 									@RequestParam(value = "pass2") String pass2,
 									@RequestParam(value = "email") String email,
@@ -339,7 +339,7 @@ public class CustomerController {
 	@RequestMapping(value="/update" , method=RequestMethod.POST)
 	public ModelAndView updateCustomer(@RequestParam(value = "idCustomer") int id,@RequestParam(value = "email") String email,@RequestParam(value = "password") String password,
 			@RequestParam(value = "userName") String userName,@RequestParam(value = "contactNo") String contactNo,@RequestParam(value = "firstName") String firstName
-			,@RequestParam(value = "lastName") String lastName,@RequestParam(value = "city") String city,
+			,@RequestParam(value = "lastName") String lastName,@RequestParam(value = "address") String address,
 			HttpSession session) {
 		
 		ModelAndView model = new ModelAndView();
@@ -350,7 +350,7 @@ public class CustomerController {
 		
 		customer.setUsername(userName);
 		customer.setPassword(password);
-		customer.setCity(city);
+		customer.setAddress(address);
 		customer.setFirstName(firstName);
 		customer.setLastName(lastName);
 		customer.setContactNo(contactNo);

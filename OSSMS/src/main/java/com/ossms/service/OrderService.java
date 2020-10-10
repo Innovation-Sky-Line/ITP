@@ -17,4 +17,6 @@ public interface OrderService {
 	
 	public Order getNewOrder(int cusId);
 	
+	public List<Order> getPendingOrders( int idCustomer );
+	
 }

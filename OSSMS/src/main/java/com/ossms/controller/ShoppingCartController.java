@@ -27,7 +27,7 @@ import com.ossms.model.ShoppingCart;
 import com.ossms.repository.ProductRepository;
 import com.ossms.service.CartService;
 import com.ossms.service.CartServiceImpl;
-import com.ossms.service.CustomerServiceImpl;
+import com.ossms.service.CustomerServiceImplementation;
 import com.ossms.service.OrderServiceImpl;
 import com.ossms.service.PaymentServiceImpl;
 import com.ossms.service.ProductService;
@@ -43,7 +43,7 @@ public class ShoppingCartController {
 	@Autowired
 	PaymentServiceImpl pm = new PaymentServiceImpl();
 	@Autowired
-	CustomerServiceImpl csi = new CustomerServiceImpl();
+	CustomerServiceImplementation csi = new CustomerServiceImplementation();
 	
 	@RequestMapping(value = "/cart")
 	public ModelAndView shoppingCartPage(HttpSession session) {
