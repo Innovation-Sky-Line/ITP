@@ -55,8 +55,8 @@ public class ShoppingCartController {
 	
 	@RequestMapping(value="/addToCart", method = RequestMethod.POST)
 	public ModelAndView addToCart(/*@RequestParam(value = "orderId")int orderId,*/ @RequestParam(value = "prodId")int prodId, 
-			@RequestParam(value = "qty")int qty, HttpSession session) {
-		ShoppingCart cart = new ShoppingCart(prodId, (int)session.getAttribute("orderId"), qty);
+			HttpSession session) {
+		ShoppingCart cart = new ShoppingCart(prodId, (int)session.getAttribute("orderId"), 1);
 		
 		System.out.println(cart);
 		List<ShoppingCart> userCart = cs.getItemsInCart((int)session.getAttribute("orderId"));
@@ -73,7 +73,7 @@ public class ShoppingCartController {
 			cs.addToCart(cart);
 			System.out.println("added");
 		}	
-		return shoppingCartPage(session);
+		return allProds(session);
 	}
 	
 	public List<CartItems> getCartItems(int orderId) {
@@ -162,7 +162,7 @@ public class ShoppingCartController {
 		Order newOrder = ods.getNewOrder(cusId);		
 		session.setAttribute("orderId", order.getOrderId());*/
 		
-		return previousOrdersPage();
+		return previousOrdersPage();	//change to pending orders page
 	}
 	
 	//test method
@@ -215,7 +215,7 @@ public class ShoppingCartController {
 	public ModelAndView allProds(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ShoppingCart/ProdsPage");
-		session.setAttribute("orderId", 2);
+		session.setAttribute("orderId", 3);
 		List<Product> allProds = ps.getProd();
 		mv.addObject("prods", allProds);
 		//mv.addObject("order", 2);

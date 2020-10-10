@@ -42,7 +42,6 @@
 			<td>Product</td>
 			<td>Price</td>
 			<td>Discount</td>
-			<td></td>
 			<td>Add to Cart</td>
 		</tr>
 		<c:forEach var="prod" items="${prods }">
@@ -52,14 +51,23 @@
 			<td>${prod.productName }</td>
 			<td>${prod.price }</td>
 			<td>${prod.discount }</td>
-			<td><input type="text" name="qty" /><input type="text" name="orderId" value="${order }" hidden/>
-			<input type="text" name="prodId" value="${prod.productId }" hidden/>
+			<td>
+				<input type="text" name="prodId" value="${prod.productId }" hidden/>
+				<input type="submit" onclick="return addedToCart()" value="Add" />
 			</td>
-			<td><input type="submit" value="Add" /></td>
 		</tr>
 		</form:form>
 		</c:forEach>
 	</table>
 	<p>${sessionScope.orderId }</p>
 </body>
+<script>
+	function addedToCart(){
+		var con = confirm("Added to Cart");
+		if(con)
+			return true;
+		else 
+			return false;
+	}
+</script>
 </html>
