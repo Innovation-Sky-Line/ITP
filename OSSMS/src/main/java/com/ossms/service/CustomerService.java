@@ -1,9 +1,5 @@
 package com.ossms.service;
 
-
-
-
-
 import com.ossms.model.Customer;
 
 
@@ -20,7 +16,8 @@ public interface CustomerService {
 	public void deleteCustomer( Customer customer );
 
 	public Customer getCustomer(int id);
-	
+  
+  public String getAddressById(int userId);	
 	
 }
 

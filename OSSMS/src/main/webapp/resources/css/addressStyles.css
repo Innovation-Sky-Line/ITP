@@ -1,0 +1,71 @@
+body{
+	background-color: #ffff80;
+}
+.main_content{
+	margin-right:1%;
+	margin-top: 2.5%;
+	height: 600px;
+	padding: 10px;
+}
+h1{
+	margin-left: 15%;
+	font-family: candara;
+}
+.backToPayment h3{
+	font-size: 20px;
+	font-family: arial;
+}
+.main_table{
+	background-color: white;
+	margin-left: 15%;
+	height: 80%;
+	width: 70%;
+	padding: 20px;
+}
+#new-address{	
+	font-family: arial;
+	border-collapse: collapse;
+	margin-left: 10%;
+	width: 70%;
+}
+#new-address tr{
+	height:50px;
+	font-size: 20px;	
+}
+.l-col{
+	text-align: right;
+	height: 40px;
+}
+#hNo{
+	width: 60%;
+	margin-left: 5%;
+	height: 30px;
+}
+#strName{
+	width: 60%;
+	margin-left: 5%;
+	height: 30px;
+}
+#city{
+	width: 60%;
+	margin-left: 5%;
+	height: 30px;
+}
+#btn-row{
+	text-align:center;
+}
+#btn_save{
+	width: 20%;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	background-color: #5cb85c;
+	font-family: arial;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+}
+#btn_save:hover{
+	background-color: #47b347;
+}
+

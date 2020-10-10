@@ -1,16 +1,11 @@
 package com.ossms.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="customer")
 public class Customer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idcustomer")
@@ -23,7 +18,7 @@ public class Customer {
 	private String lastName;
 	
 	@Column(name="address")
-	private String city;
+	private String address;
 	
 	@Column(name="contactno")
 	private String contactNo;
@@ -37,6 +32,23 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
+	public Customer() {
+		super();
+	}
+
+	public Customer(int idCustomer, String firstName, String lastName, String address, String contactNo,
+			String password, String username, String email) {
+		super();
+		this.idCustomer = idCustomer;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.contactNo = contactNo;
+		this.password = password;
+		this.username = username;
+		this.email = email;
+	}
+
 	public int getIdCustomer() {
 		return idCustomer;
 	}
@@ -61,12 +73,12 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public String getCity() {
-		return city;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getContactNo() {
@@ -104,9 +116,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [idCustomer=" + idCustomer + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", address=" + city + ", contactNo=" + contactNo + ", password=" + password + ", username="
+				+ ", address=" + address + ", contactNo=" + contactNo + ", password=" + password + ", username="
 				+ username + ", email=" + email + "]";
 	}
-	
-
 }
