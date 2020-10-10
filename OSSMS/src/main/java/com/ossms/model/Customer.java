@@ -119,5 +119,4 @@ public class Customer {
 				+ ", address=" + address + ", contactNo=" + contactNo + ", password=" + password + ", username="
 				+ username + ", email=" + email + "]";
 	}
-		
 }
