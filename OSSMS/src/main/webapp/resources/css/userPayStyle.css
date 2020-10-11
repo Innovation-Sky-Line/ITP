@@ -8,7 +8,7 @@ a{
 .main_content{
 	margin-right:1%;
 	margin-top: 2.5%;
-	height: 650px;
+	height: 100%;
 	padding: 10px;
 }
 .backToCart{
@@ -43,6 +43,9 @@ a{
 	font-weight: bold;
 	padding: 10px;
 	width: 40%;
+}
+#pay_logo{
+	text-align:center;
 }
 #address{
 	margin-left: 2.5%;

@@ -66,6 +66,7 @@ form.example button {
   border: 1px solid grey;
   border-left: none;
   cursor: pointer;
+  margin-left:30px;
 }
 .listBtn:hover {
   background: green;

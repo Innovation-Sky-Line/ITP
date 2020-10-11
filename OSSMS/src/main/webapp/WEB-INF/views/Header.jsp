@@ -5,8 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-=======
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -125,34 +123,11 @@
 		}
 	}
 </script>
->>>>>>> 340193a4bb63fae2b7bfe4ffcfe1d65360011e51
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/HeaderStyle.css" />
-<link rel="stylesheet" href="resources/css/all.css"></link>
 </head>
 <body>
-<<<<<<< HEAD
 
-	<div id="cart_header_container">
-		<table id="cart_header" width="100%">
-			<tbody>
-				<tr>
-					<td id="header_logo" rowspan="2"><img id="img_header_logo"
-						src="resources/images/logo.jpg"></td>
-					<td id="header_title" rowspan="2"><h1>Athukorala Pvt.
-							Ltd.</h1></td>
-					<td id="header_proPic"><i class="fas fa-user-circle fa-3x"></i></td>
-					<td id="header_uname">Username</td>
-				</tr>
-				<tr>
-					<td id="header_cart"><spring:url value="/cart"
-								var="cartURL" /><a href="${cartURL }"><i class="fas fa-shopping-cart fa-2x"></i></a></td>
-					<td id="header_logout"><button id="btn-logout">Log Out</button></td>
-				</tr>
-			</tbody>
-=======
-	<div class="header">
+<div class="header">
 		<table>
 			<tr>
 				<td>
@@ -186,9 +161,7 @@
 				<td><a href="/padmin/cphp"><button class="navtb">CPHP</button></a></td>
 
 			</tr>
->>>>>>> 340193a4bb63fae2b7bfe4ffcfe1d65360011e51
 		</table>
 	</div>
-
 </body>
 </html>

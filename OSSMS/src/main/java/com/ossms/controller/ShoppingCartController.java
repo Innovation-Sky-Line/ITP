@@ -54,6 +54,7 @@ public class ShoppingCartController {
 		ModelAndView mv = new ModelAndView("ShoppingCart/ShoppingCart");
 		List<CartItems> userCart = getCartItems((int) session.getAttribute("orderId"));
 		mv.addObject("userCart", userCart);
+
 		return mv;
 	}
 	
@@ -95,6 +96,9 @@ public class ShoppingCartController {
 		model.addObject("mainCategories", mainCategories);
 		List<ProductModel> p = ps.getDiscountProducts();
 		model.addObject("discounted", p);
+		List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
+		model.addObject("itemsInCart", cart.size());
+		
 		return model;
 	}
 	
@@ -279,18 +283,22 @@ public class ShoppingCartController {
 	}*/
 	
 	@RequestMapping(value="/search")
-	public ModelAndView searchResults(@RequestParam(value = "search")String prodName) {
+	public ModelAndView searchResults(@RequestParam(value = "search")String prodName, HttpSession session) {
 		ModelAndView mv = new ModelAndView("ShoppingCart/ProductSearchResults");
 		List<ProductModel> allProds = ps.findProductsByName(prodName);
+		List<ProductCategoryModel> allCategories = ps.allCategoryNames();
+		mv.addObject("allCategories", allCategories);
+		List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
+		mv.addObject("itemsInCart", cart.size());
 		
 		if(!allProds.isEmpty()) {
 			mv.addObject("prods", allProds);			
-			return mv;
 		}
 		else {
-			mv.setViewName("ShoppingCart/Error");
-			return mv;
+			mv.addObject("searchError", "Looks like we don't have what you're looking for!");
+			System.out.println("Fail");
 		}
+		return mv;
 		
 	}
 	

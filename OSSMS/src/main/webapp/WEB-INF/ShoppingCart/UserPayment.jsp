@@ -8,12 +8,11 @@
 
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/userPayStyles.css" />
+	href="resources/css/userPayStyle.css" />
 <link rel="stylesheet" href="resources/css/all.css"></link>
 <title>Pay Here</title>
 </head>
 <body>
-	<jsp:include page="../views/Header.jsp"></jsp:include>
 
 	<div class="main_content">
 		<div class="main_table">
@@ -27,6 +26,9 @@
 			<table id="payTable">
 				<form:form action="/cusPayment" method="POST">
 					<tbody>
+						<tr>
+							<td colspan="2" id="pay_logo"><img src="resources/images/logo.jpg" /></td>
+						</tr>
 						<tr>
 							<td height="60px" class="table-left">Address</td>
 							<td><input type="text" id="u_addr" name="address" value="${address }" disabled/></td>

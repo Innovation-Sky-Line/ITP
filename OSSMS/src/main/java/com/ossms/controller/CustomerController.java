@@ -21,7 +21,9 @@ import com.ossms.model.PastOrder;
 import com.ossms.model.Product;
 import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
+import com.ossms.model.ShoppingCart;
 import com.ossms.model.Supplier;
+import com.ossms.service.CartServiceImpl;
 import com.ossms.service.CustomerService;
 import com.ossms.service.OrderService;
 import com.ossms.service.PaymentServices;
@@ -36,6 +38,9 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	CartServiceImpl cs = new CartServiceImpl();
 	
 	@Autowired
 	OrderService orderService;
@@ -283,6 +288,8 @@ public class CustomerController {
 		model.addObject("mainCategories", mainCategories);
 		List<ProductModel> p = ps.getDiscountProducts();
 		model.addObject("discounted", p);
+		List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
+		model.addObject("itemsInCart", cart.size());
 		return model;
 	}
 
@@ -307,6 +314,12 @@ public class CustomerController {
 			if(iscustomer==null) {
 				
 				customerService.addCustomer(newcustomer);
+				
+				Order newOrder = new Order(newcustomer.getIdCustomer());
+				newOrder.setStatus("Not Filled");
+				newOrder.setDeliveryStatus("Not Delivered");
+				orderService.saveOrder(newOrder);	
+				session.setAttribute("orderId", newOrder.getOrderId());
 				
 				session.setAttribute("customer", newcustomer);
 				
