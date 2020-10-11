@@ -1,0 +1,61 @@
+#cart_header_container{
+	
+	height: 10%;
+	width: 100%;
+	background-color: blue;
+}
+#cart_header{
+	width: 100%;
+	height: 100%;
+	align-content: center;	
+}
+#header_logo{
+	width: 20%;
+	align-content: center;
+	padding: 10px;
+}
+#header_title{
+	text-align: center;
+	color: white;
+	width: 60%;
+	font-family: arial;
+}
+#header_proPic{
+	padding:0px;
+	text-align: center;
+	height: 50%;
+	width: 10%;
+}
+#header_uname{
+	text-align:left;
+	width: 10%;
+	font-size: 15px;
+	font-family: arial;
+}
+#header_cart{
+	width: 10%;
+	text-align: center;
+	font-size: 18px;
+}
+#header_logout{
+	text-align: center;
+	width: 10%;
+}
+#img_header_logo{
+	width: 100px;
+	height: 100px;
+	margin-left: 20%;
+}
+#btn-logout{
+	background-color:black;
+	color:white;
+	height: 40px;
+	width: 60%;
+	border-radius:10px;
+	font-size: 15px;
+	font-family: candara;
+	font-weight: bold;
+	padding: 2px;
+	border:none;
+	
+}

@@ -41,4 +41,6 @@ public interface ProductRepository extends CrudRepository<ProductModel, Integer>
 
 	 boolean existsByProductName(@Param("pName") String pName);
 	 
+	 List<ProductModel> findProductByProductNameContaining(String name);
+	 
 }

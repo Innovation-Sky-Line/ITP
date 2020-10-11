@@ -207,10 +207,9 @@ public class ProductsServiceImp implements ProductService{
 		return proCateRepository.findById(ID).get();
 	}
 	
-	
-	
-	
-	
-
+	@Override
+	public List<ProductModel> findProductsByName(String prodName){
+		return repository.findProductByProductNameContaining(prodName);
+	}
 
 }

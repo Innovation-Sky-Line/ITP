@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.engine.query.spi.sql.NativeSQLQueryCollectionReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,10 @@ import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductList;
 import com.ossms.model.ProductModel;
 import com.ossms.model.ProductPDFexporter;
+import com.ossms.model.ShoppingCart;
 import com.ossms.model.Supplier;
+import com.ossms.service.CartServiceImpl;
+import com.ossms.service.CustomerServiceImpl;
 import com.ossms.service.ProductService;
 
 @Controller
@@ -44,6 +48,8 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
+	@Autowired
+	CartServiceImpl cs = new CartServiceImpl();
 
 	@RequestMapping(value = "/proManage")
 	public ModelAndView addProducts() {
@@ -221,22 +227,26 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/categoryProducts/{id}", method = RequestMethod.GET)
-	public ModelAndView categoryProducts(@PathVariable Integer id) {
+	public ModelAndView categoryProducts(@PathVariable Integer id, HttpSession session) {
 		ModelAndView model = new ModelAndView("ProManage/CategoryProducts");
 		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
 		model.addObject("allCategories", allCategories);
 		List<ProductModel> p = productService.getCateProducts(id);
 		model.addObject("discounted", p);
+		List<ShoppingCart> cart = cs.getItemsInCart((int)session.getAttribute("orderId"));
+		model.addObject("itemsInCart", cart.size());
 		return model;
 	}
 	
 	@RequestMapping(value = "/discountedProducts")
-	public ModelAndView discountedProducts() {
+	public ModelAndView discountedProducts(HttpSession session) {
 		ModelAndView model = new ModelAndView("ProManage/DiscountedProducts");
 		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
 		model.addObject("allCategories", allCategories);
 		List<ProductModel> p = productService.getDiscountProducts();
 		model.addObject("discounted", p);
+		List<ShoppingCart> cart = cs.getItemsInCart((int)session.getAttribute("orderId"));
+		model.addObject("itemsInCart", cart.size());
 		return model;
 	}
 

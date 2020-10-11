@@ -97,12 +97,8 @@
 		</div>
 		<div class="humberger__menu__cart">
 			<ul>
-				<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-				<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+				<li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>${itemsInCart }</span></a></li>
 			</ul>
-			<div class="header__cart__price">
-				item: <span>$150.00</span>
-			</div>
 		</div>
 		<div class="humberger__menu__widget">
 			<div class="header__top__right__language">
@@ -110,7 +106,7 @@
 				<div>English</div>
 				<span class="arrow_carrot-down"></span>
 				<ul>
-					<li><a href="#">Singhala</a></li>
+					<li><a href="#">Sinhala</a></li>
 					<li><a href="#">English</a></li>
 				</ul>
 			</div>
@@ -179,7 +175,7 @@
 								</ul>
 							</div>
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Login</a>
+								<a href="/customer/invalidate"><i class="fa fa-user"></i>Log Out</a>
 							</div>
 						</div>
 					</div>
@@ -190,14 +186,14 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo">
-						<a href="./index.html"><img
+						<a href="/cphp"><img
 							src="../../resources/images/logo.jpg" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="./index.html">Home</a></li>
+							<li class="active"><a href="/cphp">Home</a></li>
 							<li><a href="./shop-grid.html">Shop</a></li>
 							<li><a href="#">Pages</a>
 								<ul class="header__menu__dropdown">
@@ -214,12 +210,8 @@
 				<div class="col-lg-3">
 					<div class="header__cart">
 						<ul>
-							<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-							<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+							<li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>${itemsInCart }</span></a></li>
 						</ul>
-						<div class="header__cart__price">
-							item: <span>$150.00</span>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -244,7 +236,8 @@
 							<c:if test="${empty cat.mainCategoryId }">
 							<c:set var="id" value="${cat.idCategory } "></c:set>
 							<div class="dropdown">
-								<button class="dropbtn">${cat.categoryName }</button>
+								<a href="/padmin/categoryProducts/${cat.idCategory }"><button class="dropbtn">${cat.categoryName }
+								</button></a>
 								<div class="dropdown-content">
 									<c:forEach var="sub" items="${allCategories }">
 										<c:set var="id2" value="${sub.mainCategoryId } "></c:set>
@@ -263,10 +256,10 @@
 				<div class="col-lg-9">
 					<div class="hero__search">
 						<div class="hero__search__form">
-							<form action="#">
-								<input type="text" placeholder="What do you need?">
+							<form:form action="/search" method="POST">
+								<input type="text" name="search" placeholder="What do you need?">
 								<button type="submit" class="site-btn">SEARCH</button>
-							</form>
+							</form:form>
 						</div>
 						<div class="hero__search__phone">
 							<div class="hero__search__phone__icon">
@@ -306,9 +299,12 @@
 						<div class="featured__item__pic set-bg"
 							data-setbg="../../resources/Product-Images/${dis.productImage }">
 							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								<form:form action="/addToCart" method="POST">
+									<input type="text" name="prodId" value="${dis.idProduct }" hidden />
+									<li><a><button type="submit" style="border:none;background:none;">
+									<i class="fa fa-shopping-cart"></i>
+									</button></a></li>
+								</form:form>
 							</ul>
 						</div>
 						<div class="featured__item__text">

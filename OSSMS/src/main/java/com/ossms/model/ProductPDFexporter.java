@@ -91,7 +91,7 @@ public class ProductPDFexporter {
 		document.open();
 
 		Image image = Image
-				.getInstance("C:\\Users\\Nadun\\git\\ITP\\OSSMS\\src\\main\\webapp\\resources\\images\\logo.jpg");
+				.getInstance("C:\\Users\\HP\\git\\ITP\\OSSMS\\src\\main\\webapp\\resources\\images\\logo.jpg");
 		image.scaleAbsolute(70f, 70f);
 		image.setAlignment(Element.ALIGN_CENTER);
 		document.add(image);

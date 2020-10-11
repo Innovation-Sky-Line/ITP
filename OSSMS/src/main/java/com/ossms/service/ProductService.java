@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.ossms.model.*;
 
-
 public interface ProductService {
 	
 	//public List<String> listProductInfo();
@@ -61,6 +60,8 @@ public interface ProductService {
 	
 	public List<ProductModel> getInsufficientProducts();
 	public List<ProductModel> getDiscountProducts();
+	
+	public List<ProductModel> findProductsByName(String prodName);
 	
 
 }
