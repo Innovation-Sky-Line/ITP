@@ -56,6 +56,8 @@ public class ProductController {
 		model.addObject("allCategories", allCategories);
 		List<ProductCategoryModel> mainCategories = productService.mainCategoryNames();
 		model.addObject("mainCategories", mainCategories);
+		List<ProductCategoryModel> allCategories2 = productService.allCategoryNames();
+		model.addObject("allCategories2", allCategories2);
 
 		return model;
 	}
@@ -81,15 +83,13 @@ public class ProductController {
 		return model;
 	}
 
-	@RequestMapping(value = "/getSubs", method = RequestMethod.POST)
-	public ModelAndView addProduct(ProductCategoryModel cat, @RequestParam("mCatName") String mCateName) {
+	@RequestMapping(value = "/getSubs/{id}", method = RequestMethod.GET)
+	public ModelAndView addProduct(ProductCategoryModel cat,@PathVariable Integer id) {
 		ModelAndView model = new ModelAndView("ProManage/Padmin");
 		ProductModel product = new ProductModel();
 		model.addObject("productForm", product);
 		List<Supplier> allSuppliers = productService.allSupplierNames();
 		model.addObject("allSuppliers", allSuppliers);
-		Integer i = productService.getCategoryIdBy(mCateName);
-		cat = productService.cateNameById(i);
 		model.addObject("subCate", cat);
 
 		return model;
@@ -213,6 +213,28 @@ public class ProductController {
 		model.addObject("subCategories", subCategories);
 		List<ProductCategoryModel> mainCategories = productService.mainCategoryNames();
 		model.addObject("mainCategories", mainCategories);
+		List<ProductModel> p = productService.getDiscountProducts();
+		model.addObject("discounted", p);
+		List<ProductModel> topList= productService.topTwentyProducts();
+		model.addObject("topList", topList);
+		return model;
+	}
+	
+	@RequestMapping(value = "/categoryProducts/{id}", method = RequestMethod.GET)
+	public ModelAndView categoryProducts(@PathVariable Integer id) {
+		ModelAndView model = new ModelAndView("ProManage/CategoryProducts");
+		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
+		model.addObject("allCategories", allCategories);
+		List<ProductModel> p = productService.getCateProducts(id);
+		model.addObject("discounted", p);
+		return model;
+	}
+	
+	@RequestMapping(value = "/discountedProducts")
+	public ModelAndView discountedProducts() {
+		ModelAndView model = new ModelAndView("ProManage/DiscountedProducts");
+		List<ProductCategoryModel> allCategories = productService.allCategoryNames();
+		model.addObject("allCategories", allCategories);
 		List<ProductModel> p = productService.getDiscountProducts();
 		model.addObject("discounted", p);
 		return model;

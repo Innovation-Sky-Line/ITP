@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
 import org.springframework.data.repository.query.Param;
 
+import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.ProductModel;
 
 public interface ProductRepository extends CrudRepository<ProductModel, Integer>{
@@ -28,7 +28,16 @@ public interface ProductRepository extends CrudRepository<ProductModel, Integer>
 	 List<ProductModel> productList();
 	 
 	 @Query(value ="select productImage from product where idProduct = :id", nativeQuery = true)
-	 String getImage(int id);	 
+	 String getImage(int id);
+	 
+	@Query(value = "SELECT * FROM product ORDER BY idProduct DESC limit 20", nativeQuery = true)
+	List<ProductModel> topTwentyProducts(); 
+	 
+	 @Query(value ="select * from product where categoryId = :id", nativeQuery = true)
+	 List<ProductModel> getCateProducts(Integer id);
+	 
+	 @Query(value ="select * from product where idProduct = :id", nativeQuery = true)
+	 List<ProductModel> getCateProductsbyID(int id);
 
 	 boolean existsByProductName(@Param("pName") String pName);
 	 
