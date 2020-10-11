@@ -24,38 +24,64 @@
 	opacity: 1.3;
 	border: none;
 	color: white;
-	padding: 50px 50px;
+	padding: 40px 30px; text-align : center; text-decoration : none;
+	display : inline-block; font-size : 15px;
+	border-radius: 1%;
+	transition-duration: 0.4s;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 10px;
-	border-radius: 1%;
-	transition-duration: 0.4s;
+	font-size: 15px;
 }
 
-.sidebtn:hover {
+.active, .sidebtn:hover {
 	background-color: blue;
 	color: white;
 }
 </style>
+
+
 </head>
 <body>
-	<div class="sideBar">
+	<div class="sideBar" id="sidebtns">
 		<table>
 			<!-- button 01 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn">empty</button></a></td>
+				<td><a href="#"><button class="sidebtn active">Manage
+							Products</button></a></td>
 			</tr>
 			<!-- button 02 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn">empty</button></a></td>
+				<td><a href="#"><button class="sidebtn">Manage
+							Categories</button></a></td>
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="#"><button class="sidebtn">empty</button></a></td>
+				<td><a href="#"><button class="sidebtn">Manage
+							Reports</button></a></td>
 			</tr>
 		</table>
 
 	</div>
+
+
+	<script type="text/javascript">
+		//Get the container element
+		var btnContainer = document.getElementById("sidebtns");
+
+		// Get all buttons with class="btn" inside the container
+		var btns = btnContainer.getElementsByClassName("sidebtn");
+
+		// Loop through the buttons and add the active class to the current/clicked button
+		for (var i = 0; i < btns.length; i++) {
+			btns[i].addEventListener("click", function() {
+				var current = document.getElementsByClassName("active");
+				current[0].className = current[0].className.replace(" active",
+						"");
+				this.className += " active";
+			});
+		}
+	</script>
+
 </body>
 </html>
