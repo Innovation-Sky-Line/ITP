@@ -288,6 +288,8 @@ public class CustomerController {
 		model.addObject("mainCategories", mainCategories);
 		List<ProductModel> p = ps.getDiscountProducts();
 		model.addObject("discounted", p);
+		List<ProductModel> topList= ps.topTwentyProducts();
+		model.addObject("topList", topList);
 		List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
 		model.addObject("itemsInCart", cart.size());
 		return model;

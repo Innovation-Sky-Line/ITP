@@ -395,9 +395,12 @@
 						<div class="featured__item__pic set-bg"
 							data-setbg="../../resources/Product-Images/${dis.productImage }">
 							<ul class="featured__item__pic__hover">
-								<li><a href="#"><i class="fa fa-heart"></i></a></li>
-								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+								<form:form action="/addToCart" method="POST">
+									<input type="text" name="prodId" value="${dis.idProduct }" hidden />
+									<li><a><button type="submit" style="border:none;background:none;">
+									<i class="fa fa-shopping-cart"></i>
+									</button></a></li>
+								</form:form>
 							</ul>
 						</div>
 						<div class="featured__item__text">
