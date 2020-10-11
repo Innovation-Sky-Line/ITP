@@ -34,23 +34,29 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item ">
-            <a class="nav-link" href="CustomerDashbord?id=${customer.idCustomer}">
+            <a class="nav-link" href="/customer/list">
               <i class="material-icons">dashboard</i>
               <p>Pending Orders</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
+            <a class="nav-link" href="/customer/CustomerProfile">
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
           </li>  
-           <li class="nav-item active">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
-              <i class="material-icons">shopping_cart</i>
-              <p>Previous Orders </p>
-            </a>
-          </li>  
+          <li class="nav-item ">
+           <a class="nav-link" href="/cart">
+             <i class="material-icons">shopping_cart</i>
+             <p>Your Cart</p>
+           </a>
+         </li>
+          <li class="nav-item ">
+           <a class="nav-link" href="/pastOrders">
+             <i class="material-icons">shopping_cart</i>
+             <p>Previous Orders </p>
+           </a>
+         </li>  
         </ul>
       </div>
     </div>

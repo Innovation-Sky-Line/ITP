@@ -60,6 +60,9 @@
 		</c:forEach>
 	</table>
 	<p>${sessionScope.orderId }</p>
+	<form action="/cart" method="post">
+		<input type="submit" value="Cart" />
+	</form>
 </body>
 <script>
 	function addedToCart(){

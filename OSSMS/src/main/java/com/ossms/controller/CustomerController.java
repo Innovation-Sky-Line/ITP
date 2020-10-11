@@ -18,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ossms.model.Customer;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
+import com.ossms.model.Product;
 import com.ossms.service.CustomerService;
 import com.ossms.service.OrderService;
 import com.ossms.service.PaymentServices;
+import com.ossms.service.ProductService;
 
 
 @Controller
@@ -37,7 +39,8 @@ public class CustomerController {
 	@Autowired
 	PaymentServices paymentService;
 	
-
+	@Autowired
+	ProductService ps = new ProductService();
 	
 	@RequestMapping(value="/checkpassAndUname", method=RequestMethod.POST)
 	public ModelAndView checkUsernameAndEmail(@RequestParam(value="email") String email,
@@ -238,14 +241,15 @@ public class CustomerController {
 			
 				if(dbpassword.equals(password)) {
 					
+					Order newOrder = orderService.getNewOrder(customer.getIdCustomer());
+
+					session.setAttribute("orderId", newOrder.getOrderId());
+					
 					session.setAttribute("customerId", customer.getIdCustomer());
 
-					session.setAttribute("customer", customer);
-					
-					model.setViewName("CusManage/CustomerProfile");
-					
+					session.setAttribute("customer", customer);		
 			
-					return model;
+					return allProds(session);
 				}
 				else {
 					
@@ -259,11 +263,20 @@ public class CustomerController {
 		
 		
 	}
-	
+	//--from Chandula
+	@RequestMapping(value="/home")
+	public ModelAndView allProds(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ShoppingCart/ProdsPage");
+		List<Product> allProds = ps.getProd();
+		mv.addObject("prods", allProds);
+		//mv.addObject("order", 2);
+		return mv; 	
+	}	//--
 
 	@RequestMapping(value="/addcustomer" , method=RequestMethod.POST)
 	public ModelAndView addCustomer(@ModelAttribute("newcustomer")  Customer newcustomer, 
-									@RequestParam(value="city") String address ,
+									@RequestParam(value="address") String address ,
 									@RequestParam(value = "password") String pass1,
 									@RequestParam(value = "pass2") String pass2,
 									@RequestParam(value = "email") String email,
@@ -339,7 +352,7 @@ public class CustomerController {
 	@RequestMapping(value="/update" , method=RequestMethod.POST)
 	public ModelAndView updateCustomer(@RequestParam(value = "idCustomer") int id,@RequestParam(value = "email") String email,@RequestParam(value = "password") String password,
 			@RequestParam(value = "userName") String userName,@RequestParam(value = "contactNo") String contactNo,@RequestParam(value = "firstName") String firstName
-			,@RequestParam(value = "lastName") String lastName,@RequestParam(value = "city") String city,
+			,@RequestParam(value = "lastName") String lastName,@RequestParam(value = "address") String address,
 			HttpSession session) {
 		
 		ModelAndView model = new ModelAndView();
@@ -350,7 +363,7 @@ public class CustomerController {
 		
 		customer.setUsername(userName);
 		customer.setPassword(password);
-		customer.setCity(city);
+		customer.setAddress(address);
 		customer.setFirstName(firstName);
 		customer.setLastName(lastName);
 		customer.setContactNo(contactNo);

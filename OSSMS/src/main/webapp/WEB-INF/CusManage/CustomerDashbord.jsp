@@ -44,13 +44,19 @@
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
-          </li>  
-           <li class="nav-item ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
-              <i class="material-icons">shopping_cart</i>
-              <p>Previous Orders </p>
-            </a>
-          </li>  
+          </li>
+          <li class="nav-item ">
+           <a class="nav-link" href="/cart">
+             <i class="material-icons">shopping_cart</i>
+             <p>Your Cart</p>
+           </a>
+         </li>
+         <li class="nav-item ">
+          <a class="nav-link" href="/pastOrders">
+            <i class="material-icons">shopping_cart</i>
+            <p>Previous Orders </p>
+          </a>
+        </li>  
         </ul>
       </div>
     </div>
@@ -101,7 +107,7 @@
                       <th>Order ID</th>
                       <th>Date</th>
                       <th>Cost</th>
-                      <th>Button</th>
+                      
                     </thead>
                     <tbody>
                     <c:forEach var="order" items="${pending }">
@@ -110,10 +116,10 @@
                     		<td>${order.order.date }</td>
                     		<td>${order.total }</td>
                     		<td>
-                    		<form:form action="/detailBill" methos="POST">
+                    		<form:form action="/detailedBill" method="POST">
                     		<input type="text" name="orderId" value="${order.order.orderId }" hidden />
                     		
-                    		<button type="submit" class="btn btn-primary pull-right" style="background:green" >view</button>
+                    		<button type="submit" class="btn btn-primary pull-right" style="background:green" >VIEW</button>
                     		
                     		</form:form>
                     		</td>

@@ -19,5 +19,8 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
 	@Query(value="SELECT * FROM orders WHERE status = 'Not Filled' AND customerId = :cusId", nativeQuery = true)
 	Order getNewOrder(@Param("cusId") int customerId);
 	
+	@Query(value="SELECT * FROM orders WHERE customerId=:idCustomer AND status IN ('Processing', 'Filled') "
+			+ "AND deliveryStatus = 'Not Delivered'", nativeQuery = true)
+	List <Order> getPendingOrders(@Param("idCustomer") int idCustomer);	
 	
 }

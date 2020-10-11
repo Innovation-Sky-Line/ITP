@@ -59,12 +59,18 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Customer Profile</p>
             </a>
           </li>  
-           <li class="nav-item ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
-              <i class="material-icons">shopping_cart</i>
-              <p>Previous Orders </p>
-            </a>
-            </li>
+          <li class="nav-item ">
+           <a class="nav-link" href="/cart">
+             <i class="material-icons">shopping_cart</i>
+             <p>Your Cart</p>
+           </a>
+         </li>
+          <li class="nav-item ">
+           <a class="nav-link" href="/pastOrders">
+             <i class="material-icons">shopping_cart</i>
+             <p>Previous Orders </p>
+           </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -145,7 +151,7 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
-                          <input type="text" class="form-control" value="${customer.city }" name="city" />
+                          <input type="text" class="form-control" value="${customer.address }" name="city" />
                         </div>
                       </div>
                        <div class="col-md-6">

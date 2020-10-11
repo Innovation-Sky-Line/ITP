@@ -62,11 +62,11 @@ public class ShoppingCartController {
 		List<ShoppingCart> userCart = cs.getItemsInCart((int)session.getAttribute("orderId"));
 		if(!userCart.isEmpty()) {
 			for(ShoppingCart c: userCart) {
-				if(c.getProductId() == prodId) 
+				if(c.getProductId() == prodId) {
 					incrementProduct(prodId, session);
-				else {
-					cs.addToCart(cart);
+					return allProds(session);
 				}
+				cs.addToCart(cart);
 			}
 		}
 		else {
@@ -133,16 +133,17 @@ public class ShoppingCartController {
 	}
 	@RequestMapping(value = "/cusPayment")
 	public ModelAndView cusPayment(@RequestParam(value = "total", required = false) float total,
-			@RequestParam(value = "orderId") int orderId, @RequestParam(value = "address", required = false) String address) {
+		@RequestParam(value = "address", required = false) String address, HttpSession session) {
 		
-		HttpSession session = null;
+		int orderId = (int) session.getAttribute("orderId");
+		int customerId = (int) session.getAttribute("customerId");
 		LocalDate currentDate = LocalDate.now();
 		Payment payment = new Payment(currentDate, total, "Credit", orderId);
 		pm.makePayment(payment);
 		Order order = ods.getOrderById(orderId).get();
 		
 		if(address == null) 
-			address = csi.getAddressById(1);	//change to get userId from session
+			address = csi.getAddressById(customerId);	//change to get userId from session
 		
 		order.setStatus("Processing");
 		order.setDate(currentDate);
@@ -156,14 +157,47 @@ public class ShoppingCartController {
 		}
 		
 		//create new order then set it into session
-		/*int cusId = (int) session.getAttribute("cusId");
-		ods.saveOrder(new Order(cusId));
+		Order newOrder = new Order(customerId);
+		newOrder.setStatus("Not Filled");
+		newOrder.setDeliveryStatus("Not Delivered");
+		ods.saveOrder(newOrder);	
+		session.setAttribute("orderId", newOrder.getOrderId());
 		
-		Order newOrder = ods.getNewOrder(cusId);		
-		session.setAttribute("orderId", order.getOrderId());*/
-		
-		return previousOrdersPage();	//change to pending orders page
+		return list(session);	//change to pending orders page
 	}
+	//--from Asanka
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView list(HttpSession session) {
+		
+		ModelAndView model = new ModelAndView("CusManage/CustomerDashbord");
+		
+		float total = 0;
+			
+		int id = (int) session.getAttribute("customerId");
+		
+		session.setAttribute("customerId", id );
+		
+		session.setAttribute("customer", csi.getCustomer(id) );
+		
+		List<Order> orders = ods.getPendingOrders(id);	//pass session cusId
+		
+		List<PastOrder> preOrders = new ArrayList<PastOrder>();
+		
+		for(Order porders : orders) {
+			
+			total = pm.findPaymentByOrderId(porders.getOrderId()).getAmount();
+			PastOrder paOrd = new PastOrder(porders, total);
+			preOrders.add(paOrd);
+			
+		}
+		
+		
+		model.addObject("customer",csi.getCustomer(id));
+		model.addObject("pending", preOrders);
+		
+		return model;
+	}
+	//--	
 	
 	//test method
 	@RequestMapping(value="/checkNewOrder")
@@ -189,10 +223,11 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping(value = "/pastOrders")
-	public ModelAndView previousOrdersPage() {
+	public ModelAndView previousOrdersPage(HttpSession session) {
 		ModelAndView mv = new ModelAndView("ShoppingCart/PreviousOrders");
 		float total = 0;
-		List<Order> orders = ods.getPreviousOrders(1);	//pass session cusId
+		int customerId = (int) session.getAttribute("customerId");
+		List<Order> orders = ods.getPreviousOrders(customerId);	//pass session cusId
 		List<PastOrder> preOrders = new ArrayList<PastOrder>();
 		for(Order porders : orders) {
 			total = pm.findPaymentByOrderId(porders.getOrderId()).getAmount();
@@ -215,7 +250,6 @@ public class ShoppingCartController {
 	public ModelAndView allProds(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ShoppingCart/ProdsPage");
-		session.setAttribute("orderId", 3);
 		List<Product> allProds = ps.getProd();
 		mv.addObject("prods", allProds);
 		//mv.addObject("order", 2);
@@ -248,6 +282,8 @@ public class ShoppingCartController {
 		
 		return model;
 	}
+	
+	public ShoppingCartController() {	}
 
 	
 }
