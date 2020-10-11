@@ -23,7 +23,10 @@ import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
 import com.ossms.model.Payment;
 import com.ossms.model.Product;
+import com.ossms.model.ProductCategoryModel;
+import com.ossms.model.ProductModel;
 import com.ossms.model.ShoppingCart;
+import com.ossms.model.Supplier;
 import com.ossms.repository.ProductRepository;
 import com.ossms.service.CartService;
 import com.ossms.service.CartServiceImpl;
@@ -31,11 +34,12 @@ import com.ossms.service.CustomerServiceImpl;
 import com.ossms.service.OrderServiceImpl;
 import com.ossms.service.PaymentServiceImpl;
 import com.ossms.service.ProductService;
+import com.ossms.service.ProductsServiceImp;
 
 @Controller
 public class ShoppingCartController {
 	@Autowired
-	ProductService ps = new ProductService();
+	ProductService ps = new ProductsServiceImp();
 	@Autowired
 	CartServiceImpl cs = new CartServiceImpl();
 	@Autowired
@@ -64,7 +68,7 @@ public class ShoppingCartController {
 			for(ShoppingCart c: userCart) {
 				if(c.getProductId() == prodId) {
 					incrementProduct(prodId, session);
-					return allProds(session);
+					return productHome(session);
 				}
 				cs.addToCart(cart);
 			}
@@ -73,7 +77,25 @@ public class ShoppingCartController {
 			cs.addToCart(cart);
 			System.out.println("added");
 		}	
-		return allProds(session);
+		return productHome(session);
+	}
+	//--from Nadun
+	@RequestMapping(value = "/cphp")
+	public ModelAndView productHome(HttpSession session) {
+		ModelAndView model = new ModelAndView("ProManage/CusProductHome");
+		ProductModel product = new ProductModel();
+		model.addObject("productForm", product);
+		List<Supplier> allSuppliers = ps.allSupplierNames();
+		model.addObject("allSuppliers", allSuppliers);
+		List<ProductCategoryModel> allCategories = ps.allCategoryNames();
+		model.addObject("allCategories", allCategories);
+		List<ProductCategoryModel> subCategories = ps.subCategoryNames();
+		model.addObject("subCategories", subCategories);
+		List<ProductCategoryModel> mainCategories = ps.mainCategoryNames();
+		model.addObject("mainCategories", mainCategories);
+		List<ProductModel> p = ps.getDiscountProducts();
+		model.addObject("discounted", p);
+		return model;
 	}
 	
 	public List<CartItems> getCartItems(int orderId) {
@@ -84,10 +106,10 @@ public class ShoppingCartController {
 		for(ShoppingCart cart: carts) {
 			int prodId = cart.getProductId();
 			int qty = cart.getQty();
-			Optional<Product> prod = ps.getProdById(prodId);
-			String name = prod.get().getProductName();
-			float disc = prod.get().getDiscount();
-			float finalPrice = ((100 - disc) * prod.get().getPrice()) / 100;
+			ProductModel prod = ps.getProductById(prodId);
+			String name = prod.getProductName();
+			float disc = prod.getDiscount();
+			float finalPrice = ((100 - disc) * prod.getPrice()) / 100;
 			float total = finalPrice * qty;
 			CartItems cartItem = new CartItems(prodId, orderId, name, qty, total);
 			userCart.add(cartItem);			
@@ -152,7 +174,7 @@ public class ShoppingCartController {
 		
 		List<CartItems> cartItems = this.getCartItems(orderId);	//to update the stocks of products
 		for(CartItems c : cartItems) {
-			Product product = ps.getProdById(c.getProdId()).get();
+			ProductModel product = ps.getProductById(c.getProdId());
 			product.setCurrentStock(product.getCurrentStock() - c.getQty());
 		}
 		
@@ -246,7 +268,7 @@ public class ShoppingCartController {
 		return model;
 	}
 	
-	@RequestMapping(value="/home")
+	/*@RequestMapping(value="/home")
 	public ModelAndView allProds(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ShoppingCart/ProdsPage");
@@ -254,12 +276,12 @@ public class ShoppingCartController {
 		mv.addObject("prods", allProds);
 		//mv.addObject("order", 2);
 		return mv; 	
-	}
+	}*/
 	
 	@RequestMapping(value="/search")
 	public ModelAndView searchResults(@RequestParam(value = "search")String prodName) {
 		ModelAndView mv = new ModelAndView("ShoppingCart/ProductSearchResults");
-		List<Product> allProds = ps.findProductsByName(prodName);
+		List<ProductModel> allProds = ps.findProductsByName(prodName);
 		
 		if(!allProds.isEmpty()) {
 			mv.addObject("prods", allProds);			

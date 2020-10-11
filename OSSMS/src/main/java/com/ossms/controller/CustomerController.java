@@ -19,10 +19,14 @@ import com.ossms.model.Customer;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
 import com.ossms.model.Product;
+import com.ossms.model.ProductCategoryModel;
+import com.ossms.model.ProductModel;
+import com.ossms.model.Supplier;
 import com.ossms.service.CustomerService;
 import com.ossms.service.OrderService;
 import com.ossms.service.PaymentServices;
 import com.ossms.service.ProductService;
+import com.ossms.service.ProductsServiceImp;
 
 
 @Controller
@@ -40,7 +44,7 @@ public class CustomerController {
 	PaymentServices paymentService;
 	
 	@Autowired
-	ProductService ps = new ProductService();
+	ProductService ps = new ProductsServiceImp();
 	
 	@RequestMapping(value="/checkpassAndUname", method=RequestMethod.POST)
 	public ModelAndView checkUsernameAndEmail(@RequestParam(value="email") String email,
@@ -249,7 +253,7 @@ public class CustomerController {
 
 					session.setAttribute("customer", customer);		
 			
-					return allProds(session);
+					return productHome(session);
 				}
 				else {
 					
@@ -263,16 +267,24 @@ public class CustomerController {
 		
 		
 	}
-	//--from Chandula
-	@RequestMapping(value="/home")
-	public ModelAndView allProds(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("ShoppingCart/ProdsPage");
-		List<Product> allProds = ps.getProd();
-		mv.addObject("prods", allProds);
-		//mv.addObject("order", 2);
-		return mv; 	
-	}	//--
+	//--from Nadun
+	@RequestMapping(value = "/cphp")
+	public ModelAndView productHome(HttpSession session) {
+		ModelAndView model = new ModelAndView("ProManage/CusProductHome");
+		ProductModel product = new ProductModel();
+		model.addObject("productForm", product);
+		List<Supplier> allSuppliers = ps.allSupplierNames();
+		model.addObject("allSuppliers", allSuppliers);
+		List<ProductCategoryModel> allCategories = ps.allCategoryNames();
+		model.addObject("allCategories", allCategories);
+		List<ProductCategoryModel> subCategories = ps.subCategoryNames();
+		model.addObject("subCategories", subCategories);
+		List<ProductCategoryModel> mainCategories = ps.mainCategoryNames();
+		model.addObject("mainCategories", mainCategories);
+		List<ProductModel> p = ps.getDiscountProducts();
+		model.addObject("discounted", p);
+		return model;
+	}
 
 	@RequestMapping(value="/addcustomer" , method=RequestMethod.POST)
 	public ModelAndView addCustomer(@ModelAttribute("newcustomer")  Customer newcustomer, 
