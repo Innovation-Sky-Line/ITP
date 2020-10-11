@@ -12,6 +12,9 @@ public interface ProductService {
 	//public List<String> listProductInfo();
 	
 	public boolean existsByProductName(String pName);
+	public List<ProductModel> topTwentyProducts();
+	public List<ProductModel> getCateProducts(Integer id);
+	public List<ProductModel> getCateProductsbyID(int id);
 	
 	public List<ProductModel> getAllproducts();
 	public List<ProductModel> getLastProduct();

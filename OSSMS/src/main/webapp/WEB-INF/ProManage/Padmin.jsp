@@ -261,14 +261,13 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 
 						</thead>
 						<tbody>
-						<form:form action = "/padmin/getSubs" method = "POST">
-							<c:forEach items="${mainCategories }" var="mcategory">
+							<c:forEach items="${allCategories2 }" var="mcategory">
+								<c:if test="${empty mcategory.mainCategoryId }">
 								<tr>
-									<td><input type="hidden" id="mCatName" name="mCatName" value="${mcategory.categoryName }"></td>
-									<td><input type="submit" value="${mcategory.categoryName }"></td>
+									<td><a href="/padmin/getSubs/${mcategory.idCategory }">${mcategory.categoryName }</a></td>
 								</tr>
+								</c:if>
 							</c:forEach>
-						</form:form>
 						</tbody>
 
 					</table>
@@ -276,19 +275,9 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 				</div>
 			</div>
 		</div>-->
-
-
-
-
-
-
-
-
-
-
-
+		
 			<div class="form-group">
-				<label>Select the Sub Category : </label>
+				<label>Select the Category : </label>
 				<form:select class="form-group" path="categoryId"
 					cssClass="form-control" id="catName" name="catName"
 					required="required">
