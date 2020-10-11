@@ -10,12 +10,11 @@
 <style type="text/css">
 .sideBar {
 	position: absolute;
-    width: 13%;
-    height: 850px;
-    border: 2px solid black;
-    opacity: 0.9;
-    padding: 15px;
-	
+	width: 13%;
+	height: 850px;
+	border: 2px solid black;
+	opacity: 0.9;
+	padding: 15px;
 }
 
 .sidebtn {
@@ -48,13 +47,13 @@
 			</tr>
 			<!-- button 02 -->
 			<tr>
-				<td><a href="/padmin/CateManage"><button
-							class="sidebtn">Manage Categories</button></a></td>
+				<td><a href="/padmin/CateManage"><button class="sidebtn">Manage
+							Categories</button></a></td>
 			</tr>
 			<!-- button 03 -->
 			<tr>
-				<td><a href="/padmin/proReport"><button
-							class="sidebtn">Manage Reports</button></a></td>
+				<td><a href="/padmin/proReport"><button class="sidebtn">Manage
+							Reports</button></a></td>
 			</tr>
 		</table>
 

@@ -35,7 +35,21 @@ public class ProductsServiceImp implements ProductService{
 		 }
 		 return false;
 	 }
+	 
+	 
+	 public List<ProductModel> topTwentyProducts(){
+		return repository.topTwentyProducts();
+		 
+	 }
 	
+	 public List<ProductModel> getCateProducts(Integer id){
+		 return repository.getCateProducts(id);
+	 }
+	 
+	 public List<ProductModel> getCateProductsbyID(int id){
+		 return repository.getCateProductsbyID(id);
+	 }
+	 
 //	public List<String> listProductInfo(){
 //		return pListRepo.listProductInfo();
 //	}

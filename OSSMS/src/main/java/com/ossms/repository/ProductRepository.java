@@ -30,6 +30,14 @@ public interface ProductRepository extends CrudRepository<ProductModel, Integer>
 	 @Query(value ="select productImage from product where idProduct = :id", nativeQuery = true)
 	 String getImage(int id);
 	 
+	@Query(value = "SELECT * FROM product ORDER BY idProduct DESC limit 20", nativeQuery = true)
+	List<ProductModel> topTwentyProducts(); 
+	 
+	 @Query(value ="select * from product where categoryId = :id", nativeQuery = true)
+	 List<ProductModel> getCateProducts(Integer id);
+	 
+	 @Query(value ="select * from product where idProduct = :id", nativeQuery = true)
+	 List<ProductModel> getCateProductsbyID(int id);
 
 	 boolean existsByProductName(@Param("pName") String pName);
 	 
