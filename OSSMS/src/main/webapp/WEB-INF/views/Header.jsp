@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,7 +56,7 @@
 
 .profile_container {
 	height: 100%;
-	width: 10%;
+	width: 30%;
 	display: table;
 	float: right;
 	display: table;
@@ -65,13 +67,14 @@
 	opacity: 1.3;
 	border: none;
 	color: white;
-	padding: 15px 32px;
+	padding: 10px 26px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
+	font-size: 10px;
 	border-radius: 15%;
 	transition-duration: 0.4s;
+	cursor: pointer;
 }
 
 .button:hover {
@@ -107,31 +110,43 @@
 	color: white;
 }
 </style>
+<script>
+	function sure (){
+		var con = confirm("Are you sure?");
+		if (con){
+			return true;
+	
+		}
+
+		else {
+			return false;	
+		}
+	}
+</script>
 <meta charset="ISO-8859-1">
-<title></title>
 </head>
 <body>
-	<div class="header">
+
+<div class="header">
 		<table>
 			<tr>
 				<td>
 					<div class="logo_container">
-						<img src="logo.png"><br>
-						<p>Athukotala SM Pvt. Ltd.</p>
+						<img src="../../resources/images/logo.jpg"><br>
+						<p></p>
 					</div>
 				</td>
 				<td>
 					<div class="func_name">
-						<h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Admin
-							Panel.</h1>
+						<h1>Product Admin Panel</h1>
 					</div>
 				</td>
 				<td>
 					<div class="profile_container">
-						<span>&nbsp &nbsp Kiri Hami</span><br>
-						<br>
-						<form method="POST" action="#">
-							<input type="submit" class="button" value="Log out">
+						<span>Product Admin</span><br> <br>
+						<form method="GET" action="/customer/invalidate">
+							<input type="submit" onclick="return sure()" class="button"
+								value="Log out">
 						</form>
 					</div>
 				</td>
@@ -141,8 +156,10 @@
 	<div class="nav">
 		<table>
 			<tr>
-				<td><a href="#"><button class="navtb">empty</button></a></td>
-				<td><a href="#"><button class="navtb">empty</button></a></td>
+				<td><a href="/padmin/proManage"><button class="navtb">Main
+							Panel</button></a></td>
+				<td><a href="/padmin/cphp"><button class="navtb">CPHP</button></a></td>
+
 			</tr>
 		</table>
 	</div>
