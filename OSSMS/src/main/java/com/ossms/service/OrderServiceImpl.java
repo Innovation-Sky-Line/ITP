@@ -70,6 +70,12 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public List<Order> getOrderDetailsForList(int idCustomer) {
+		
+		return orderRepo.getOrderDetailsForList(idCustomer);
+	}
+
+	@Override
 	public void saveOrder(Order order) {
 		orderRepo.save(order);		
 	}

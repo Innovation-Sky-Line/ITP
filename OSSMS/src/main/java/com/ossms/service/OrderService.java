@@ -17,6 +17,8 @@ public interface OrderService {
 	
 	public Order getNewOrder(int cusId);
 	
+	public List <Order> getOrderDetailsForList(int idCustomer);
+
 	public List<Order> getPendingOrders( int idCustomer ); 
 
 	public Order getOrderById(int id);

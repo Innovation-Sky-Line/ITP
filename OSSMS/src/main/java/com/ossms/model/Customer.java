@@ -32,8 +32,15 @@ public class Customer {
 	@Column(name="email")
 	private String email;
 	
+	
 	public Customer() {
 		super();
+	}
+	
+	public Customer(String fname, int id) {
+		super();
+		this.firstName=fname;
+		this.idCustomer=id;
 	}
 
 	public Customer(int idCustomer, String firstName, String lastName, String address, String contactNo,

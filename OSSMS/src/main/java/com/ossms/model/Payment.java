@@ -29,6 +29,15 @@ public class Payment {
 	public Payment() {
 		
 	}
+	public Payment(int paymentId,int oid,float amt,LocalDate date,String type) {
+		
+		this.orderId=oid;
+		this.paymentId = paymentId;
+		this.amount = amt;
+		this.date = date;
+		this.type = type;
+		
+	}
 	public Payment(LocalDate date, float amount, String type, int orderId) {
 		super();
 		this.date = date;

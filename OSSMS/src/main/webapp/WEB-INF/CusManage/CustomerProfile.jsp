@@ -34,9 +34,9 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="../../resources/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top left;">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -157,7 +157,9 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
+
                           <input type="text" class="form-control" value="${customer.address }" name="city" />
+
                         </div>
                       </div>
                        <div class="col-md-6">
@@ -204,7 +206,6 @@ The above copyright notice and this permission notice shall be included in all c
       </footer>
     </div>
   </div>
- 
    <!--   Core JS Files   -->
   <script src="../../resources/assets/js/core/jquery.min.js"></script>
   <script src="../../resources/assets/js/core/popper.min.js"></script>

@@ -2,7 +2,7 @@ package com.ossms.service;
 
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ossms.model.Customer;
-import com.ossms.model.Order;
+
 import com.ossms.repository.CustomerRepository;
 import com.ossms.repository.OrderRepository;
 
@@ -63,12 +63,29 @@ public class CustomerServiceImplementation implements CustomerService {
 		
 		return customerRepository.findCustomerByEmail(email);
 	}
-
+	
 	@Override
 	public String getAddressById(int userId) {
 		return customerRepository.getAddressById(userId);
 	}
 
+	@Override
+	public List<Customer> searchResult(String name) {
+		
+		return customerRepository.findCustomerByFirstName(name);
+	}
 
+	@Override
+	public Customer getCustomerByFirstname(String name) {
+		
+		String email = customerRepository.findEmailByFirstname(name);
+		
+		return customerRepository.findCustomerByEmail(email);
+	}
+
+	@Override
+	public String getAddressById(int userId) {
+		return customerRepository.getAddressById(userId);
+	}
 
 }
