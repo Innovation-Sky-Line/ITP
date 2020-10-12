@@ -1,5 +1,6 @@
 package com.ossms.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,31 +8,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
+@IdClass(OrderDeliveryId.class)
 @Table(name = "orderdelivery")
 public class Delivery {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "orderid")
 	private int orderid;
 	
+	@Id
 	@Column(name = "driverid")
 	private int driverid;
 	
+	@Id
 	@Column(name = "vehicleid")
 	private int vehicleid;
 	
 	@Column(name = "deliverydate")
-	private Date deliverydate;
+	private LocalDate deliverydate;
 
 	public Delivery() {
 		super();
 	}
 
-	public Delivery(int orderid, int driverid, int vehicleid, Date deliverydate) {
+	public Delivery(int orderid, int driverid, int vehicleid, LocalDate deliverydate) {
 		super();
 		this.orderid = orderid;
 		this.driverid = driverid;
@@ -63,11 +67,11 @@ public class Delivery {
 		this.vehicleid = vehicleid;
 	}
 
-	public Date getDeliverydate() {
+	public LocalDate getDeliverydate() {
 		return deliverydate;
 	}
 
-	public void setDeliverydate(Date deliverydate) {
+	public void setDeliverydate(LocalDate deliverydate) {
 		this.deliverydate = deliverydate;
 	}
 

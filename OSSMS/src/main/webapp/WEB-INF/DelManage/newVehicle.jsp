@@ -176,10 +176,10 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 		<br />
 		
     <div align="center">
-        <form:form action="/saveVehicle" method="post" modelAttribute="vehicle">
+        <form:form action="/saveVehicle" method="post">
                             
             <form:label path="registrationno">Registration No:</form:label>
-            <form:input path="registrationno" items="${registrationno}" /><br/>
+            <form:input path="registrationno"/><br/>
             
                   
                  
@@ -192,7 +192,7 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
     
     
 	</div>
-	</div>
+	
 	<!-- End of Your Parts!!! -->
 	<div class="footer">
 		<jsp:include page="../views/Footer.jsp"></jsp:include>

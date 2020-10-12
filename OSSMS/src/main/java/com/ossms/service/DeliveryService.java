@@ -2,64 +2,54 @@ package com.ossms.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.ossms.model.DelCustomer;
+import com.ossms.model.Customer;
+import com.ossms.model.Employee;
 import com.ossms.model.DelVehicle;
 import com.ossms.model.Delivery;
-import com.ossms.repository.DelCustomerRepository;
-import com.ossms.repository.DeliveryRepository;
-import com.ossms.repository.VehicleRepository;
+import com.ossms.model.Order;
 
-
-
-@Service
-public class DeliveryService {
-
-	@Autowired
-	private DeliveryRepository dRep;
-	@Autowired
-	private DelCustomerRepository cRep;
-	@Autowired
-	private VehicleRepository vRep;
+public interface DeliveryService {
+	public List<Delivery> getAllDelis();
 	
-	//Methods for retrieve all data
-	public List<Delivery> getAllDelis(){
-		return (List<Delivery>) dRep.findAll();
-	}
-	
-	public List<DelVehicle> getAllVehicles(){
-		return (List<DelVehicle>) vRep.findAll();
-	}
+	public List<DelVehicle> getAllVehicles();
 		
-	public List<DelCustomer> getAllCustomers(){
-		return (List<DelCustomer>) cRep.findAll();
-	}
+	public List<Order> getAllOrders();
+	
+	public List<Employee> getAllEmps();
+	
+	public List<Customer> getAllCustomers();
 	
 	
-	//update
-	public void update(Delivery delivery) {
-		dRep.save(delivery);
-		
-	}
+	
+	public DelVehicle getVehiclesById(int id);
+	public Employee getNameOfEmpById(int id);
+	public int getCustomerId(int id);
+	public Customer getCustomerName(int id);
+//	public int getOrderId(Order ord);
 
 	
-	//Find by  id
-	public Delivery get(int orderid) {
-		return dRep.findById(orderid).get();
-	}
+	public void update(Delivery delivery);
+
+	public Delivery get(int orderid);
 	
+	public Order findOrder(int orderId);
 	
-	//Delete vehicle
-	public void deleteVehicle(int idvehicle) {
-		vRep.deleteById(idvehicle);
-	}
+	public void saveOrder(Order order);
+
+	public void deleteVehicle(int idvehicle);
 	
-	public void saveVehicle(DelVehicle vehicle) {
-		vRep.save(vehicle);
-	}
+	public void saveVehicle(DelVehicle vehicle);
 	
+	public List<Order> getAllCompletedOrders();
+
+	public List<Order> getAllIncompletedOrders();
 	
+	public List<Order> getAssignedOrders();
 	
+//	public void getdeliveryById(int orderid) {
+//		
+//		return dRep.findById(orderid).get();v
+//	}
+
+	public List<Order> searchStatus(String status);
 }

@@ -91,6 +91,27 @@ form.example::after {
   background-color: blue;
   color:white;
 }
+
+.custBtn{
+	background-color: blue;
+  border: none;
+  color: white;
+  padding: 9px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+}
+
+.custBtn:hover {
+  background-color: #fad325;
+  color: black;
+}
+
 </style>
 <script>
 
@@ -157,42 +178,41 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 			</button>
 		</form:form>
 		<br>
-		<a href="/newDelivery"><button class="listBtn">New Delivery</button></a>
+		<a href="/newDelivery"><button class="listBtn">View Pending Orders</button></a>
 		</div>
 		<br>
 		<br>
 		<br>
 		
-		<h2>Pending Deliveries</h2>
-		<table class="table table-striped">
+		<h2>Delivery Details</h2>
+		<table class="table table-dark table-hover">
 			<thead>
 				<tr class="custTR">
 				<th scope="row">Order ID</th>
-				<th scope="row">Driver ID</th>
-				<th scope="row">Vehicle ID</th>
+				<th scope="row">Driver Name</th>
+				<th scope="row">Vehicle</th>
 				<th scope="row">Customer Name</th>
 				<th scope="row">Address</th>
 				<th scope="row">Delivery Date</th>
-				<th scope="row">Update</th>
 				<th scope="row">Complete</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list}" var="d">
+				<c:forEach items="${deliveryList }" var="d">
 					<tr>
-						<td>${d.orderid }</td>
-						<td>${d.driverid }</td>
-						<td>${d.vehicleid }</td>
-						<td></td>
-						<td></td>
-						<td>${d.deliverydate }</td>
+						<td>${d.order.idOrder }</td>
+						<td>${d.employee.firstName}</td>
+						<td>${d.delVehicle.registrationno}</td>
+						<td>${d.delCustomer.firstname}</td>
+						<td>${d.delCustomer.address}</td>
+						<td>${d.delivery.deliverydate}</td>
 						
-						<td><spring:url value="/updateDelivery/${d.orderid }"
-								var="updateURL" /> <a class="btn btn-primary"
-							href="${updateURL }" role="button" >Update </a></td>
-						<td><spring:url value="#${d.orderid }"
-								var="stat" /> <a class="btn btn-primary"
-							href="${stat } role="button">Complete</a></td> 
+						<td>
+							<form:form action="/completeDelivery" method="POST">
+								<input type="text" name="orderId" value="${d.order.idOrder }" hidden />
+								<button type="submit" class="custBtn">COMPLETE DELIVERY</button>
+							</form:form>
+						</td> 
 					</tr>
 				</c:forEach>
 			</tbody>

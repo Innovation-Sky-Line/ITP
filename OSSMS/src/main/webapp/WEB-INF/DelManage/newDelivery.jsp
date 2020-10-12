@@ -21,8 +21,6 @@
 	left: 200px;
 	width: 80%;
 	top: 180px;
-	bottom:0px;
-	background-color:#87CEFA;
 }
 
 .footer {
@@ -69,7 +67,7 @@ form.example button {
 	padding: 10px;
 	background: #008000;
 	color: white;
-	font-size: 12px;
+	font-size: 5px;
 	border: 1px solid grey;
 	border-left: none;
 	cursor: pointer;
@@ -99,23 +97,30 @@ form.example::after {
 }
 
 .custBtn{
-	background-color: #0000FF;
+	background-color: green;
   border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 7px 14px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 13px;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  
 }
 
 .custBtn:hover {
   background-color: #fad325;
   color: black;
 }
+
+.custS{
+	background-color: blue;
+	height:30px;
+}
+
 </style>
 <script>
 
@@ -161,7 +166,7 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 }
 </script>
 <meta charset="ISO-8859-1">
-<title>Delivery List</title>
+<title>Assign Deliveries</title>
 </head>
 <body>
 	<jsp:include page="../views/dHeader.jsp"></jsp:include>
@@ -171,41 +176,49 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 
 
 	<div class="body">
-			<div align="center">
-		<h1>Add New Delivery</h1>
-		<br />
-		
-	<div class="container">	
-    <div align="center">
-        <form:form action="deliveryList" method="post" modelAttribute="delivery">
-            <div class="form-group">                  
-            <form:label path="orderid">Order ID:</form:label>
-            <form:select path="orderid" items="${orderid}" /><br/>
-            </div>
-            
-            <div class="form-group">
-            <form:label path="driverid">Driver ID:</form:label>
-            <form:select path="driverid" items="${driverid}" /><br/>
-            </div>
-            
-            <div class="form-group">
-            <form:label path="vehicleid">Vehicle ID:</form:label>
-            <form:select path="vehicleid" items="${vehicleid}" /><br/>
-            </div>
-
-            <div class="form-group">
-            <form:label path="deliverydate">Delivery Date (yyyy-mm-dd):</form:label>
-            <form:input path="deliverydate"/><br/>
-            </div>       
-                 
-            <form:button class="custBtn">Add into Pending Deliveries</form:button>
-            
-        </form:form>
-        
-    </div>
-    </div>
-    
-    
+		<div>		
+		<h2>Pending Orders</h2>
+		<table class="table table-dark table-hover">
+			<thead>
+				<tr class="custTR">
+				<th scope="row">Order ID</th>
+				<th scope="row">Customer Name</th>
+				<th scope="row">Address</th>				
+				<th scope="row">Driver</th>
+				<th scope="row">Vehicle</th>
+				<th scope="row">Assign</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${deliveryList }" var="d">
+					<tr>
+						<form:form method="POST" action="/assignDriver">
+							<td>${d.order.idOrder}<input type="text" value="${d.order.idOrder}" name="orderId" hidden /></td>	
+							<td>${d.delCustomer.firstname}</td>	
+							<td>${d.delCustomer.address}</td>												
+							<td>
+								<select name="dName" class="custS">
+									<c:forEach var="d" items="${emps }">
+										<option value="${d.idEmployee }">
+										${d.firstName }</option>
+									</c:forEach>
+								</select>
+							
+							</td>
+							<td>
+								<select name="vehicle" class="custS">
+									<c:forEach var="v" items="${vehicles }">
+										<option value="${v.idvehicle }">
+										${v.registrationno }</option>
+									</c:forEach>
+								</select>
+							</td>						
+							<td><button type="submit" class="custBtn">Assign</button></td>
+						</form:form>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 	</div>
 	<!-- End of Your Parts!!! -->

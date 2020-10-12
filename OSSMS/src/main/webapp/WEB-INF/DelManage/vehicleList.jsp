@@ -160,11 +160,11 @@ function sure(){
 	<div class="body">
 	<div>
 		<div class="sideBox">
-		<a href="/newVehicle"><button class="listBtn">Add New Vehicle</button></a>
+		<a href="showNewVehiclePage"><button class="listBtn">Add New Vehicle</button></a>
 		</div>
 		
 		<h2>Available Vehicles</h2>
-		<table class="table table-striped">
+		<table class="table table-dark table-hove">
 			<thead>
 				<tr class="custTR">
 				<th scope="row">Vehicle ID</th>

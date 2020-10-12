@@ -149,7 +149,7 @@ else if( document.pFrom.discount.value < 0 && document.pFrom.discount.value > 10
 	<div>
 		
 		<h2>Athukorala Supermarket Delivery Reports</h2>
-		<table class="table table-striped">
+		<table class="table table-dark table-hove">
 			<thead>
 				<tr class="custTR">
 				<th scope="row">Date</th>

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class DelCustomer {
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,17 +38,14 @@ public class DelCustomer {
 	
 	@Column(name = "password")
 	private String password;
-	
-	@OneToOne
-	@JoinColumn(name = "orderid") 
-	private Delivery orderInfo;
 
 
-	public DelCustomer() {
+
+	public Customer() {
 		super();
 	}
 
-	public DelCustomer(int idcustomer, String firstname, String lastname, String address, String contactno,
+	public Customer(int idcustomer, String firstname, String lastname, String address, String contactno,
 			String email, String username, String password, Delivery orderInfo) {
 		super();
 		this.idcustomer = idcustomer;
