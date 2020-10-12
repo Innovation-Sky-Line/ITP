@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="../../resources/assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Dashboard 
+    Previous Orders 
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -24,9 +24,9 @@
   <link href="../../resources/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="" style="background-image: url('../../resources/assets/img/bg9.jpg'); background-size: cover; background-position: top center;">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="background-image: url('../../resources/assets/img/bg9.jpg'); background-size: cover; background-position: top left;">
     
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
           Previous Orders
@@ -84,13 +84,13 @@
             <ul class="navbar-nav">  
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
+                  <i class="material-icons"  style="background:white;border-radius:3px">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>
                 </a>
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="CustomerProfile?id=${customer.idCustomer}">Profile</a>
+                  <a class="dropdown-item" href="/customer/CustomerProfile">Profile</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/customer/invalidate">Log out</a>
                 </div>

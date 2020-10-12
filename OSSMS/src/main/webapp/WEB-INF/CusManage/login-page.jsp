@@ -94,7 +94,7 @@ The above copyright notice and this permission notice shall be included in all c
                       </div>	         	  		
                 </c:otherwise>
                 </c:choose>       
-  <div class="page-header header-filter" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+  <div class="page-header header-filter" style="background-image: url('../../resources/assets/img/bg9.jpg'); background-size: cover; background-position: top center;">
              
    <div class="container">
       <div class="row">

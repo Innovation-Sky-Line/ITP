@@ -34,9 +34,9 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="../../resources/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+<body class="" style="background-image: url('../../resources/assets/img/bg9.jpg'); background-size: cover; background-position: top center;">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top left;">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="background-image: url('../../resources/assets/img/bg9.jpg'); background-size: cover; background-position: top left;">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -91,7 +91,7 @@ The above copyright notice and this permission notice shall be included in all c
              
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
+                  <i class="material-icons" style="background:white;border-radius:3px">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>
@@ -118,24 +118,13 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <div class="card-body">
                   <form:form action="/customer/update" method="post">
+                  <input type="hidden" value="${customer.idCustomer }"name="idCustomer" />
                   
                     <div class="row">
-                  <!--<div class="col-md-5">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Company (disabled)</label>
-                          <input type="text" class="form-control" disabled>
-                        </div>
-                      </div> --> 
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">id (disabled)</label>
-                          <input type="text" name="idCustomer" class="form-control" value="${customer.idCustomer }"  />
-                        </div>
-                      </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control" value="${customer.email }"name="email"/>
+                          <input type="email" class="form-control" value="${customer.email }"name="email" />
                         </div>
                       </div>
                     </div>
@@ -158,14 +147,14 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
 
-                          <input type="text" class="form-control" value="${customer.address }" name="city" />
+                          <input type="text" class="form-control" value="${customer.address }" name="address" />
 
                         </div>
                       </div>
                        <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">phone</label>
-                          <input type="text" class="form-control" value="${customer.contactNo }" name="contactNo" />
+                          <input type="text" class="form-control" value="${customer.contactNo }" pattern="[0-9]{10}" name="contactNo" />
                         </div>
                       </div>
                     </div>      

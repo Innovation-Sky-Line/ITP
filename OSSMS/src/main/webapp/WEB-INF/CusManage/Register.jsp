@@ -139,7 +139,7 @@ body {
 
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="contactNo" placeholder="Phone"  required="required">
+            <input type="text" class="form-control" name="contactNo" placeholder="Phone" pattern="[0-9]{10}"  required="required">
 		</div>
         <div class="form-group">
             <input type="text" class="form-control" name="username" placeholder="Username"  required="required">

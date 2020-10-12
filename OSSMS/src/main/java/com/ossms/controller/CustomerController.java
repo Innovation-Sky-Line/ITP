@@ -448,7 +448,7 @@ public class CustomerController {
 			}
 			else {
 				
-				if(len<8)
+				if(len<6)
 				{
 					
 					model.setViewName("CusManage/Register");
@@ -504,6 +504,7 @@ public class CustomerController {
 		Customer customer = customerService.getCustomer(cid);
 		
 		customer.setUsername(userName);
+		customer.setEmail(email);
 		customer.setPassword(password);
 		customer.setAddress(address);
 		customer.setFirstName(firstName);

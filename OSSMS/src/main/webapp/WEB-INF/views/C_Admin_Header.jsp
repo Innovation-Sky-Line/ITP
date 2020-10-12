@@ -144,17 +144,15 @@ else {return false;
 				</td>
 				<td>
 					<div class="func_name">
-						<h1> Customer Admin Dashbord</h1>
+						<h1> Customer Admin </h1>
 					</div>
 				</td>
 				<td>
 					<div class="profile_container">
 						<span>Customer Admin</span><br> <br>
-						<form method="POST" action="#">
-						<a href="/customer/login-page">
-							<input type="button" onclick="return sure()" class="button"
+						<form method="GET" action="/customer/invalidate">
+							<input type="submit" onclick="return sure()" class="button"
 								value="Log out">
-						</a>
 						</form>
 					</div>
 				</td>
@@ -162,14 +160,7 @@ else {return false;
 		</table>
 	</div>
 	<div class="nav">
-		<table>
-			<tr>
-				<td><a href="/padmin/proManage"><button class="navtb">Main
-							Panel</button></a></td>
-				<td><a href="/padmin/cphp"><button class="navtb">CPHP</button></a></td>
-				
-			</tr>
-		</table>
+
 	</div>
 </body>
 </html>
