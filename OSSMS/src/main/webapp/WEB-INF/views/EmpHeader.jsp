@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,25 +107,24 @@
 	background-color: black;
 	color: white;
 }
-</style>
-<script>
-	function sure (){
-		var con = confirm("Are you sure?");
-		if (con){
-			return true;
-	
-		}
 
-		else {
-			return false;	
-		}
-	}
+
+</style>
+<script>function sure (){var con = confirm("Are you sure?");if (con){
+	return true;
+	
+}
+
+else {return false;
+	
+}
+}
 </script>
 <meta charset="ISO-8859-1">
+<title></title>
 </head>
 <body>
-
-<div class="header">
+	<div class="header">
 		<table>
 			<tr>
 				<td>
@@ -138,12 +135,12 @@
 				</td>
 				<td>
 					<div class="func_name">
-						<h1>Product Admin Panel</h1>
+						<h1> Employee Admin Panel</h1>
 					</div>
 				</td>
 				<td>
 					<div class="profile_container">
-						<span>Product Admin</span><br> <br>
+						<span>Employee Admin</span><br> <br>
 						<form method="POST" action="#">
 							<input type="submit" onclick="return sure()" class="button"
 								value="Log out">
@@ -156,10 +153,10 @@
 	<div class="nav">
 		<table>
 			<tr>
-				<td><a href="/padmin/proManage"><button class="navtb">Main
+				<td><a href="/Employee/form"><button class="navtb">Main
 							Panel</button></a></td>
-				<td><a href="/padmin/cphp"><button class="navtb">CPHP</button></a></td>
-
+				<td><a href="/Employee/list"><button class="navtb">Manage Attendance</button></a></td>
+				
 			</tr>
 		</table>
 	</div>
