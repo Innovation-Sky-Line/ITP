@@ -49,8 +49,7 @@ public class Supplier {
 		this.status = status;
 		this.contactNo = contactNo;
 	}
-
-
+  
 	public int getIdSupplier() {
 		return idSupplier;
 	}
@@ -93,6 +92,5 @@ public class Supplier {
 		return "Supplier [idSupplier=" + idSupplier + ", supplierName=" + supplierName + ", address=" + address
 				+ ", email=" + email + ", status=" + status + ", contactNo=" + contactNo + "]";
 	}
-	
-	
+
 }

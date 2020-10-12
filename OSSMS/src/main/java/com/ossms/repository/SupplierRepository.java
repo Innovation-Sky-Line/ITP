@@ -9,6 +9,7 @@ import com.ossms.model.ProductCategoryModel;
 import com.ossms.model.Supplier;
 
 public interface SupplierRepository extends CrudRepository<Supplier, Integer>{
+
 	@Query(value = "SELECT * FROM supplier order by supplierName ASC", nativeQuery = true)
 	List<Supplier> allSupplierNames();
 	
@@ -20,5 +21,8 @@ public interface SupplierRepository extends CrudRepository<Supplier, Integer>{
 	
 	@Query(value = "SELECT * FROM supplier WHERE idSupplier = :id", nativeQuery = true)
 	List<Supplier> getSupNamebyId(int id);
+  
+	@Query(value ="select * from supplier where supplierName like %?1%", nativeQuery = true)
+    List<Supplier> searchSupplier(String name);
 
 }
