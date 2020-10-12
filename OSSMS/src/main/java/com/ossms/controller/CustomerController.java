@@ -17,12 +17,23 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ossms.model.Customer;
+import com.ossms.model.CustomerOrder;
+import com.ossms.model.Employee;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
 import com.ossms.model.Payment;
+
+import com.ossms.model.Product;
+import com.ossms.model.ProductCategoryModel;
+import com.ossms.model.ProductModel;
+import com.ossms.model.ShoppingCart;
+import com.ossms.model.Supplier;
+import com.ossms.service.CartServiceImpl;
 import com.ossms.service.CustomerService;
 import com.ossms.service.OrderService;
 import com.ossms.service.PaymentServices;
+import com.ossms.service.ProductService;
+import com.ossms.service.ProductsServiceImp;
 
 
 @Controller
@@ -34,12 +45,16 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@Autowired
+	CartServiceImpl cs = new CartServiceImpl();
+	
+	@Autowired
 	OrderService orderService;
 	
 	@Autowired
 	PaymentServices paymentService;
 	
-
+	@Autowired
+	ProductService ps = new ProductsServiceImp();
 	
 	@RequestMapping(value="/checkpassAndUname", method=RequestMethod.POST)
 	public ModelAndView checkUsernameAndEmail(@RequestParam(value="email") String email,
@@ -275,12 +290,51 @@ public class CustomerController {
 		
 		ModelAndView model = new ModelAndView();	
 	
-		if(email.equals("admin@gmail.com") && password.equals("admin") ){
+		if(email.equals("cusadmin@gmail.com") && password.equals("cusadmin") ){
 			
 			model.setViewName("CusManage/CustomerAdminDashbord");
 			
 			return model;		
 		
+		}
+		else if(email.equals("proadmin@gmail.com") && password.equals("proadmin")) {
+			model.setViewName("ProManage/Padmin");
+			
+			ProductModel product = new ProductModel();
+			model.addObject("productForm", product);
+			List<Supplier> allSuppliers = ps.allSupplierNames();
+			model.addObject("allSuppliers", allSuppliers);
+			List<ProductCategoryModel> allCategories = ps.subCategoryNames();
+			model.addObject("allCategories", allCategories);
+			List<ProductCategoryModel> mainCategories = ps.mainCategoryNames();
+			model.addObject("mainCategories", mainCategories);
+			List<ProductCategoryModel> allCategories2 = ps.allCategoryNames();
+			model.addObject("allCategories2", allCategories2);
+			
+			return model;
+		}
+		else if(email.equals("empadmin@gmail.com") && password.equals("empadmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			Employee employee = new Employee();
+			model.addObject("employee", employee);
+			
+			return model;
+		}
+		else if(email.equals("supadmin@gmail.com") && password.equals("supadmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			return model;
+		}
+		else if(email.equals("ordadmin@gmail.com") && password.equals("ordadmin")) {
+			//model.setViewName("OrderManage/ShowOrder");
+			
+			return list();
+		}
+		else if(email.equals("deladmin@gmail.com") && password.equals("deladmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			return model;
 		}
 		else {
 			
@@ -290,14 +344,15 @@ public class CustomerController {
 			
 				if(dbpassword.equals(password)) {
 					
+					Order newOrder = orderService.getNewOrder(customer.getIdCustomer());
+
+					session.setAttribute("orderId", newOrder.getOrderId());
+					
 					session.setAttribute("customerId", customer.getIdCustomer());
 
-					session.setAttribute("customer", customer);
-					
-					model.setViewName("CusManage/CustomerProfile");
-					
+					session.setAttribute("customer", customer);		
 			
-					return model;
+					return productHome(session);
 				}
 				else {
 					
@@ -311,7 +366,49 @@ public class CustomerController {
 		
 		
 	}
+	//--from Some
+	@RequestMapping(value = "/completeOrderList", method = RequestMethod.GET)
+    public ModelAndView list() {
+        ModelAndView model = new ModelAndView("OrderManage/ShowOrder");
+        List<Order> orderList = orderService.getAllCompletedOrders();
+        List<CustomerOrder> orders = new ArrayList<CustomerOrder>();
+        for(Order o : orderList) {
+        	int orderId = o.getOrderId();
+        	LocalDate date = o.getDate();
+        	Customer cus = orderService.getCusName(o.getCustomerId());
+        	String name = cus.getFirstName() + " " + cus.getLastName();
+        	
+        	CustomerOrder order = new CustomerOrder(orderId, date, name);
+        	orders.add(order);
+        }
+        model.addObject("orderList", orders);
+
+
+        return model;
+    }
 	
+	//--from Nadun
+	@RequestMapping(value = "/cphp")
+	public ModelAndView productHome(HttpSession session) {
+		ModelAndView model = new ModelAndView("ProManage/CusProductHome");
+		ProductModel product = new ProductModel();
+		model.addObject("productForm", product);
+		List<Supplier> allSuppliers = ps.allSupplierNames();
+		model.addObject("allSuppliers", allSuppliers);
+		List<ProductCategoryModel> allCategories = ps.allCategoryNames();
+		model.addObject("allCategories", allCategories);
+		List<ProductCategoryModel> subCategories = ps.subCategoryNames();
+		model.addObject("subCategories", subCategories);
+		List<ProductCategoryModel> mainCategories = ps.mainCategoryNames();
+		model.addObject("mainCategories", mainCategories);
+		List<ProductModel> p = ps.getDiscountProducts();
+		model.addObject("discounted", p);
+		List<ProductModel> topList= ps.topTwentyProducts();
+		model.addObject("topList", topList);
+		List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
+		model.addObject("itemsInCart", cart.size());
+		return model;
+	}
 
 	@RequestMapping(value="/addcustomer" , method=RequestMethod.POST)
 	public ModelAndView addCustomer(@ModelAttribute("newcustomer")  Customer newcustomer, 
@@ -334,6 +431,12 @@ public class CustomerController {
 			if(iscustomer==null) {
 				
 				customerService.addCustomer(newcustomer);
+				
+				Order newOrder = new Order(newcustomer.getIdCustomer());
+				newOrder.setStatus("Not Filled");
+				newOrder.setDeliveryStatus("Not Delivered");
+				orderService.saveOrder(newOrder);	
+				session.setAttribute("orderId", newOrder.getOrderId());
 				
 				session.setAttribute("customer", newcustomer);
 				

@@ -134,7 +134,9 @@ body {
 			    	</c:choose>		    
         </div>
 		<div class="form-group">
-            <input type="text" class="form-control" name="address" placeholder="address"  required="required">
+
+            <input type="text" class="form-control" name="address" placeholder="Address"  required="required">
+
         </div>
         <div class="form-group">
             <input type="text" class="form-control" name="contactNo" placeholder="Phone"  required="required">

@@ -47,10 +47,10 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item ">
-            <a class="nav-link" href="/customer/list">
-              <i class="material-icons">dashboard</i>
-              <p>Pending Orders</p>
+        <li class="nav-item ">
+            <a class="nav-link" href="/cphp">
+              <i class="material-icons">home</i>
+              <p>Continue Shopping</p>
             </a>
           </li>
           <li class="nav-item active ">
@@ -58,13 +58,25 @@ The above copyright notice and this permission notice shall be included in all c
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
-          </li>  
-           <li class="nav-item ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
+          </li> 
+          <li class="nav-item ">
+            <a class="nav-link" href="/customer/list">
               <i class="material-icons">shopping_cart</i>
-              <p>Previous Orders </p>
+              <p>Pending Orders</p>
             </a>
-            </li>
+          </li>           
+          <li class="nav-item ">
+           <a class="nav-link" href="/cart">
+             <i class="material-icons">add_shopping_cart</i>
+             <p>Your Cart</p>
+           </a>
+         </li>
+          <li class="nav-item ">
+           <a class="nav-link" href="/pastOrders">
+             <i class="material-icons">history</i>
+             <p>Previous Orders </p>
+           </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -87,7 +99,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="/customer/CustomerProfile">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="invalidate">Log out</a>
+                  <a class="dropdown-item" href="/customer/invalidate">Log out</a>
                 </div>
               </li>
             </ul>
@@ -145,7 +157,9 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Address</label>
-                          <input type="text" class="form-control" value="${customer.address }" name="address" />
+
+                          <input type="text" class="form-control" value="${customer.address }" name="city" />
+
                         </div>
                       </div>
                        <div class="col-md-6">

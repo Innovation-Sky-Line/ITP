@@ -83,7 +83,9 @@ public class CustomerServiceImplementation implements CustomerService {
 		return customerRepository.findCustomerByEmail(email);
 	}
 
-	
-
+	@Override
+	public String getAddressById(int userId) {
+		return customerRepository.getAddressById(userId);
+	}
 
 }

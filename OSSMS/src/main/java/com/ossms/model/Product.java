@@ -82,8 +82,6 @@ public class Product {
 	}
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
-	}
-	
-	
+	}	
 	
 }

@@ -33,10 +33,10 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active ">
-            <a class="nav-link" href="/customer/list">
-              <i class="material-icons">dashboard</i>
-              <p>Pending Orders</p>
+        <li class="nav-item ">
+            <a class="nav-link" href="/cphp">
+              <i class="material-icons">home</i>
+              <p>Continue Shopping</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -44,13 +44,25 @@
               <i class="material-icons">person</i>
               <p>Customer Profile</p>
             </a>
-          </li>  
-           <li class="nav-item ">
-            <a class="nav-link" href="CustomerProfile?id=${customer.idCustomer}">
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="/customer/list">
               <i class="material-icons">shopping_cart</i>
-              <p>Previous Orders </p>
+              <p>Pending Orders</p>
             </a>
-          </li>  
+          </li>          
+          <li class="nav-item ">
+           <a class="nav-link" href="/cart">
+             <i class="material-icons">add_shopping_cart</i>
+             <p>Your Cart</p>
+           </a>
+         </li>
+         <li class="nav-item ">
+          <a class="nav-link" href="/pastOrders">
+            <i class="material-icons">history</i>
+            <p>Previous Orders </p>
+          </a>
+        </li>  
         </ul>
       </div>
     </div>
@@ -80,7 +92,7 @@
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="/customer/CustomerProfile">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="invalidate">Log out</a>
+                  <a class="dropdown-item" href="/customer/invalidate">Log out</a>
                 </div>
               </li>
             </ul>
@@ -101,7 +113,7 @@
                       <th>Order ID</th>
                       <th>Date</th>
                       <th>Cost</th>
-                      <th>Button</th>
+                      
                     </thead>
                     <tbody>
                     <c:forEach var="order" items="${pending }">
@@ -110,10 +122,10 @@
                     		<td>${order.order.date }</td>
                     		<td>${order.total }</td>
                     		<td>
-                    		<form:form action="/detailBill" methos="POST">
+                    		<form:form action="/detailedBill" method="POST">
                     		<input type="text" name="orderId" value="${order.order.orderId }" hidden />
                     		
-                    		<button type="submit" class="btn btn-primary pull-right" style="background:green" >view</button>
+                    		<button type="submit" class="btn btn-primary pull-right" style="background:green" >VIEW</button>
                     		
                     		</form:form>
                     		</td>
