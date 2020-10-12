@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 @Table(name="supplier")
 public class Supplier {
 	
@@ -30,6 +33,22 @@ public class Supplier {
 	
 	@Column(name="contactno")
 	private String contactNo;
+	
+	public Supplier() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Supplier( String supplierName, String address, String email, String status,
+			String contactNo) {
+		super();
+		
+		this.supplierName = supplierName;
+		this.address = address;
+		this.email = email;
+		this.status = status;
+		this.contactNo = contactNo;
+	}
 
 	public int getIdSupplier() {
 		return idSupplier;
