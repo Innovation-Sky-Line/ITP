@@ -232,8 +232,11 @@ public class ProductController {
 		model.addObject("allCategories", allCategories);
 		List<ProductModel> p = productService.getCateProducts(id);
 		model.addObject("discounted", p);
-		List<ShoppingCart> cart = cs.getItemsInCart((int)session.getAttribute("orderId"));
-		model.addObject("itemsInCart", cart.size());
+		if(session.getAttribute("orderId") != null) {
+			List<ShoppingCart> cart = cs.getItemsInCart((int)session.getAttribute("orderId"));
+			model.addObject("itemsInCart", cart.size());
+		}
+		
 		return model;
 	}
 	

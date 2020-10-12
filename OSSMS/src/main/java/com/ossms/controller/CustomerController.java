@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ossms.model.Customer;
+import com.ossms.model.Employee;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
 import com.ossms.model.Product;
@@ -235,12 +236,51 @@ public class CustomerController {
 		
 		ModelAndView model = new ModelAndView();	
 	
-		if(email.equals("admin@gmail.com") && password.equals("admin") ){
+		if(email.equals("cusadmin@gmail.com") && password.equals("cusadmin") ){
 			
 			model.setViewName("CusManage/AdminProfile");
 			
 			return model;		
 		
+		}
+		else if(email.equals("proadmin@gmail.com") && password.equals("proadmin")) {
+			model.setViewName("ProManage/Padmin");
+			
+			ProductModel product = new ProductModel();
+			model.addObject("productForm", product);
+			List<Supplier> allSuppliers = ps.allSupplierNames();
+			model.addObject("allSuppliers", allSuppliers);
+			List<ProductCategoryModel> allCategories = ps.subCategoryNames();
+			model.addObject("allCategories", allCategories);
+			List<ProductCategoryModel> mainCategories = ps.mainCategoryNames();
+			model.addObject("mainCategories", mainCategories);
+			List<ProductCategoryModel> allCategories2 = ps.allCategoryNames();
+			model.addObject("allCategories2", allCategories2);
+			
+			return model;
+		}
+		else if(email.equals("empadmin@gmail.com") && password.equals("empadmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			Employee employee = new Employee();
+			model.addObject("employee", employee);
+			
+			return model;
+		}
+		else if(email.equals("supadmin@gmail.com") && password.equals("supadmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			return model;
+		}
+		else if(email.equals("ordadmin@gmail.com") && password.equals("ordadmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			return model;
+		}
+		else if(email.equals("deladmin@gmail.com") && password.equals("deladmin")) {
+			model.setViewName("EmpManage/EmpAdmin");
+			
+			return model;
 		}
 		else {
 			

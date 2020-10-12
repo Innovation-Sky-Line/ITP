@@ -240,8 +240,8 @@
 							<c:if test="${empty cat.mainCategoryId }">
 							<c:set var="id" value="${cat.idCategory } "></c:set>
 							<div class="dropdown">
-								<a href="/padmin/categoryProducts/${cat.idCategory }"><button class="dropbtn">${cat.categoryName }
-								</button></a>
+								<button class="dropbtn">${cat.categoryName }
+								</button>
 								<div class="dropdown-content">
 									<c:forEach var="sub" items="${allCategories }">
 										<c:set var="id2" value="${sub.mainCategoryId } "></c:set>
