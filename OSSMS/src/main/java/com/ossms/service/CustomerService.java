@@ -1,5 +1,7 @@
 package com.ossms.service;
 
+import java.util.List;
+
 import com.ossms.model.Customer;
 
 
@@ -17,7 +19,11 @@ public interface CustomerService {
 
 	public Customer getCustomer(int id);
   
-  public String getAddressById(int userId);	
+	public String getAddressById(int userId);	
+	
+	public List<Customer> searchResult(String name);
+	
+	public Customer getCustomerByFirstname(String name);
 	
 }
 

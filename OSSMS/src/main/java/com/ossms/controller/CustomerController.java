@@ -1,5 +1,6 @@
 package com.ossms.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ossms.model.Customer;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
+import com.ossms.model.Payment;
 import com.ossms.service.CustomerService;
 import com.ossms.service.OrderService;
 import com.ossms.service.PaymentServices;
@@ -62,7 +64,7 @@ public class CustomerController {
 		}
 		else {
 			
-			model.setViewName("CusManage/forgotpass");
+			model.setViewName("CusManage/forgotpassword");
 			model.addObject("invalid", "Warning!");
 			model.addObject("details", " Please enter a valid Username in all the required fields");
 			return model;
@@ -92,7 +94,7 @@ public class CustomerController {
 			
 			customerService.update(customer, id );
 			
-			model.setViewName("CusManage/login");
+			model.setViewName("CusManage/login-page");
 			
 			model.addObject("notequal","password reset complete!");
 			
@@ -116,26 +118,20 @@ public class CustomerController {
 	@RequestMapping(value="/forgotpassword")
 	public String forgotpasss() {
 		
-		return "CusManage/forgotpass";
+		return "CusManage/forgotpassword";
 	}
 	
 	
-	@RequestMapping(value="/AdminDashbord")
+	@RequestMapping(value="/CustomerAdminDashbord")
 	public String viewAdminDashbord() {
 		
-		return "CusManage/AdminDashbord";
+		return "CusManage/CustomerAdminDashbord";
 	}
 	
 	@RequestMapping(value="/Ranking")
 	public String viewRanking() {
 		
 		return "CusManage/Ranking";
-	}
-	
-	@RequestMapping(value="/AdminProfile")
-	public String viewAdminProfile() {
-		
-		return "CusManage/AdminProfile";
 	}
 	
 	
@@ -184,6 +180,12 @@ public class CustomerController {
 		return "CusManage/login";
 	}
 	
+	@RequestMapping(value="/login-page")
+	public String viewNewLoginpage() {
+		
+		return "CusManage/login-page";
+	}
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(HttpSession session) {
 		
@@ -215,6 +217,56 @@ public class CustomerController {
 		
 		return model;
 	}
+	@RequestMapping(value = "/customerreport", method = RequestMethod.POST)
+	public ModelAndView getReport(@RequestParam(value = "customerId") int customerId) {
+		
+		ModelAndView model = new ModelAndView("CusManage/CustomerAdminDashbord");
+		
+		
+		List<Order> orders = orderService.getOrderDetailsForList(customerId);
+
+		
+		float total = 0 ;
+		
+		List<Payment> payments = new ArrayList<Payment>();
+		
+		for(Order ordpayment : orders) {
+			
+
+			
+			float amount = paymentService.findPaymentByOrderId(ordpayment.getOrderId()).getAmount();
+			
+			LocalDate date = paymentService.findPaymentByOrderId(ordpayment.getOrderId()).getDate();
+			
+			String type = paymentService.findPaymentByOrderId(ordpayment.getOrderId()).getType();
+			
+			total += amount;
+			
+			Payment pay = new Payment(ordpayment.getOrderId(),ordpayment.getCustomerId(),amount,date,type);
+			
+			payments.add(pay);
+			
+		}
+		
+		model.addObject("report", "success");	
+		model.addObject("payments", payments);
+		model.addObject("total", total);
+		
+		return model;
+	}
+	@RequestMapping(value = "/getlist", method = RequestMethod.GET)
+	public ModelAndView customerList(@RequestParam(value = "fname") String name) {
+		
+		ModelAndView model = new ModelAndView("CusManage/CustomerAdminDashbord");
+		
+		List<Customer> customers = customerService.searchResult(name);
+				
+		model.addObject("sucess", "success");
+		model.addObject("list", customers);
+		
+		return model;
+		
+	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "email") String email
@@ -225,7 +277,7 @@ public class CustomerController {
 	
 		if(email.equals("admin@gmail.com") && password.equals("admin") ){
 			
-			model.setViewName("CusManage/AdminProfile");
+			model.setViewName("CusManage/CustomerAdminDashbord");
 			
 			return model;		
 		
@@ -249,7 +301,7 @@ public class CustomerController {
 				}
 				else {
 					
-					model.setViewName("CusManage/login");
+					model.setViewName("CusManage/login-page");
 					model.addObject("incorrect", "incorrect email or password");
 					return model;
 					
@@ -325,7 +377,7 @@ public class CustomerController {
 	  if(model.containsAttribute("customer")) model.asMap().clear();
 	  model.addAttribute("sucess","logged out");
 	  
-	  return "CusManage/login";
+	  return "CusManage/login-page";
 	}
 		
 

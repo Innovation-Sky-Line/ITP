@@ -19,4 +19,6 @@ public interface OrderService {
 	
 	public List<Order> getPendingOrders( int idCustomer );
 	
+	public List <Order> getOrderDetailsForList(int idCustomer);
+	
 }

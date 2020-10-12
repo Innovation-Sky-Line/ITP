@@ -24,9 +24,9 @@
   <link href="../../resources/assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body class="" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg" style="background-image: url('../../resources/assets/img/bg7.jpg'); background-size: cover; background-position: top left;">
     
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
           Pending Orders

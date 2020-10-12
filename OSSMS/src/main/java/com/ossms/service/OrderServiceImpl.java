@@ -45,6 +45,12 @@ public class OrderServiceImpl implements OrderService {
 		
 		return ord.getPendingOrders(idCustomer);
 	}
+
+	@Override
+	public List<Order> getOrderDetailsForList(int idCustomer) {
+		
+		return ord.getOrderDetailsForList(idCustomer);
+	}
 	
 
 }

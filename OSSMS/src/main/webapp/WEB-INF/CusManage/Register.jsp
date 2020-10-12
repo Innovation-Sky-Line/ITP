@@ -17,7 +17,9 @@
 <style>
 body {
 	color: #fff;
-	background: #63738a;
+	background-image: url("../../resources/images/unsplash-inside-mall.jpg");
+	background-size: cover; 
+	background-position: top center;
 	font-family: 'Roboto', sans-serif;
 }
 .form-control {
@@ -131,7 +133,6 @@ body {
 					</c:otherwise>
 			    	</c:choose>		    
         </div>
-        
 		<div class="form-group">
             <input type="text" class="form-control" name="address" placeholder="address"  required="required">
         </div>
@@ -164,7 +165,7 @@ body {
             <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
         </div>
     </form:form>
-	<div class="text-center">Already have an account? <a href="loginpage">Sign in</a></div>
+	<div class="text-center">Already have an account? <a href="login-page">Sign in</a></div>
 
 </div>
 </body>
