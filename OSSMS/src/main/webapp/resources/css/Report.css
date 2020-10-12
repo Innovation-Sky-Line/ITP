@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+.main_content{
+	margin-right:1%;
+	margin-top: 2.5%;
+	width: 98.5%;
+	height: 600px;
+	padding: 10px;
+}
+.h{
+	margin-left: 40%;
+	font-family: candara;
+}

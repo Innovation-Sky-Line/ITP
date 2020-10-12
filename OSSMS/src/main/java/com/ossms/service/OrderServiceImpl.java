@@ -1,49 +1,78 @@
 package com.ossms.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ossms.model.Customer;
 import com.ossms.model.Order;
+import com.ossms.repository.CustomerRepository;
 import com.ossms.repository.OrderRepository;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
-
-	@Autowired
-	private OrderRepository ord;
 	
+	@Autowired
+	OrderRepository orderRepo;
+	@Autowired
+	CustomerRepository cusRepo;
+
+
 	@Override
-	public List<Order> getPreviousOrders(int customerId) {		
-		return ord.getPreviousOrders(customerId);
+	public Order getOrderById(int id) {
+		
+		return orderRepo.findById(id).get();
 	}
 
 	@Override
-	public Optional<Order> getOrderById(int orderId) {
-		return ord.findById(orderId);
+	public Customer getCusName(int cusId) {
+		return cusRepo.findById(cusId).get();
 	}
 
 	@Override
-	public void saveOrder(Order order) {
-		ord.save(order);		
+	public List<Order> getAllCompletedOrders() {
+		return orderRepo.findCompletedOrders();
+	}
+
+	@Override
+	public List<Order> getAllIncompletedOrders() {
+	
+		return orderRepo.findIncompletedOrders();
 	}
 
 	@Override
 	public List<Order> getOrdersForMonth(int month) {
-		return ord.findOrdersForMonth(month);	
+		
+		return orderRepo.findOrdersForMonth(month);
+	}
+
+	@Override
+	public List<Order> searchStatus(String status) {
+		return orderRepo.searchStatus(status);
+	}
+
+	@Override
+	public List<Order> getPreviousOrders(int customerId) {		
+		return orderRepo.getPreviousOrders(customerId);
 	}
 
 	@Override
 	public Order getNewOrder(int cusId) {
-		return ord.getNewOrder(cusId);
+		return orderRepo.getNewOrder(cusId);
 	}
 
 	@Override
 	public List<Order> getPendingOrders(int idCustomer) {
-		return ord.getPendingOrders(idCustomer);
+		return orderRepo.getPendingOrders(idCustomer);
+	}
+
+	@Override
+	public void saveOrder(Order order) {
+		orderRepo.save(order);		
 	}
 	
-
+	
 }
