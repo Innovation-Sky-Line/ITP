@@ -1,7 +1,7 @@
 package com.ossms.model;
 
-public class PastOrder {
-	
+public class PastOrder{
+
 	private float total;
 	private Order order;
 
@@ -27,4 +27,3 @@ public class PastOrder {
 	
 	
 }
-

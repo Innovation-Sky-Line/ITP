@@ -5,11 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+
 @Entity
 @IdClass(CartId.class)
-@Table(name= "shoppingcart")
+@Table(name = "shoppingcart")
 public class ShoppingCart {
-	
+
 	@Id
 	@Column(name = "productid")
 	private int productId;
@@ -50,5 +51,6 @@ public class ShoppingCart {
 	public String toString() {
 		return "ShoppingCart [orderId=" + orderId + ", productId=" + productId + ", qty=" + qty + "]";
 	}
-
+	
+	
 }

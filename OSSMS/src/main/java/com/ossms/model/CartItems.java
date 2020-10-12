@@ -1,7 +1,7 @@
 package com.ossms.model;
 
 public class CartItems {
-	
+
 	private int prodId;
 	private int orderId;
 	private String prodName;
@@ -56,5 +56,7 @@ public class CartItems {
 		return "CartItems [prodId=" + prodId + ", orderId=" + orderId + ", prodName=" + prodName + ", qty=" + qty
 				+ ", price=" + price + "]";
 	}
-
+	
+	
+	
 }

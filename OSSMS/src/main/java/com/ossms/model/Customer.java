@@ -1,41 +1,52 @@
 package com.ossms.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "customer")
+@Table(name="customer")
 public class Customer {
+
 	@Id
-	@Column(name = "idcustomer")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="idcustomer")
 	private int idCustomer;
 	
-	@Column(name = "firstname")
+	@Column(name="firstname")
 	private String firstName;
 	
-	@Column(name = "lastname")
+	@Column(name="lastname")
 	private String lastName;
 	
-	@Column(name = "address")
+	@Column(name="address")
 	private String address;
 	
-	@Column(name = "contactno")
+	@Column(name="contactno")
 	private String contactNo;
 	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "username")
-	private String userName;
-	
-	@Column(name = "password")
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="username")
+	private String username;
+	
+	@Column(name="email")
+	private String email;
 	
 	public Customer() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public Customer(int idCustomer, String firstName, String lastName, String address, String contactNo,
+			String password, String username, String email) {
+		super();
+		this.idCustomer = idCustomer;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.contactNo = contactNo;
+		this.password = password;
+		this.username = username;
+		this.email = email;
 	}
 
 	public int getIdCustomer() {
@@ -78,6 +89,22 @@ public class Customer {
 		this.contactNo = contactNo;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -86,24 +113,10 @@ public class Customer {
 		this.email = email;
 	}
 
-	public String getUserName() {
-		return userName;
+	@Override
+	public String toString() {
+		return "Customer [idCustomer=" + idCustomer + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", address=" + address + ", contactNo=" + contactNo + ", password=" + password + ", username="
+				+ username + ", email=" + email + "]";
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	
-	
-	
-
 }

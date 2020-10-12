@@ -49,7 +49,7 @@ public class OrderController {
         List<Order> orderList = orderService.getAllCompletedOrders();
         List<CustomerOrder> orders = new ArrayList<CustomerOrder>();
         for(Order o : orderList) {
-        	int orderId = o.getIdOrder();
+        	int orderId = o.getOrderId();
         	LocalDate date = o.getDate();
         	Customer cus = orderService.getCusName(o.getCustomerId());
         	String name = cus.getFirstName() + " " + cus.getLastName();
@@ -142,7 +142,7 @@ public class OrderController {
 		List<Order> orders = orderService.getOrdersForMonth(monthVAl);
 		
 		for(Order o : orders) {
-			System.out.println(o.getIdOrder());
+			System.out.println(o.getOrderId());
 		}
 		
 		model.addObject("orders1", orders);

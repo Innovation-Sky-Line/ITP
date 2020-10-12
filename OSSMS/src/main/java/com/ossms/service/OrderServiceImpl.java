@@ -44,12 +44,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order saveOrder(Order order) {
-		
-		return orderRepo.save(order);
-	}
-
-	@Override
 	public List<Order> getOrdersForMonth(int month) {
 		
 		return orderRepo.findOrdersForMonth(month);
@@ -58,6 +52,26 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Order> searchStatus(String status) {
 		return orderRepo.searchStatus(status);
+	}
+
+	@Override
+	public List<Order> getPreviousOrders(int customerId) {		
+		return orderRepo.getPreviousOrders(customerId);
+	}
+
+	@Override
+	public Order getNewOrder(int cusId) {
+		return orderRepo.getNewOrder(cusId);
+	}
+
+	@Override
+	public List<Order> getPendingOrders(int idCustomer) {
+		return orderRepo.getPendingOrders(idCustomer);
+	}
+
+	@Override
+	public void saveOrder(Order order) {
+		orderRepo.save(order);		
 	}
 	
 	
