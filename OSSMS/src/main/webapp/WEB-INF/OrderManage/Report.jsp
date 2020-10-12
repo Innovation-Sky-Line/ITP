@@ -147,10 +147,10 @@ h2{
 	
 	<div class="body" >
 	
-  <h2 >Reports</h2>
+  <h2 class="h">Reports</h2>
   <div class="w3-container">
   <br><br>
-  <p><h3>To generate a report according to the month select month first</h3></p>
+  <p><h3>To generate a report according to the month select month first....</h3></p>
   
   <br><br>
   

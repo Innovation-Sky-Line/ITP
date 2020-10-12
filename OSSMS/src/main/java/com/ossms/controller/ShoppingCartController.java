@@ -170,7 +170,7 @@ public class ShoppingCartController {
 		LocalDate currentDate = LocalDate.now();
 		Payment payment = new Payment(currentDate, total, "Credit", orderId);
 		pm.makePayment(payment);
-		Order order = ods.getOrderById(orderId).get();
+		Order order = ods.getOrderById(orderId);
 		
 		if(address == null) 
 			address = csi.getAddressById(customerId);	//change to get userId from session
@@ -305,20 +305,6 @@ public class ShoppingCartController {
 		return mv;
 		
 	}
-	
-	@RequestMapping(value="/ordermonth")
-	public ModelAndView orderResults() {
-		ModelAndView model = new ModelAndView("ShoppingCart/OrderResults");
-		
-		List<Order> orders = ods.getOrdersForMonth(9);
-		
-		model.addObject("orders1", orders);
-		
-		return model;
-	}
-	
-	public ShoppingCartController() {	}
-
 	
 }
 

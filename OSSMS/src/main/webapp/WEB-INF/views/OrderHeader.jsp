@@ -141,7 +141,7 @@ else {return false;
 				<td>
 					<div class="profile_container">
 						<span>Order Admin</span><br> <br>
-						<form method="POST" action="#">
+						<form method="GET" action="/customer/invalidate">
 							<input type="submit" onclick="return sure()" class="button"
 								value="Log out">
 						</form>
@@ -153,7 +153,7 @@ else {return false;
 	<div class="nav">
 		<table>
 			<tr>
-				<td><a href="/list"><button class="navtb">Main
+				<td><a href="/completeOrderList"><button class="navtb">Main
 							Panel</button></a></td>
 				
 				

@@ -170,7 +170,7 @@ th, td {
 	        </tr> 
           
           <tr>
-          	<td id="btn-row"><a href="/list"><button type="button" id="btn_details">Back to orders</button></a></td>
+          	<td id="btn-row"><a href="/completeOrderList"><button type="button" id="btn_details">Back to orders</button></a></td>
           </tr>       
         </tbody>
     	</table>

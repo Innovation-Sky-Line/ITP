@@ -10,8 +10,6 @@ import com.ossms.model.Order;
 public interface OrderService {
 
 	public List<Order> getPreviousOrders(int customerId);
-
-	public Optional<Order> getOrderById(int orderId);
 	
 	public void saveOrder(Order order);
 	

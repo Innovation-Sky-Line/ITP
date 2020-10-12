@@ -20,8 +20,10 @@ import com.ossms.model.CustomerOrder;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
 import com.ossms.model.Product;
+import com.ossms.model.ProductModel;
 import com.ossms.model.ShoppingCart;
 import com.ossms.service.CartService;
+import com.ossms.service.CustomerServiceImplementation;
 import com.ossms.service.OrderService;
 import com.ossms.service.PaymentServices;
 import com.ossms.service.ProductService;
@@ -41,9 +43,11 @@ public class OrderController {
 	@Autowired
 	CartService cs;
 	
+	@Autowired
+	CustomerServiceImplementation csi = new CustomerServiceImplementation();	
 
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/completeOrderList", method = RequestMethod.GET)
     public ModelAndView list() {
         ModelAndView model = new ModelAndView("OrderManage/ShowOrder");
         List<Order> orderList = orderService.getAllCompletedOrders();
@@ -88,10 +92,10 @@ public class OrderController {
 		for(ShoppingCart cart: carts) {
 			int prodId = cart.getProductId();
 			int qty = cart.getQty();
-			Optional<Product> prod = productService.getProdById(prodId);
-			String name = prod.get().getProductName();
-			float disc = prod.get().getDiscount();
-			float finalPrice = ((100 - disc) * prod.get().getPrice()) / 100;
+			ProductModel prod = productService.getProductById(prodId);
+			String name = prod.getProductName();
+			float disc = prod.getDiscount();
+			float finalPrice = ((100 - disc) * prod.getPrice()) / 100;
 			float total = finalPrice * qty;
 			CartItems cartItem = new CartItems(prodId, orderId, name, qty, total);
 			userCart.add(cartItem);			
@@ -169,10 +173,13 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/searchCompleteOrders", method=RequestMethod.POST)
-	public ModelAndView searchStatus(@RequestParam("status") String status, Model model) {
+	public ModelAndView searchStatus(@RequestParam("status") int orderId, Model model) {
 		ModelAndView mv = new ModelAndView("OrderManage/SearchedResults");
-		List<Order> ord = orderService.searchStatus(status);
-		return mv.addObject(ord);
+		Order ord = orderService.getOrderById(orderId);
+		Customer cus = csi.getCustomer(ord.getCustomerId());
+		mv.addObject("order", ord);
+		mv.addObject("customer", cus);
+		return mv;
 	}
 	
 }

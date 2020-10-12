@@ -154,8 +154,8 @@ form.example::after {
     </thead>
     <c:forEach var="order" items="${inorderList }">
         <tr>
-     	 <td>${order.idOrder }</td>
-     	 <td><input type="text" value="${order.idOrder }" name="order" hidden>
+     	 <td>${order.orderId }</td>
+     	 <td><input type="text" value="${order.orderId }" name="order" hidden>
       	 <input id="btn_details" type="submit" value="COMPLETE" name="order"></td>
       	 
     </tr>

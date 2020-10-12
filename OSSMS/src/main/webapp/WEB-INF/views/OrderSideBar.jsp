@@ -43,7 +43,7 @@
 		<table>
 			<!-- button 01 -->
 			<tr>
-				<td><a href="/list"><button class="sidebtn active">Complete Orders</button></a></td>
+				<td><a href="/completeOrderList"><button class="sidebtn active">Complete Orders</button></a></td>
 			</tr>
 			<!-- button 02 -->
 			<tr>

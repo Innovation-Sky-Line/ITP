@@ -165,22 +165,19 @@ th, td {
 		<thead>
 			<tr class="w3-light-grey">
 				<th>Order ID</th>
+				<th>Customer Name</th>
 				<th>Date</th>
-
-				<th>Action of Order</th>
+				<th>Order Status</th>
+				<th>Delivery Status</th>
 			</tr>
 		</thead>
-		<c:forEach var="order" items="${orders1 }">
 			<tr>
-				<form action="/bill" method="post">
-					<td>${order.idOrder }<input type="text"
-						value="${order.idOrder }" name="orderId" hidden /></td>
-					<td>${order.date }</td>
-
-					<td><button type="submit" class="btnCom">VIEW DETAILS</button></td>
-				</form>
+				<td>${order.orderId }</td>
+				<td>${customer.firstName } ${customer.lastName }</td>
+				<td>${order.date }</td>
+				<td>${order.status }</td>
+				<td>${order.deliveryStatus }</td>
 			</tr>
-		</c:forEach>
 		</tbody>
 	</table>
 	</div>

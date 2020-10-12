@@ -1,5 +1,6 @@
 package com.ossms.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ossms.model.Customer;
+import com.ossms.model.CustomerOrder;
 import com.ossms.model.Employee;
 import com.ossms.model.Order;
 import com.ossms.model.PastOrder;
@@ -273,9 +275,9 @@ public class CustomerController {
 			return model;
 		}
 		else if(email.equals("ordadmin@gmail.com") && password.equals("ordadmin")) {
-			model.setViewName("EmpManage/EmpAdmin");
+			//model.setViewName("OrderManage/ShowOrder");
 			
-			return model;
+			return list();
 		}
 		else if(email.equals("deladmin@gmail.com") && password.equals("deladmin")) {
 			model.setViewName("EmpManage/EmpAdmin");
@@ -312,6 +314,27 @@ public class CustomerController {
 		
 		
 	}
+	//--from Some
+	@RequestMapping(value = "/completeOrderList", method = RequestMethod.GET)
+    public ModelAndView list() {
+        ModelAndView model = new ModelAndView("OrderManage/ShowOrder");
+        List<Order> orderList = orderService.getAllCompletedOrders();
+        List<CustomerOrder> orders = new ArrayList<CustomerOrder>();
+        for(Order o : orderList) {
+        	int orderId = o.getOrderId();
+        	LocalDate date = o.getDate();
+        	Customer cus = orderService.getCusName(o.getCustomerId());
+        	String name = cus.getFirstName() + " " + cus.getLastName();
+        	
+        	CustomerOrder order = new CustomerOrder(orderId, date, name);
+        	orders.add(order);
+        }
+        model.addObject("orderList", orders);
+
+
+        return model;
+    }
+	
 	//--from Nadun
 	@RequestMapping(value = "/cphp")
 	public ModelAndView productHome(HttpSession session) {

@@ -190,8 +190,8 @@ th, td {
 		<c:forEach var="order" items="${orders1 }">
 			<tr>
 				<form action="/bill" method="post">
-					<td>${order.idOrder }<input type="text"
-						value="${order.idOrder }" name="orderId" hidden /></td>
+					<td>${order.orderId }<input type="text"
+						value="${order.orderId }" name="orderId" hidden /></td>
 					<td>${order.date }</td>
 					<td><button type="submit" class="btnCom">VIEW DETAILS</button></td>
 				</form>
