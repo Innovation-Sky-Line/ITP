@@ -1,0 +1,72 @@
+@charset "ISO-8859-1";
+
+h1{
+	text-align: center;
+	color: white;
+	
+}
+
+h2{
+	color: white;
+	text-align: center;
+}
+
+label{
+	color: white;
+	font-size: 20px;
+}
+
+body {
+  background-image: url('/resources/images/back3.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+
+#butn{
+	width: 100%;
+	margin-top: 20px;
+	font-size: 20px;
+	background-color: #000000;
+}
+
+#save{
+	
+	background-color: #000000;
+	border-radius: 12px;
+	color: white;
+	font-size: 20px;
+	border-color: white;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  
+}
+
+.container { 
+  height: 300px;
+  position: relative;
+}
+
+tbody{
+	font-size: 20px;
+}
+
+#rep{
+	background-color: #000000;
+	border-radius: 12px;
+	color: white;
+	font-size: 40px;
+	border-color: white;
+	display: block;
+	width: 500px;
+	margin: 50px auto;
+}
+
+
