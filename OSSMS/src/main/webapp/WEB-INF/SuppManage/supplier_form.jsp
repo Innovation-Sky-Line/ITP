@@ -16,7 +16,15 @@
 	rel="stylesheet" />
 	<!--  Bootstrap -->
 	
-	
+<script type="text/javascript">
+function autoFill(){
+	document.getElementById("supplierName").value  = "Cocacola";
+	document.getElementById("address").value  = "Colombo";
+	document.getElementById("email").value  = "cocacola@gmail.com";
+	document.getElementById("contactNo").value  = "0725359400";
+}
+
+</script>	
 	
 <style type="text/css">
 .body {
@@ -114,7 +122,21 @@ text-align: center;
 		<!--  Header -->
 		
 		<!--  Form Start-->
+		
 	<div class="body">
+	
+	<div class="sideBox">
+		<form:form class="example" action="/supplier/searchSea" method="POST"
+			style="margin:auto;right:2px;max-width:550px">
+			<input type="text" placeholder="Search Suppliers.." name="suppliersea"
+				required="required">
+			<button type="submit">
+				<i class="fa fa-search"></i>
+			</button>
+		</form:form>
+		<button  onclick="autoFill()" class="listBtn">Demo</button>
+	</div><br><br>
+	
 		<spring:url value="/supplier/addSupplier/" var="saveURL"/>
 		<h2>Supplier Details Form</h2>
 		<form:form modelAttribute="supplier" method="post" action="${saveURL }" cssClass="form">
@@ -145,7 +167,7 @@ text-align: center;
 				
 		<div class="form-group">
 		<label>Contact No</label>
-		<form:input path="contactNo" cssClass="form-control" id="contactNo" type="number" required = "required"/>
+		<form:input path="contactNo" cssClass="form-control" id="contactNo" type="tel" required = "required" pattern="[0-9]{10}" />
 		</div>
 		
 		<input type="submit" id="save"class="btn btn=primary" value="Save">

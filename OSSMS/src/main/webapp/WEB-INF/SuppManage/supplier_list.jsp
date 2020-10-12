@@ -8,6 +8,18 @@
 <html>
 		
 <head>
+<script>
+			function sure(){
+				var con = confirm("Are you sure?");
+				if(con){
+					return true;
+					
+				}else{
+					return false;
+				}
+			}
+			
+		</script>
 <style type="text/css">
 	.sideBox {
 	position: absolute;
@@ -155,7 +167,7 @@ text-align: center;
 				</td>
 				<td>
 					<spring:url value="/supplier/deleteSupplier/${supplier.idSupplier}" var="deleteURL"/>
-					<a id="save" class="btn btn-primary" href="${deleteURL }" role="button" >Delete</a>
+					<a id="save" class="btn btn-primary" href="${deleteURL }" role="button" onclick="return sure()" >Delete</a>
 				</td>
 			</tr>
 			</c:forEach>
