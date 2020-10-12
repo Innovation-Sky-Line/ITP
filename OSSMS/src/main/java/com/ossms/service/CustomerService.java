@@ -17,7 +17,7 @@ public interface CustomerService {
 
 	public Customer getCustomer(int id);
   
-  public String getAddressById(int userId);	
+	public String getAddressById(int userId);	
 	
 }
 

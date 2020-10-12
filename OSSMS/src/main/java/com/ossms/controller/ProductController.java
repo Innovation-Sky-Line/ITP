@@ -39,7 +39,6 @@ import com.ossms.model.ProductPDFexporter;
 import com.ossms.model.ShoppingCart;
 import com.ossms.model.Supplier;
 import com.ossms.service.CartServiceImpl;
-import com.ossms.service.CustomerServiceImpl;
 import com.ossms.service.ProductService;
 
 @Controller
