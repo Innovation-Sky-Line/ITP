@@ -119,7 +119,7 @@ function confirmation(){
 </script>
 
 <meta charset="ISO-8859-1">
-<title>Employee Administration.</title>
+<title>Error</title>
 </head>
 <body>
 <jsp:include page="../views/EmpHeader.jsp"></jsp:include>
@@ -133,64 +133,8 @@ function confirmation(){
 		<a href="/Employee/list"><button class="listBtn">All
 				Employees</button></a>
 	</div>
-
-	
-
-<div class="body">
-		<spring:url value="/Employee/addEmployee/" var="saveURL"/>
-		<h2>ADD Employee</h2>
-		<hr>
-<br>
-<br>
-		<form:form modelAttribute="employee" name="myForm" method="post" onsubmit="return confirmation()" action="${saveURL }" cssClass="form">
-		<form:hidden path="idEmployee"/>
-		
-		<div class="form-group">
-		<label>Enter Firstname</label>
-		<form:input path="firstName" cssClass="form-control" id="firstName" name="fname" required="required"/>
-		</div>
-		
-		<div class="form-group">
-		<label>Enter Lastname</label>
-		<form:input path="lastName" cssClass="form-control" id="lastName" required="required"/>
-		</div>
-		
-		<div class="form-group">
-		<label>Enter Contact Number (Format 0712345678)</label>
-		<form:input path="contactNo" cssClass="form-control" id="contactNo" required="required"  pattern="0[0-9]{09}"/>
-		</div>
-		
-		<div class="form-group">
-		<label>Address</label>
-		<form:input path="address" cssClass="form-control" id="address" required="required"/>
-		</div>
-		
-		<div class="form-group">
-		<label>Enter Position:</label><br>
-		<label>Management</label>
-		<form:radiobutton path="position" value="Management" cssClass="form-control" id="position"/>
-		<label>Non Management</label>
-		<form:radiobutton path="position" value="Non Management" cssClass="form-control" id="position"/>
-		</div>
-		
-		<div class="form-group">
-		<label>Employee Type:</label><br>
-		<label>Cashier</label>
-		<form:radiobutton  path="type" value="cashier" cssClass="form-control" id="type"/>
-		<label>Sales Worker</label>
-		<form:radiobutton  path="type" value="salesworker" cssClass="form-control" id="type"/>
-		<label>Driver</label>
-		<form:radiobutton  path="type" value="driver" cssClass="form-control" id="type"/>
-		</div>
-		
-		
-		
-		
-		<input type="submit" id="save" class="btn btn=primary" value="Save" ><br><br>
-		
-		</form:form>
-	</div>
-	
+	<br><br><br><br><br><br>
+	<h2>No Records Found!!!</h2>
 <div class="footer">
 		<jsp:include page="../views/Footer.jsp"></jsp:include>
 	</div>
