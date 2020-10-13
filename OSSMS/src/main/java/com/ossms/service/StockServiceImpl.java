@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ossms.model.Paymentss;
 import com.ossms.model.Stocks;
 import com.ossms.repository.StockRepository;
 
@@ -35,6 +36,11 @@ public class StockServiceImpl implements StockService {
 	public void deleteStocks(int idPurchasedStock) {
 		stockRepository.deleteById(idPurchasedStock);
 		
+	}
+	
+	@Override
+	public List<Stocks> getStockByDate(String date) {
+		return stockRepository.findStockByPurchaseDate(date);
 	}
 
 }

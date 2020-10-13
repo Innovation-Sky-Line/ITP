@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lowagie.text.DocumentException;
@@ -108,7 +109,17 @@ public class StockController {
 	@RequestMapping(value="/stockreport", method=RequestMethod.GET)
 	public ModelAndView stockreport() {
 		ModelAndView model = new ModelAndView("SuppManage/StockReport");
-		List<Stocks> stocksList = stockService.getAllStocks();
+		/*List<Stocks> stocksList = stockService.getAllStocks();
+		model.addObject("stocksList", stocksList);*/
+		
+		return model;
+		
+	}
+	
+	@RequestMapping(value="/generatestockreport", method=RequestMethod.POST)
+	public ModelAndView genstockreport(@RequestParam(value="date")String date) {
+		ModelAndView model = new ModelAndView("SuppManage/StockReport");
+		List<Stocks> stocksList = stockService.getStockByDate(date);
 		model.addObject("stocksList", stocksList);
 		
 		return model;

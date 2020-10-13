@@ -114,7 +114,7 @@ text-align: center;
 		
 		<div class="form-group">
 		<label>Product ID</label>
-		<form:input path="prodId" cssClass="form-control" id="amount" type="number" required = "required"/>
+		<form:input path="prodId" cssClass="form-control" id="prodId" type="number" required = "required"/>
 		</div>
 		
 		<div class="form-group">

@@ -142,7 +142,7 @@ text-align: center;
 				<td>ID</td>
 				<td>Product ID</td>
 				<td>PaymentDate</td>
-				<td>Amount</td>
+				<td>Amount(Rs)</td>
 				<td>Type</td>
 				
 				

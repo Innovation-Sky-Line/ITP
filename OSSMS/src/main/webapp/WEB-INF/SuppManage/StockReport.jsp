@@ -124,6 +124,10 @@ form.example::after {
 	</div>	
 	
 <div style="overflow-x:auto;">
+<form:form method="POST" action="/stock/generatestockreport">
+		<input type="date" name="date" />
+		<button type="submit">Generate Report</button>
+	</form:form>
 	<table class="table table-dark table-hover">
 		<tbody>
 		
@@ -134,6 +138,8 @@ form.example::after {
 				<td>Purchased Date</td>
 				
 			</tr>
+			<c:set var="stocks" value="${stocksList }"></c:set>
+			<c:if test="${not empty stocksList }">
 			<c:forEach items="${stocksList }" var="stocks">
 			<tr>
 				<td>${stocks.idPurchasedStock}</td>
@@ -144,6 +150,7 @@ form.example::after {
 					
 			</tr>
 			</c:forEach>
+			</c:if>
 		</tbody>
 		</table>
 		

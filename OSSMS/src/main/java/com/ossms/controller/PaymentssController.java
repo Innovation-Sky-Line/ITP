@@ -1,13 +1,17 @@
 package com.ossms.controller;
 
 
-import java.io.IOException;
+import java.io.IOException;import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
-
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lowagie.text.DocumentException;
@@ -35,9 +40,9 @@ public class PaymentssController {
 /*---------------------------------Payments Registration Form-----------------------------------*/
 	
 	@RequestMapping(value = "/payform")
-	public ModelAndView paymentReg() {
+	public ModelAndView paymentReg(Paymentss paymentss) {
 		ModelAndView model = new ModelAndView("SuppManage/payments");
-		Paymentss paymentss = new Paymentss();
+		
 		model.addObject("paymentss", paymentss);
 		return model;		
 	}
@@ -75,10 +80,10 @@ public class PaymentssController {
 		System.out.println(idPayment);
 		Paymentss paymentss = paymentssService.getPaymentssById(idPayment);
 		System.out.println(paymentss);
-		model.addObject("Paymentss",paymentss);
-		model.setViewName("/payment/payform");
+		model.addObject("paymentss",paymentss);
 		
-		return model;
+		
+		return paymentReg(paymentss);
 
 	}
 	
@@ -117,9 +122,18 @@ public class PaymentssController {
 	@RequestMapping(value="/payreport", method=RequestMethod.GET)
 	public ModelAndView payreport() {
 		ModelAndView model = new ModelAndView("SuppManage/PayReport");
-		List<Paymentss> paymentsList = paymentssService.getAllPayments();
-		model.addObject("paymentsList", paymentsList);
+		/*List<Paymentss> paymentsList = paymentssService.getAllPayments();
+		model.addObject("paymentsList", paymentsList);*/
 		
+		return model;
+		
+	}
+	
+	@RequestMapping(value="/generatepayreport", method=RequestMethod.POST)
+	public ModelAndView genpayreport(@RequestParam(value="date")String date) {
+		ModelAndView model = new ModelAndView("SuppManage/PayReport");
+		List<Paymentss> paymentsList = paymentssService.getPaymentsByDate(date);
+		model.addObject("paymentsList", paymentsList);
 		return model;
 		
 	}
@@ -140,9 +154,7 @@ public class PaymentssController {
 		String monthID = this.getMonthID(month); 
 		List<EmployeeAttendance> attendanceList = new ArrayList<EmployeeAttendance>();
 		*/
-		
 		List<Paymentss> paymentsList = paymentssService.getAllPayments();
-		
 	
 		PaymentPDFExporter exporter = new PaymentPDFExporter(paymentsList);
 		exporter.export(response);

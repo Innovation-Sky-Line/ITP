@@ -58,9 +58,24 @@ public class SupplierController {
 	
 
 	@RequestMapping(value="/addSupplier/", method=RequestMethod.POST)
-	public ModelAndView addSupplier(Supplier supplier) {
+	public ModelAndView addSupplier(Supplier supplier, @RequestParam(value="idSupplier") int suppId) {
 		ModelAndView model = new ModelAndView();
-		supplierService.saveOrUpdate(supplier);
+		
+		System.out.println("Supp" + suppId);
+		Supplier newsupplier;
+		if(suppId != 0) {
+			newsupplier = supplierService.getSupplierById(suppId);
+			newsupplier.setSupplierName(supplier.getSupplierName());
+			newsupplier.setAddress(supplier.getAddress());
+			newsupplier.setContactNo(supplier.getContactNo());
+			newsupplier.setEmail(supplier.getEmail());
+			newsupplier.setStatus(supplier.getStatus());
+			supplierService.saveOrUpdate(newsupplier);
+		}
+		else
+			supplierService.saveOrUpdate(supplier);
+		
+		
 		model.setViewName("redirect:/supplier/list");
 		
 		return model;
@@ -84,8 +99,10 @@ public class SupplierController {
 	/*---------------------------------Supplier details save to db-----------------------------------*/
 	
 	@RequestMapping(value="/saveSupplier/", method=RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("supplier") Supplier supplier) {
-		supplierService.saveOrUpdate(supplier);
+	public ModelAndView save(@ModelAttribute("supplier") Supplier supplier, @RequestParam(value="supId") int suppId) {
+		
+		
+		
 		
 		return new ModelAndView("redirect:/supplier/list");
 
@@ -95,7 +112,9 @@ public class SupplierController {
 	
 	@RequestMapping(value="/deleteSupplier/{idSupplier}", method=RequestMethod.GET)
 	public ModelAndView delete(@PathVariable("idSupplier") int idSupplier) {
-		supplierService.deleteSupplier(idSupplier);
+		Supplier supplier = supplierService.getSupplierById(idSupplier);
+		supplier.setStatus("Inactive");
+		supplierService.saveOrUpdate(supplier);
 		
 		return new ModelAndView("redirect:/supplier/list");
 

@@ -1,6 +1,7 @@
 package com.ossms.service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -39,6 +40,12 @@ public class PaymentssServiceImpl implements PaymentssService {
 	public void deletePaymentss(int idPayment) {
 		paymentssRepository.deleteById(idPayment);
 		
+	}
+
+
+	@Override
+	public List<Paymentss> getPaymentsByDate(String date) {
+		return paymentssRepository.findPaymentByPaymentDate(date);
 	}
 
 }

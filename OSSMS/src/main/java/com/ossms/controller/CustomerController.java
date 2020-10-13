@@ -322,7 +322,9 @@ public class CustomerController {
 			return model;
 		}
 		else if(email.equals("supadmin@gmail.com") && password.equals("supadmin")) {
-			model.setViewName("EmpManage/EmpAdmin");
+			Supplier supplier = new Supplier();
+			model.addObject("supplier", supplier);
+			model.setViewName("SuppManage/supplier_form");
 			
 			return model;
 		}

@@ -123,7 +123,7 @@ form.example::after {
 		<!--  Data Retrieved Display Table Start-->
 		<div class = "sideBox">
 	<spring:url value="/payment/payform" var="addURL"/>
-					<a href="/payment/export" id="save" class="btn btn-primary" href="${addURL }" role="button" >Print Report</a></div>
+					<a href="/payment/export/" id="save" class="btn btn-primary" href="${addURL }" role="button" >Print Report</a></div>
 	<div class = "title" style ="margin : auto">
 		<img src="../../resources/images/logo.jpg"><br>
 		<h3>Athukorala SuperMarket PVT. LTD.</h3>
@@ -132,6 +132,10 @@ form.example::after {
 		<br><br>
 	</div>	
 <div style="overflow-x:auto;">
+	<form:form method="POST" action="/payment/generatepayreport">
+		<input type="date" name="date" />
+		<button type="submit">Generate Report</button>
+	</form:form>
 	<table class="table table-dark table-hover">
 		<tbody>
 		
@@ -146,16 +150,19 @@ form.example::after {
 				
 				
 			</tr>
-			<c:forEach items="${paymentsList }" var="paymentss">
-			<tr>
-				<td>${paymentss.idPayment}</td>
-				<td>${paymentss.prodId}</td>
-				<td>${paymentss.paymentDate}</td>
-				<td>${paymentss.amount}</td>
-				<td>${paymentss.type}</td>
+			<c:set var="payments" value="${paymentsList }"></c:set>
+			<c:if test="${not empty paymentsList }">
+				<c:forEach items="${paymentsList }" var="paymentss">
+				<tr>
+					<td>${paymentss.idPayment}</td>
+					<td>${paymentss.prodId}</td>
+					<td>${paymentss.paymentDate}</td>
+					<td>${paymentss.amount}</td>
+					<td>${paymentss.type}</td>
+					
 				
-			
-			</c:forEach>
+				</c:forEach>
+			</c:if>
 		</tbody>
 		</table>
 		</div>
