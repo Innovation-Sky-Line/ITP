@@ -151,13 +151,13 @@ public class ShoppingCartController {
 	
 	@RequestMapping(value = "/userpay")
 	public ModelAndView userPaymentPage(@RequestParam(value = "total", required = false) float total,
-			@RequestParam(value = "orderId", required = false) int orderId) {
-		int userId = 1;
-		String address = csi.getAddressById(userId);
+			HttpSession session) {
+
+		String address = csi.getAddressById((int) session.getAttribute("customerId"));
 		LocalDate currentDate = LocalDate.now();
 		ModelAndView mv = new ModelAndView("ShoppingCart/UserPayment");
 		mv.addObject("totalPrice", total);
-		mv.addObject("orderId", orderId);
+		mv.addObject("orderId", session.getAttribute("orderId"));
 		mv.addObject("address", address);
 		return mv;
 	}
@@ -292,8 +292,10 @@ public class ShoppingCartController {
 		List<ProductModel> allProds = ps.findProductsByName(prodName);
 		List<ProductCategoryModel> allCategories = ps.allCategoryNames();
 		mv.addObject("allCategories", allCategories);
-		List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
-		mv.addObject("itemsInCart", cart.size());
+		if(session.getAttribute("orderId") != null) {
+			List<ShoppingCart> cart = cs.getItemsInCart((int) session.getAttribute("orderId"));
+			mv.addObject("itemsInCart", cart.size());
+		}
 		
 		if(!allProds.isEmpty()) {
 			mv.addObject("prods", allProds);			
